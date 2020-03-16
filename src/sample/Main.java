@@ -16,6 +16,7 @@ public class Main extends Application {
         primaryStage.show();
 	    System.out.println("This is a test");
 	    System.out.println("This is Lawrence pushing with IntelliJ");
+
     }
 
 
