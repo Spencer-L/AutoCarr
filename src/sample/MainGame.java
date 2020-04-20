@@ -5,6 +5,7 @@ import javafx.scene.layout.Pane;
 public class MainGame {
     //fields
     int size=1000;
+    double[] dimensions;
     Shop shop = new Shop(size);
     GoldDisplay gDisplay = new GoldDisplay(size);
     /*Playfield pField = new PlayField(size);
@@ -12,8 +13,9 @@ public class MainGame {
 
     Pane wrapper = new Pane();
 
-    public MainGame(){
-        wrapper.setPrefSize(size,size);
+    public MainGame(double[] wSize){
+        dimensions=wSize;
+        wrapper.setPrefSize(wSize[0],wSize[1]);
         wrapper.getChildren().add(shop.getBody());
         shop.getBody().relocate(0,size-size/6);
         wrapper.getChildren().add(gDisplay.getBody());
