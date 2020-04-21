@@ -32,6 +32,7 @@ public class MainGame {
         deck.getBody().relocate(0,dimensions[1]-dimensions[1]/6-dimensions[1]/7);
     }
 
+
     private void initAllVars(){
         shop = new Shop(dimensions);
         gDisplay = new GoldDisplay(dimensions);
