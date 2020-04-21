@@ -6,9 +6,11 @@ import javafx.scene.paint.Color;
 
 public class StorageDeck {
     Pane body = new Pane();
-
-    public StorageDeck(int size){
-        Rectangle base = new Rectangle(size,size/7);
+    Rectangle base;
+    double[] dimensions;
+    public StorageDeck(double[] dimen){
+        dimensions=dimen;
+        base = new Rectangle(dimensions[0],dimensions[1]/7);
         base.setFill(Color.RED);
         body.getChildren().add(base);
     }
