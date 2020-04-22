@@ -16,6 +16,7 @@ public class Main extends Application {
         primaryStage.setTitle("Hello World");
         Screen myScreen=Screen.getPrimary();
         Rectangle2D bounds= myScreen.getVisualBounds();
+        GlobalVariable.screenDimensions=new double[]{bounds.getWidth(),bounds.getHeight()};
         MainGame root2 = new MainGame(new double[]{bounds.getWidth(),bounds.getHeight()});
         primaryStage.setScene(new Scene(root2.getWrapper(), 1000, 1000));
         primaryStage.setMaximized(true);

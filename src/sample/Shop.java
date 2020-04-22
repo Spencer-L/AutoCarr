@@ -10,7 +10,7 @@ public class Shop {
     Rectangle base;
     public Shop(double[] dimen){
         dimensions=dimen;
-        base = new Rectangle(dimensions[0],dimensions[1]/6);
+        base = new Rectangle(dimensions[0],dimensions[1]*0.17);
         base.setFill(Color.GREEN);
         body.getChildren().add(base);
     }
