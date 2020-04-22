@@ -20,8 +20,6 @@ public class Main extends Application {
         MainGame root2 = new MainGame(new double[]{bounds.getWidth(),bounds.getHeight()});
         primaryStage.setScene(new Scene(root2.getWrapper(), 1000, 1000));
         primaryStage.setMaximized(true);
-        System.out.println(bounds.getWidth());
-        System.out.println(bounds.getHeight());
         primaryStage.show();
 
     }

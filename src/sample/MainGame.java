@@ -5,6 +5,7 @@ import javafx.scene.layout.Pane;
 public class MainGame {
     //fields
     double[] dimensions;
+
     Shop shop;
     GoldDisplay gDisplay;
     PlayField pField;
@@ -20,7 +21,32 @@ public class MainGame {
     }
     //setter/getter
     public Pane getWrapper(){return wrapper;}
-    //methods
+    //public methods
+    public void adjustGDBody(double[] dimensions){
+        gDisplay.getBody().setLayoutX(dimensions[0]);
+        gDisplay.getBody().setLayoutY(dimensions[1]);
+        gDisplay.setBodyDimensions(new double[]{dimensions[2],dimensions[3]});
+    }
+    public void adjustShopBody(double[] dimensions){
+        shop.getBody().setLayoutX(dimensions[0]);
+        shop.getBody().setLayoutY(dimensions[1]);
+        shop.setBodyDimensions(new double[]{dimensions[2],dimensions[3]});
+    }
+    public void adjustDeckBody(double[] dimensions){
+        deck.getBody().setLayoutX(dimensions[0]);
+        deck.getBody().setLayoutY(dimensions[1]);
+        deck.setBodyDimensions(new double[]{dimensions[2],dimensions[3]});
+    }
+    public void adjustLayout(double boxSize,double[] boxesCount){
+        double additionalVerticalSpace=(GlobalVariable.screenDimensions[1]-boxSize*boxesCount[1]-deck.getBodyDimensions()[1]-shop.getBodyDimensions()[1]);
+        gDisplay.setBodyDimensions(new double[]{GlobalVariable.screenDimensions[0]-boxSize*boxesCount[0],
+                boxSize*boxesCount[1]});
+        deck.setBodyDimensions(new double[]{GlobalVariable.screenDimensions[0],
+                deck.getBodyDimensions()[1]+(additionalVerticalSpace/2)});
+        shop.setBodyDimensions(new double[]{GlobalVariable.screenDimensions[0],
+                shop.getBodyDimensions()[1]+(additionalVerticalSpace/2)});
+    }
+    //private methods
     private void appendBodies(){
         Pane shopBody=(Pane)shop.getBody();
         Pane SDBody=(Pane)deck.getBody();
@@ -40,8 +66,8 @@ public class MainGame {
     private void initAllVars(){
         shop = new Shop();
         gDisplay = new GoldDisplay();
-        pField = new PlayField();
         deck = new StorageDeck();
+        pField = new PlayField(this);
     }
 
     //this is the mainGame file
