@@ -16,6 +16,7 @@ public class PlayField {
     private double[] boxesCount;
     private double boxSize;
     private ArrayList<Box> boxes=new ArrayList<Box>();
+    private ArrayList<Piece> pieces=new ArrayList<Piece>();
 
     //constructor
     public PlayField(MainGame mG){
@@ -30,6 +31,7 @@ public class PlayField {
         mainGame.adjustLayout(boxSize,boxesCount);
         createBoxes();
         setBodyDimensions(new double[]{boxSize*boxesCount[0],boxSize*boxesCount[1]});
+        createPieces();
     }
 
     //setter/getter
@@ -53,5 +55,9 @@ public class PlayField {
     }
     private double findBoxSize(){
         return Math.min(bodyDimensions[0] / boxesCount[0], bodyDimensions[1] / boxesCount[1]);
+    }
+    private void createPieces(){
+        RectPiece tempPiece=new RectPiece(boxSize,boxes.get(0));
+        pieces.add(tempPiece);
     }
 }
