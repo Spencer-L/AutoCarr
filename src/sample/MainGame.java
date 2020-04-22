@@ -4,7 +4,6 @@ import javafx.scene.layout.Pane;
 
 public class MainGame {
     //fields
-    //int size=1000;
     double[] dimensions;
     Shop shop;
     GoldDisplay gDisplay;
@@ -12,39 +11,37 @@ public class MainGame {
     StorageDeck deck;
 
     Pane wrapper = new Pane();
-
+    //constructor
     public MainGame(double[] wSize){
         dimensions=wSize;
         wrapper.setPrefSize(wSize[0],wSize[1]);
         initAllVars();
         appendBodies();
     }
+    //setter/getter
     public Pane getWrapper(){return wrapper;}
-
+    //methods
     private void appendBodies(){
         Pane shopBody=(Pane)shop.getBody();
         Pane SDBody=(Pane)deck.getBody();
-        Pane PFBod=(Pane)pField.getBody();
+        Pane PFBody=(Pane)pField.getBody();
         Pane GDBody=(Pane)gDisplay.getBody();
-        double[] shopDimen=new double[]{shopBody.getWidth(),shopBody.getHeight()};
-        System.out.println(shopDimen[0]);
-        System.out.println(shopDimen[1]);
         wrapper.getChildren().add(shopBody);
-        shop.getBody().relocate(0,dimensions[1]-dimensions[1]/6);
         wrapper.getChildren().add(GDBody);
-        gDisplay.getBody().relocate(0,dimensions[1]/9);
-        wrapper.getChildren().add(PFBod);
-        pField.getBody().relocate(dimensions[0]/8,dimensions[1]/20);
+        wrapper.getChildren().add(PFBody);
         wrapper.getChildren().add(SDBody);
-        deck.getBody().relocate(0,dimensions[1]-dimensions[1]/6-dimensions[1]/7);
+        shopBody.relocate(0, pField.getBodyDimensions()[1]+deck.getBodyDimensions()[1]);
+        SDBody.relocate(0, pField.getBodyDimensions()[1]);
+        PFBody.relocate(gDisplay.getBodyDimensions()[0], 0);
+        GDBody.relocate(0,0);
     }
 
 
     private void initAllVars(){
-        shop = new Shop(dimensions);
-        gDisplay = new GoldDisplay(dimensions);
-        pField = new PlayField(dimensions);
-        deck = new StorageDeck(dimensions);
+        shop = new Shop();
+        gDisplay = new GoldDisplay();
+        pField = new PlayField();
+        deck = new StorageDeck();
     }
 
     //this is the mainGame file

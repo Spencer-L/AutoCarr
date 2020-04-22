@@ -7,21 +7,19 @@ import javafx.scene.shape.Rectangle;
 public class GoldDisplay {
     //fields
     Pane body = new Pane();
-    double [] dimensions;
-    double bodyWidth;
-    double bodyHeight;
+    double [] screenDimensions;
+    double [] bodyDimensions;
     //constructor
-    public GoldDisplay(double[] dimen){
-        dimensions=dimen;
-        bodyWidth=dimensions[0]*0.15;
-        bodyHeight=dimensions[1]*0.05;
-        Rectangle base = new Rectangle(bodyWidth,bodyHeight);
+    public GoldDisplay(){
+        screenDimensions=GlobalVariable.screenDimensions;
+        bodyDimensions=new double[]{screenDimensions[0]*0.1,screenDimensions[1]*0.7};
+        Rectangle base = new Rectangle(bodyDimensions[0],bodyDimensions[1]);
         base.setFill(Color.BLUE);
         body.getChildren().add(base);
-        System.out.println("Gold Display Is called");
     }
     //setter/getter
     public Pane getBody(){return body;}
+    public double[] getBodyDimensions(){return bodyDimensions;}
     //methods
 
 }
