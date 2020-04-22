@@ -45,6 +45,9 @@ public class MainGame {
                 deck.getBodyDimensions()[1]+(additionalVerticalSpace/2)});
         shop.setBodyDimensions(new double[]{GlobalVariable.screenDimensions[0],
                 shop.getBodyDimensions()[1]+(additionalVerticalSpace/2)});
+        //System.out.println("Something");
+        System.out.println(pField);
+        //pField.setBodyDimensions(new double[]{boxSize*boxesCount[0],boxSize*boxesCount[1]});
     }
     //private methods
     private void appendBodies(){
