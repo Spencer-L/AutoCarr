@@ -15,7 +15,7 @@ public class GoldDisplay {
         screenDimensions=GlobalVariable.screenDimensions;
         bodyDimensions=new double[]{screenDimensions[0]*0.1,screenDimensions[1]*0.7};
         base = new Rectangle(bodyDimensions[0],bodyDimensions[1]);
-        base.setFill(Color.LIGHTBLUE);
+        base.setFill(Color.TRANSPARENT);
         body.getChildren().add(base);
     }
     //setter/getter

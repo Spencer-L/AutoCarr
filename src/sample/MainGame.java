@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 public class MainGame {
@@ -16,8 +17,13 @@ public class MainGame {
     public MainGame(double[] wSize){
         dimensions=wSize;
         wrapper.setPrefSize(wSize[0],wSize[1]);
+        wrapper.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> console(event));
         initAllVars();
         appendBodies();
+    }
+    private void console(MouseEvent e){
+        System.out.println(e.getSceneX());
+        System.out.println(e.getSceneY());
     }
     //setter/getter
     public Pane getWrapper(){return wrapper;}
@@ -45,9 +51,6 @@ public class MainGame {
                 deck.getBodyDimensions()[1]+(additionalVerticalSpace/2)});
         shop.setBodyDimensions(new double[]{GlobalVariable.screenDimensions[0],
                 shop.getBodyDimensions()[1]+(additionalVerticalSpace/2)});
-        //System.out.println("Something");
-        System.out.println(pField);
-        //pField.setBodyDimensions(new double[]{boxSize*boxesCount[0],boxSize*boxesCount[1]});
     }
     //private methods
     private void appendBodies(){

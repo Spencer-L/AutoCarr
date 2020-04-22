@@ -25,7 +25,7 @@ public class PlayField {
         screenDimensions= GlobalVariable.screenDimensions;
         bodyDimensions=new double[]{screenDimensions[0]*0.9,screenDimensions[1]*0.7};
         base = new Rectangle(bodyDimensions[0],bodyDimensions[1]);
-        base.setFill(Color.PURPLE);
+        base.setFill(Color.TRANSPARENT);
         body.getChildren().add(base);
         boxSize=findBoxSize();
         mainGame.adjustLayout(boxSize,boxesCount);
@@ -40,10 +40,13 @@ public class PlayField {
     public double[] getBoxesCount(){return boxesCount;}
     public void setBodyDimensions(double[] bD) {
         bodyDimensions = bD;
+        body.setLayoutX(GlobalVariable.screenDimensions[0]-bD[0]);
+        body.setLayoutY(0);
         base.setWidth(bD[0]);
         base.setHeight(bD[1]);
     }
-    //methods
+    //public methods
+    //private methods
     private void createBoxes(){
         for(int i=0;i<boxesCount[1];i++){
             for(int j=0;j<boxesCount[0];j++){
@@ -57,7 +60,7 @@ public class PlayField {
         return Math.min(bodyDimensions[0] / boxesCount[0], bodyDimensions[1] / boxesCount[1]);
     }
     private void createPieces(){
-        RectPiece tempPiece=new RectPiece(boxSize,boxes.get(0));
+        RectPiece tempPiece=new RectPiece(boxSize*0.5,boxes.get(54),100,"Rect1",mainGame,this);
         pieces.add(tempPiece);
     }
 }

@@ -20,7 +20,7 @@ public class Box {
         body.setLayoutX(id%(boxesCount[0])*s);
         body.setLayoutY((int)(id/(boxesCount[0]))*s);
         base=new Rectangle(0,0,s,s);
-        base.setFill(Color.BISQUE);
+        base.setFill(Color.TRANSPARENT);
         base.setStroke(Color.BLACK);
         base.setStrokeWidth(size*0.0186);
         body.getChildren().add(base);
