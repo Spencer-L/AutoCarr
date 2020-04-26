@@ -3,6 +3,8 @@ package sample;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
+import java.util.ArrayList;
+
 public class MainGame {
     //fields
     double[] dimensions;
@@ -10,9 +12,11 @@ public class MainGame {
     Shop shop;
     GoldDisplay gDisplay;
     PlayField pField;
-    StorageDeck deck;
-
+    Deck deck;
+    ArrayList<Player> players=new ArrayList<Player>();
     Pane wrapper = new Pane();
+
+
     //constructor
     public MainGame(double[] wSize){
         dimensions=wSize;
@@ -21,8 +25,14 @@ public class MainGame {
         initAllVars();
         appendBodies();
     }
+    private boolean start=false;
     private void console(MouseEvent e){
-        pField.startFight();
+        if(start==false){
+            pField.startFight();
+        }else{
+            pField.repositionPieces();
+        }
+        start=!start;
     }
     //setter/getter
     public Pane getWrapper(){return wrapper;}
@@ -51,6 +61,10 @@ public class MainGame {
         shop.setBodyDimensions(new double[]{GlobalVariable.screenDimensions[0],
                 shop.getBodyDimensions()[1]+(additionalVerticalSpace/2)});
     }
+    public void createPlayers(){
+        players.add(new Player("Player 1",1,500d,pField,this));
+
+    }
     //private methods
     private void appendBodies(){
         Pane shopBody=(Pane)shop.getBody();
@@ -73,7 +87,7 @@ public class MainGame {
     private void initAllVars(){
         shop = new Shop();
         gDisplay = new GoldDisplay();
-        deck = new StorageDeck();
+        deck = new Deck();
         pField = new PlayField(this);
     }
 

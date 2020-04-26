@@ -26,6 +26,7 @@ public abstract class Piece {
     private int teamNum;
     private Piece target;
     private Timeline tL;
+    private boolean onField=false;
     //constructor
     Piece(double s,Box pB,double h, String id,MainGame mG,PlayField pF,int tN){
         mainGame=mG;
@@ -77,6 +78,13 @@ public abstract class Piece {
     public double[] getOverallPosition() {
         return overallPosition;
     }
+    public boolean getOnField(){
+        return onField;
+    }
+
+    public void setOnField(boolean onField) {
+        this.onField = onField;
+    }
 
     //public methods
     protected void dragPiece(MouseEvent e){
@@ -110,9 +118,7 @@ public abstract class Piece {
     protected void releasePiece(MouseEvent e){
         isDragging=false;
         parentBox=findClosestBox();
-        body.setLayoutX(parentBox.getBody().getLayoutX()+mainGame.gDisplay.getBodyDimensions()[0]+(getSize()/2));
-        body.setLayoutY(parentBox.getBody().getLayoutY()+(getSize()/2));
-        overallPosition=findPosition();
+        reposition();
         parentBox.notGlow();
         System.out.println(parentBox.getID());
     }
@@ -171,6 +177,11 @@ public abstract class Piece {
     protected void movePiece(double[] movement){
         getBody().setLayoutX(getBody().getLayoutX()+movement[0]);
         getBody().setLayoutY(getBody().getLayoutY()+movement[1]);
+    }
+    protected void reposition(){
+        body.setLayoutX(parentBox.getBody().getLayoutX()+mainGame.gDisplay.getBodyDimensions()[0]+(getSize()/2));
+        body.setLayoutY(parentBox.getBody().getLayoutY()+(getSize()/2));
+        overallPosition=findPosition();
     }
     //private methods
 

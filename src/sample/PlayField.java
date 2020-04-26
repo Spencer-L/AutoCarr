@@ -32,7 +32,7 @@ public class PlayField {
         mainGame.adjustLayout(boxSize,boxesCount);
         createBoxes();
         setBodyDimensions(new double[]{boxSize*boxesCount[0],boxSize*boxesCount[1]});
-        createPieces();
+        mainGame.createPlayers();
     }
 
     //setter/getter
@@ -60,14 +60,23 @@ public class PlayField {
         roundEnd=rE;
     }
 
+    public double getBoxSize() {
+        return boxSize;
+    }
+
     //public methods
     public void startFight(){
         roundEnd=false;
         for(Piece p:pieces){
             p.startFight(pieces);
-            if(roundEnd==true){
+            if(roundEnd){
                 break;
             }
+        }
+    }
+    public void repositionPieces(){
+        for(Piece p:pieces){
+            p.reposition();
         }
     }
     public void endRound(){
@@ -87,10 +96,5 @@ public class PlayField {
     private double findBoxSize(){
         return Math.min(bodyDimensions[0] / boxesCount[0], bodyDimensions[1] / boxesCount[1]);
     }
-    private void createPieces(){
-        RectPiece tempPiece=new RectPiece(boxSize*0.5,boxes.get(54),100,"Rect1",mainGame,this,1);
-        pieces.add(tempPiece);
-        RectPiece tempPiece2=new RectPiece(boxSize*0.5,boxes.get(11),100,"Rect2",mainGame,this,2);
-        pieces.add(tempPiece2);
-    }
+
 }
