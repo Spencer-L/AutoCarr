@@ -20,7 +20,7 @@ public class Box {
         body.setLayoutX(id%(boxesCount[0])*s);
         body.setLayoutY((int)(id/(boxesCount[0]))*s);
         base=new Rectangle(0,0,s,s);
-        base.setFill(Color.TRANSPARENT);
+        base.setFill(Color.BISQUE);
         base.setStroke(Color.BLACK);
         base.setStrokeWidth(size*0.0186);
         body.getChildren().add(base);
@@ -35,5 +35,20 @@ public class Box {
         return body;
     }
 
-    //methods
+    public int getID() {
+        return ID;
+    }
+
+    public double getSize() {
+        return size;
+    }
+
+    //public methods
+    public void glow(){
+        base.setFill(Color.GOLD);
+    }
+    public void notGlow(){
+        base.setFill(Color.BISQUE);
+    }
+    //private methods
 }

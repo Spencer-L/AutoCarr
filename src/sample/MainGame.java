@@ -22,8 +22,7 @@ public class MainGame {
         appendBodies();
     }
     private void console(MouseEvent e){
-        System.out.println(e.getSceneX());
-        System.out.println(e.getSceneY());
+        pField.startFight();
     }
     //setter/getter
     public Pane getWrapper(){return wrapper;}
@@ -62,6 +61,8 @@ public class MainGame {
         wrapper.getChildren().add(GDBody);
         wrapper.getChildren().add(PFBody);
         wrapper.getChildren().add(SDBody);
+        for(Piece p : pField.getPieces())
+        wrapper.getChildren().add(p.getBody());
         shopBody.relocate(0, pField.getBodyDimensions()[1]+deck.getBodyDimensions()[1]);
         SDBody.relocate(0, pField.getBodyDimensions()[1]);
         PFBody.relocate(gDisplay.getBodyDimensions()[0], 0);

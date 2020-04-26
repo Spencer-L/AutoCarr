@@ -1,11 +1,15 @@
 package sample;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 public abstract class Piece {
@@ -19,11 +23,15 @@ public abstract class Piece {
     boolean isDragging=false;
     private MainGame mainGame;
     private PlayField playField;
+    private int teamNum;
+    private Piece target;
+    private Timeline tL;
     //constructor
-    Piece(double s,Box pB,double h, String id,MainGame mG,PlayField pF){
+    Piece(double s,Box pB,double h, String id,MainGame mG,PlayField pF,int tN){
         mainGame=mG;
         playField=pF;
         size=s;
+        teamNum=tN;
         body=new StackPane();
         body.setPrefSize(s,s);
         parentBox=pB;
@@ -32,7 +40,6 @@ public abstract class Piece {
         health=h;
         ID=id;
         overallPosition=findPosition();
-        mainGame.getWrapper().getChildren().add(body);
         body.setLayoutX(overallPosition[0]);
         body.setLayoutY(overallPosition[1]);
     }
@@ -62,24 +69,109 @@ public abstract class Piece {
     public void setHealth(double health) {
         this.health = health;
     }
+
+    public int getTeamNum() {
+        return teamNum;
+    }
+
+    public double[] getOverallPosition() {
+        return overallPosition;
+    }
+
     //public methods
     protected void dragPiece(MouseEvent e){
-        body.setLayoutX(e.getSceneX());
-        body.setLayoutY(e.getSceneY());
-        body.toFront();
-        System.out.println(e.getSceneX());
-        System.out.println(e.getSceneY());
+        body.setLayoutX(e.getSceneX()-(size/2));
+        body.setLayoutY(e.getSceneY()-(size/2));
+        for (Box b:playField.getBoxes()) {
+            b.notGlow();
+        }
+        Box tempParent=findClosestBox();
+        tempParent.glow();
+    }
+    protected Box findClosestBox(){
+        double minDiff=Double.MAX_VALUE;
+        int boxCount=0;
+        for(int i=0;i<playField.getBoxes().size();i++){
+            Box b=playField.getBoxes().get(i);
+            double centerX=getBody().getLayoutX()+(size/2);
+            double centerY=getBody().getLayoutY()+(size/2);
+            double centerBoxX=b.getBody().getLayoutX()+(b.getSize()/2)+mainGame.gDisplay.getBodyDimensions()[0];
+            double centerBoxY=b.getBody().getLayoutY()+(b.getSize()/2);
+            double diffX=centerX-centerBoxX;
+            double diffY=centerY-centerBoxY;
+            double diff=Math.sqrt(Math.pow(diffX,2)+Math.pow(diffY,2));
+            if(diff<minDiff){
+                minDiff=diff;
+                boxCount=i;
+            }
+        }
+        return playField.getBoxes().get(boxCount);
     }
     protected void releasePiece(MouseEvent e){
         isDragging=false;
-        System.out.println("released");
+        parentBox=findClosestBox();
+        body.setLayoutX(parentBox.getBody().getLayoutX()+mainGame.gDisplay.getBodyDimensions()[0]+(getSize()/2));
+        body.setLayoutY(parentBox.getBody().getLayoutY()+(getSize()/2));
+        overallPosition=findPosition();
+        parentBox.notGlow();
+        System.out.println(parentBox.getID());
     }
     protected  double[] findPosition(){
-        double xCord=parentBox.getBody().getLayoutX()+playField.getBody().getLayoutX();
-        double yCord=parentBox.getBody().getLayoutY();
+        double xCord=parentBox.getBody().getLayoutX()+mainGame.gDisplay.getBodyDimensions()[0]+(getSize()/2);
+        double yCord=parentBox.getBody().getLayoutY()+(getSize()/2);
         return new double[]{xCord,yCord};
     }
-
+    protected Piece findClosestEnemy(ArrayList<Piece> allPieces){
+        double minDiff=Double.MAX_VALUE;
+        int boxCount=-1;
+        for(int i=0;i<allPieces.size();i++){
+            Piece p=allPieces.get(i);
+            if(p!=this&&p.getTeamNum()!=getTeamNum()) {
+                double centerX = getBody().getLayoutX() + (size / 2);
+                double centerY = getBody().getLayoutY() + (size / 2);
+                double centerBoxX = p.getBody().getLayoutX() + (p.getSize() / 2);
+                double centerBoxY = p.getBody().getLayoutY() + (p.getSize() / 2);
+                double diffX = centerX - centerBoxX;
+                double diffY = centerY - centerBoxY;
+                double diff = Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2));
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    boxCount = i;
+                }
+            }
+        }
+        if(boxCount==-1){
+            return null;
+        }
+        return allPieces.get(boxCount);
+    }
+    protected void startFight(ArrayList<Piece> allPieces){
+        target=findClosestEnemy(allPieces);
+        if(target==null){
+            playField.endRound();
+        }else{
+            moveUpClose(target);
+        }
+    }
+    protected void moveUpClose(Piece target){
+        double otherX=target.getOverallPosition()[0];
+        double otherY=target.getOverallPosition()[1];
+        double x=getOverallPosition()[0];
+        double y=getOverallPosition()[1];
+        double diffX=otherX-x;
+        double diffY=otherY-y;
+        diffX=diffX>0? diffX-size-(parentBox.getSize()*0.46502976):diffX+size+(parentBox.getSize()*0.46502976);
+        System.out.println(parentBox.getSize());
+        double cycles=80;
+        double[] eachMove=new double[]{(diffX/cycles/2d),(diffY/cycles/2d)};
+        tL=new Timeline(new KeyFrame(Duration.millis(30),ae->movePiece(eachMove)));
+        tL.setCycleCount((int)cycles);
+        tL.play();
+    }
+    protected void movePiece(double[] movement){
+        getBody().setLayoutX(getBody().getLayoutX()+movement[0]);
+        getBody().setLayoutY(getBody().getLayoutY()+movement[1]);
+    }
     //private methods
 
 }

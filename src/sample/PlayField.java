@@ -17,6 +17,7 @@ public class PlayField {
     private double boxSize;
     private ArrayList<Box> boxes=new ArrayList<Box>();
     private ArrayList<Piece> pieces=new ArrayList<Piece>();
+    private boolean roundEnd=false;
 
     //constructor
     public PlayField(MainGame mG){
@@ -45,7 +46,34 @@ public class PlayField {
         base.setWidth(bD[0]);
         base.setHeight(bD[1]);
     }
+    public ArrayList<Piece> getPieces() {
+        return pieces;
+    }
+
+    public ArrayList<Box> getBoxes() {
+        return boxes;
+    }
+    public boolean getRoundEnd(){
+        return roundEnd;
+    }
+    public void setRoundEnd(boolean rE){
+        roundEnd=rE;
+    }
+
     //public methods
+    public void startFight(){
+        roundEnd=false;
+        for(Piece p:pieces){
+            p.startFight(pieces);
+            if(roundEnd==true){
+                break;
+            }
+        }
+    }
+    public void endRound(){
+        System.out.println("Called");
+        roundEnd=true;
+    }
     //private methods
     private void createBoxes(){
         for(int i=0;i<boxesCount[1];i++){
@@ -60,7 +88,9 @@ public class PlayField {
         return Math.min(bodyDimensions[0] / boxesCount[0], bodyDimensions[1] / boxesCount[1]);
     }
     private void createPieces(){
-        RectPiece tempPiece=new RectPiece(boxSize*0.5,boxes.get(54),100,"Rect1",mainGame,this);
+        RectPiece tempPiece=new RectPiece(boxSize*0.5,boxes.get(54),100,"Rect1",mainGame,this,1);
         pieces.add(tempPiece);
+        RectPiece tempPiece2=new RectPiece(boxSize*0.5,boxes.get(11),100,"Rect2",mainGame,this,2);
+        pieces.add(tempPiece2);
     }
 }
