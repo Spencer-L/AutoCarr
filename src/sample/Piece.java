@@ -134,18 +134,22 @@ public abstract class Piece {
     protected void releasePiece(MouseEvent e){
         isDragging=false;
         if(body.getLayoutY()>playField.getBodyDimensions()[1]){
-            parentBox=null;
             if(onField){
-                onField=false;
-                parentDeck.placePieceInDeck(this);
+                parentDeck.fieldToDeck(this);
             }else{
                 parentDeck.deckToDeck(this);
             }
-            System.out.println("Should go back in deck");
-        }else{
+            onField=false;
+            parentDeck.notGlow();
+        }else if(body.getLayoutY()<=playField.getBodyDimensions()[1]){
+            parentBox=findClosestBox();
+            if(onField){
+                parentDeck.fieldToField(this);
+            }else{
+                parentDeck.deckToField(this);
+            }
             parentBox=findClosestBox();
             onField=true;
-            parentDeck.placePieceInField(this);
             reposition();
             parentBox.notGlow();
         }

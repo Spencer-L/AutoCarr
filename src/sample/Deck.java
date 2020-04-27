@@ -73,14 +73,16 @@ public class Deck {
     public void notGlow(){
         base.setFill(Color.ORANGE);
     }
-    public void placePieceInDeck(Piece p){
+    public void fieldToDeck(Piece p){
         int index=piecesInDock.size();
         piecesInDock.add(p);
         p.getBody().setLayoutX(slots.get(index)[0]);
         p.getBody().setLayoutY(slots.get(index)[1]);
-        notGlow();
     }
-    public void placePieceInField(Piece p){
+    public void fieldToField(Piece p){
+
+    }
+    public void deckToField(Piece p){
         int index=0;
         for(int i=0;i<piecesInDock.size();i++){
             index=piecesInDock.indexOf(p);
@@ -93,6 +95,14 @@ public class Deck {
         int index=piecesInDock.indexOf(p);
         p.getBody().setLayoutX(slots.get(index)[0]);
         p.getBody().setLayoutY(slots.get(index)[1]);
+    }
+    public void showDeck(){
+        getBody().setVisible(true);
+        System.out.println("deck should be displayed");
+    }
+    public void hideDeck(){
+        getBody().setVisible(false);
+        System.out.println("deck should be hidden");
     }
     //private methods
     private void createPieces(){

@@ -15,7 +15,7 @@ public class MainGame {
     Deck deck;
     ArrayList<Player> players=new ArrayList<Player>();
     Pane wrapper = new Pane();
-
+    int turn=0;
 
     //constructor
     public MainGame(double[] wSize){
@@ -65,6 +65,9 @@ public class MainGame {
     //private methods
     public void createPlayers(){
         players.add(new Player("Player 1",1,500d,pField,this));
+        players.add(new Player("Player 2",2,500d,pField,this));
+        players.get(0).getDeck().showDeck();
+        players.get(1).getDeck().hideDeck();
     }
     private void appendBodies(){
         Pane shopBody=(Pane)shop.getBody();
@@ -80,9 +83,6 @@ public class MainGame {
                 wrapper.getChildren().add(p.getBody());
             }
         }
-        //for(Piece p : pField.getPieces()){
-
-        //}
         shopBody.relocate(0, pField.getBodyDimensions()[1]+deck.getBodyDimensions()[1]);
         SDBody.relocate(0, pField.getBodyDimensions()[1]);
         PFBody.relocate(gDisplay.getBodyDimensions()[0], 0);
@@ -96,7 +96,6 @@ public class MainGame {
         deck = new Deck();
         pField = new PlayField(this);
     }
-
     //this is the mainGame file
 }
 
