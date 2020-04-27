@@ -32,7 +32,6 @@ public class PlayField {
         mainGame.adjustLayout(boxSize,boxesCount);
         createBoxes();
         setBodyDimensions(new double[]{boxSize*boxesCount[0],boxSize*boxesCount[1]});
-        mainGame.createPlayers();
     }
 
     //setter/getter

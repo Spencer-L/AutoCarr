@@ -27,22 +27,24 @@ public abstract class Piece {
     private Piece target;
     private Timeline tL;
     private boolean onField=false;
+    private Deck parentDeck;
     //constructor
-    Piece(double s,Box pB,double h, String id,MainGame mG,PlayField pF,int tN){
+    Piece(double s,double h, String id,MainGame mG,PlayField pF,int tN,double[] pos,Deck pD){
         mainGame=mG;
         playField=pF;
+        parentDeck=pD;
         size=s;
         teamNum=tN;
         body=new StackPane();
         body.setPrefSize(s,s);
-        parentBox=pB;
+        parentBox=null;
         body.addEventHandler(MouseEvent.MOUSE_DRAGGED,event -> dragPiece(event));
         body.addEventHandler(MouseEvent.MOUSE_RELEASED,event -> releasePiece(event));
         health=h;
         ID=id;
+        body.setLayoutX(pos[0]);
+        body.setLayoutY(pos[1]);
         overallPosition=findPosition();
-        body.setLayoutX(overallPosition[0]);
-        body.setLayoutY(overallPosition[1]);
     }
     //setter/getter
     public double getSize(){
@@ -86,6 +88,14 @@ public abstract class Piece {
         this.onField = onField;
     }
 
+    public Timeline getTL() {
+        return tL;
+    }
+
+    public void setTL(Timeline tL) {
+        this.tL = tL;
+    }
+
     //public methods
     protected void dragPiece(MouseEvent e){
         body.setLayoutX(e.getSceneX()-(size/2));
@@ -93,8 +103,14 @@ public abstract class Piece {
         for (Box b:playField.getBoxes()) {
             b.notGlow();
         }
-        Box tempParent=findClosestBox();
-        tempParent.glow();
+        parentDeck.notGlow();
+        if(body.getLayoutY()>playField.getBodyDimensions()[1]){
+            parentDeck.glow();
+        }else{
+            Box tempParent=findClosestBox();
+            tempParent.glow();
+        }
+
     }
     protected Box findClosestBox(){
         double minDiff=Double.MAX_VALUE;
@@ -117,15 +133,28 @@ public abstract class Piece {
     }
     protected void releasePiece(MouseEvent e){
         isDragging=false;
-        parentBox=findClosestBox();
-        reposition();
-        parentBox.notGlow();
-        System.out.println(parentBox.getID());
+        if(body.getLayoutY()>playField.getBodyDimensions()[1]){
+            parentBox=null;
+            if(onField){
+                onField=false;
+                parentDeck.placePieceInDeck(this);
+            }else{
+                parentDeck.deckToDeck(this);
+            }
+            System.out.println("Should go back in deck");
+        }else{
+            parentBox=findClosestBox();
+            onField=true;
+            parentDeck.placePieceInField(this);
+            reposition();
+            parentBox.notGlow();
+        }
     }
     protected  double[] findPosition(){
-        double xCord=parentBox.getBody().getLayoutX()+mainGame.gDisplay.getBodyDimensions()[0]+(getSize()/2);
-        double yCord=parentBox.getBody().getLayoutY()+(getSize()/2);
-        return new double[]{xCord,yCord};
+        //double xCord=parentBox.getBody().getLayoutX()+mainGame.gDisplay.getBodyDimensions()[0]+(getSize()/2);
+        //double yCord=parentBox.getBody().getLayoutY()+(getSize()/2);
+        //return new double[]{xCord,yCord};
+        return new double[]{getBody().getLayoutX(),getBody().getLayoutY()};
     }
     protected Piece findClosestEnemy(ArrayList<Piece> allPieces){
         double minDiff=Double.MAX_VALUE;

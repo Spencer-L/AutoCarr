@@ -23,11 +23,12 @@ public class MainGame {
         wrapper.setPrefSize(wSize[0],wSize[1]);
         wrapper.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> console(event));
         initAllVars();
+        createPlayers();
         appendBodies();
     }
     private boolean start=false;
     private void console(MouseEvent e){
-        if(start==false){
+        if(!start){
             pField.startFight();
         }else{
             pField.repositionPieces();
@@ -61,11 +62,10 @@ public class MainGame {
         shop.setBodyDimensions(new double[]{GlobalVariable.screenDimensions[0],
                 shop.getBodyDimensions()[1]+(additionalVerticalSpace/2)});
     }
+    //private methods
     public void createPlayers(){
         players.add(new Player("Player 1",1,500d,pField,this));
-
     }
-    //private methods
     private void appendBodies(){
         Pane shopBody=(Pane)shop.getBody();
         Pane SDBody=(Pane)deck.getBody();
@@ -75,8 +75,14 @@ public class MainGame {
         wrapper.getChildren().add(GDBody);
         wrapper.getChildren().add(PFBody);
         wrapper.getChildren().add(SDBody);
-        for(Piece p : pField.getPieces())
-        wrapper.getChildren().add(p.getBody());
+        for(Player player:players){
+            for(Piece p:player.getDeck().getPieces()){
+                wrapper.getChildren().add(p.getBody());
+            }
+        }
+        //for(Piece p : pField.getPieces()){
+
+        //}
         shopBody.relocate(0, pField.getBodyDimensions()[1]+deck.getBodyDimensions()[1]);
         SDBody.relocate(0, pField.getBodyDimensions()[1]);
         PFBody.relocate(gDisplay.getBodyDimensions()[0], 0);
