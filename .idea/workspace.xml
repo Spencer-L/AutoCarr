@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Player class is running, more featured needed. The Pieces will appear in player's deck at first, it could be dragged into the PlayField. Or it could be dragged back into the storage deck.">
+    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="Red pieces can only go on left side of column and pink pieces go on the right">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AutoCarr/sample/MainGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AutoCarr/sample/MainGame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/AutoCarr/sample/Playfield.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AutoCarr/sample/Playfield.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Box.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Box.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Deck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Deck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/MainGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/MainGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Piece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/RectPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/RectPiece.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/PlayField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/PlayField.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -300,38 +295,44 @@
     <MESSAGE value="You can drag the pieces to any box and the piece will be attached to that box, then start the fighting animation where the box move up to each other." />
     <MESSAGE value="I attempted to create a Player class and it is still in progress." />
     <MESSAGE value="Player class is running, more featured needed. The Pieces will appear in player's deck at first, it could be dragged into the PlayField. Or it could be dragged back into the storage deck." />
-    <option name="LAST_COMMIT_MESSAGE" value="Player class is running, more featured needed. The Pieces will appear in player's deck at first, it could be dragged into the PlayField. Or it could be dragged back into the storage deck." />
+    <MESSAGE value="Red pieces can only go on left side of column and pink pieces go on the right" />
+    <option name="LAST_COMMIT_MESSAGE" value="Red pieces can only go on left side of column and pink pieces go on the right" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1776" y="185" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587513946339">
       <screen x="1366" y="0" width="1360" height="768" />
     </state>
     <state x="1776" y="185" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.768/1366.0.1360.768@1366.0.1360.768" timestamp="1587513946339" />
-    <state x="1366" y="0" key="CommitChangelistDialog2" timestamp="1587973001040">
-      <screen x="1366" y="0" width="1360" height="768" />
+    <state x="0" y="0" key="CommitChangelistDialog2" timestamp="1589852977131">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="0" y="0" key="CommitChangelistDialog2/0.0.1366.768/1366.0.1360.768@0.0.1366.768" timestamp="1587511511069" />
     <state x="1366" y="0" key="CommitChangelistDialog2/0.0.1366.768/1366.0.1360.768@1366.0.1360.768" timestamp="1587973001040" />
+    <state x="0" y="0" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1589852977131" />
     <state x="1458" y="92" width="1176" height="584" key="DiffContextDialog" timestamp="1584819935487">
       <screen x="1366" y="0" width="1360" height="768" />
     </state>
     <state x="1458" y="92" width="1176" height="584" key="DiffContextDialog/0.0.1366.768/1366.0.1360.768@0.0.1366.768" timestamp="1584819935487" />
-    <state width="1316" height="187" key="GridCell.Tab.0.bottom" timestamp="1588008646250">
-      <screen x="1366" y="0" width="1360" height="768" />
+    <state width="1877" height="266" key="GridCell.Tab.0.bottom" timestamp="1589852977262">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1316" height="187" key="GridCell.Tab.0.bottom/0.0.1366.768/1366.0.1360.768@1366.0.1360.768" timestamp="1588008646250" />
-    <state width="1316" height="187" key="GridCell.Tab.0.center" timestamp="1588008646250">
-      <screen x="1366" y="0" width="1360" height="768" />
+    <state width="1877" height="266" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1589852977262" />
+    <state width="1877" height="266" key="GridCell.Tab.0.center" timestamp="1589852977261">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1316" height="187" key="GridCell.Tab.0.center/0.0.1366.768/1366.0.1360.768@1366.0.1360.768" timestamp="1588008646250" />
-    <state width="1316" height="187" key="GridCell.Tab.0.left" timestamp="1588008646250">
-      <screen x="1366" y="0" width="1360" height="768" />
+    <state width="1877" height="266" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1589852977261" />
+    <state width="1877" height="266" key="GridCell.Tab.0.left" timestamp="1589852977261">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1316" height="187" key="GridCell.Tab.0.left/0.0.1366.768/1366.0.1360.768@1366.0.1360.768" timestamp="1588008646250" />
-    <state width="1316" height="187" key="GridCell.Tab.0.right" timestamp="1588008646250">
-      <screen x="1366" y="0" width="1360" height="768" />
+    <state width="1877" height="266" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1589852977261" />
+    <state width="1877" height="266" key="GridCell.Tab.0.right" timestamp="1589852977262">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1316" height="187" key="GridCell.Tab.0.right/0.0.1366.768/1366.0.1360.768@1366.0.1360.768" timestamp="1588008646250" />
+    <state width="1877" height="266" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1589852977262" />
     <state width="1316" height="233" key="GridCell.Tab.1.bottom" timestamp="1587275539431">
       <screen x="1366" y="0" width="1360" height="768" />
     </state>
@@ -372,6 +373,10 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="55" y="84" key="new project wizard/0.0.1366.768/1366.0.1360.768@0.0.1366.768" timestamp="1587275786822" />
+    <state x="616" y="173" width="672" height="676" key="search.everywhere.popup" timestamp="1589852418126">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="173" width="672" height="676" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1589852418126" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
