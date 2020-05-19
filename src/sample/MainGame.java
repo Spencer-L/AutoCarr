@@ -28,11 +28,11 @@ public class MainGame {
     }
     private boolean start=false;
     private void console(MouseEvent e){
-        if(!start){
-            pField.startFight();
-        }else{
-            pField.repositionPieces();
-        }
+            if(!start){
+                pField.startFight();
+            }else{
+                pField.repositionPieces();
+            }
         start=!start;
     }
     //setter/getter
