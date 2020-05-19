@@ -24,6 +24,12 @@ public abstract class Piece {
     private MainGame mainGame;
     private PlayField playField;
     private int teamNum;
+    private int cost;
+    private int level;
+    private int rarity;
+    private double damage;
+    private double atkSpd;
+    private String name;
     private Piece target;
     private Timeline tL;
     private boolean onField=false;
@@ -76,6 +82,14 @@ public abstract class Piece {
     public int getTeamNum() {
         return teamNum;
     }
+    public int getCost(){return cost;}
+    public int getLevel(){return level;}
+    public void setLevel(int lev){level = lev;}
+    public int getRarity(){return rarity;}
+    public double getDamage(){return damage;}
+    public void setDamage(double damage){this.damage = damage; }
+    public double getAtkSpd(){return atkSpd;}
+    public void setAtkSpd(double atkSpd){this.atkSpd = atkSpd;}
 
     public double[] getOverallPosition() {
         return overallPosition;
