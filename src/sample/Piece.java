@@ -115,8 +115,9 @@ public abstract class Piece {
     protected Box findClosestBox(){
         double minDiff=Double.MAX_VALUE;
         int boxCount=0;
-        for(int i=0;i<playField.getBoxes().size();i++){
-            Box b=playField.getBoxes().get(i);
+        if(getTeamNum()==1){
+         for(int i=0;i<playField.getp2Boxes().size();i++){
+            Box b=playField.getp2Boxes().get(i);
             double centerX=getBody().getLayoutX()+(size/2);
             double centerY=getBody().getLayoutY()+(size/2);
             double centerBoxX=b.getBody().getLayoutX()+(b.getSize()/2)+mainGame.gDisplay.getBodyDimensions()[0];
@@ -128,8 +129,25 @@ public abstract class Piece {
                 minDiff=diff;
                 boxCount=i;
             }
+         }
+         return playField.getp2Boxes().get(boxCount);
+        }else {
+            for(int i=0;i<playField.getp1Boxes().size();i++){
+                Box b=playField.getp1Boxes().get(i);
+                double centerX=getBody().getLayoutX()+(size/2);
+                double centerY=getBody().getLayoutY()+(size/2);
+                double centerBoxX=b.getBody().getLayoutX()+(b.getSize()/2)+mainGame.gDisplay.getBodyDimensions()[0];
+                double centerBoxY=b.getBody().getLayoutY()+(b.getSize()/2);
+                double diffX=centerX-centerBoxX;
+                double diffY=centerY-centerBoxY;
+                double diff=Math.sqrt(Math.pow(diffX,2)+Math.pow(diffY,2));
+                if(diff<minDiff){
+                    minDiff=diff;
+                    boxCount=i;
+                }
+            }
+            return playField.getp1Boxes().get(boxCount);
         }
-        return playField.getBoxes().get(boxCount);
     }
     protected void releasePiece(MouseEvent e){
         isDragging=false;
