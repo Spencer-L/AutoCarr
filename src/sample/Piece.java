@@ -173,6 +173,7 @@ public abstract class Piece {
                 parentDeck.fieldToField(this);
             }else{
                 parentDeck.deckToField(this);
+                playField.getPieces().add(this);
             }
             parentBox=findClosestBox();
             onField=true;

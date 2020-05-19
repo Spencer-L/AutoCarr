@@ -36,10 +36,11 @@ public class Main extends Application {
             primaryStage.setTitle("Rules");
             BorderPane root = new BorderPane();
             root.setStyle("-fx-background-color: #67bffe");
-            Scene scene = new Scene(root, 600,600);
+            Scene scene = new Scene(root, 1000,1000);
 //TODO: Implement and Format rules to look nice
             primaryStage.setTitle("Menu");
             primaryStage.setScene(scene);
+            primaryStage.setMaximized(true);
             primaryStage.show();
 
         });
