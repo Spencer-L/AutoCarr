@@ -18,6 +18,7 @@ public class PlayField {
     private ArrayList<Box> boxes=new ArrayList<Box>();
     private ArrayList<Box> p1Boxes=new ArrayList<Box>();
     private ArrayList<Box> p2Boxes=new ArrayList<Box>();
+    private ArrayList<Box> column=new ArrayList<Box>();
     private ArrayList<Piece> pieces=new ArrayList<Piece>();
     private boolean roundEnd=false;
 
@@ -59,6 +60,8 @@ public class PlayField {
 
     public ArrayList<Box> getp2Boxes() { return p2Boxes; }
 
+    public ArrayList<Box> getColumn() { return column; }
+
     public boolean getRoundEnd(){
         return roundEnd;
     }
@@ -91,16 +94,32 @@ public class PlayField {
     }
     //private methods
     private void createBoxes(){
+        int counter=1;
+        int counter1=1;
         for(int i=0;i<boxesCount[1];i++){
+            int check=0;
             for(int j=0;j<boxesCount[0];j++) {
-                Box temp = new Box(boxSize, i*(int)boxesCount[0]+j, boxesCount);
+                Box temp;
+                if(check<5) {
+                    temp = new Box(boxSize, i * (int) boxesCount[0] + j, counter, boxesCount);
+                    counter++;
+                }else if(check>5){
+                    temp = new Box(boxSize, i * (int) boxesCount[0] + j, counter1, boxesCount);
+                    counter1++;
+                }else{
+                    temp = new Box(boxSize, i * (int) boxesCount[0] + j, 0, boxesCount);
+                }
+                check++;
                 body.getChildren().add(temp.getBody());
                 boxes.add(temp);
                 if(j<5){
                     p1Boxes.add(temp);
                 }else if(j>5){
                     p2Boxes.add(temp);
+                }else{
+                    column.add(temp);
                 }
+
             }
         }
     }
