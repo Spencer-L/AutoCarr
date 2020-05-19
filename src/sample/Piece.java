@@ -116,8 +116,8 @@ public abstract class Piece {
         double minDiff=Double.MAX_VALUE;
         int boxCount=0;
         if(getTeamNum()==1){
-         for(int i=0;i<playField.getP2Boxes().size();i++){
-            Box b=playField.getP2Boxes().get(i);
+         for(int i=0;i<playField.getp2Boxes().size();i++){
+            Box b=playField.getp2Boxes().get(i);
             double centerX=getBody().getLayoutX()+(size/2);
             double centerY=getBody().getLayoutY()+(size/2);
             double centerBoxX=b.getBody().getLayoutX()+(b.getSize()/2)+mainGame.gDisplay.getBodyDimensions()[0];
@@ -130,10 +130,10 @@ public abstract class Piece {
                 boxCount=i;
             }
          }
-         return playField.getP2Boxes().get(boxCount);
+         return playField.getp2Boxes().get(boxCount);
         }else {
-            for(int i=0;i<playField.getP1Boxes().size();i++){
-                Box b=playField.getP1Boxes().get(i);
+            for(int i=0;i<playField.getp1Boxes().size();i++){
+                Box b=playField.getp1Boxes().get(i);
                 double centerX=getBody().getLayoutX()+(size/2);
                 double centerY=getBody().getLayoutY()+(size/2);
                 double centerBoxX=b.getBody().getLayoutX()+(b.getSize()/2)+mainGame.gDisplay.getBodyDimensions()[0];
@@ -146,7 +146,7 @@ public abstract class Piece {
                     boxCount=i;
                 }
             }
-            return playField.getP1Boxes().get(boxCount);
+            return playField.getp1Boxes().get(boxCount);
         }
     }
     protected void releasePiece(MouseEvent e){

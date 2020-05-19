@@ -55,9 +55,9 @@ public class PlayField {
         return boxes;
     }
 
-    public ArrayList<Box> getP1Boxes() { return p1Boxes; }
+    public ArrayList<Box> getp1Boxes() { return p1Boxes; }
 
-    public ArrayList<Box> getP2Boxes() { return p2Boxes; }
+    public ArrayList<Box> getp2Boxes() { return p2Boxes; }
 
     public boolean getRoundEnd(){
         return roundEnd;
