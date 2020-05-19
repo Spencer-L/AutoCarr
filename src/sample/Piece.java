@@ -123,6 +123,10 @@ public abstract class Piece {
         }else{
             Box tempParent=findClosestBox();
             tempParent.glow();
+            ArrayList<Box>temp=playField.getColumn();
+            for(Box b:temp){
+                b.altGlow();
+            }
         }
 
     }
@@ -173,17 +177,26 @@ public abstract class Piece {
             }
             onField=false;
             parentDeck.notGlow();
+            ArrayList<Box>temp=playField.getColumn();
+            for(Box b:temp){
+                b.notGlow();
+            }
         }else if(body.getLayoutY()<=playField.getBodyDimensions()[1]){
             parentBox=findClosestBox();
             if(onField){
                 parentDeck.fieldToField(this);
             }else{
                 parentDeck.deckToField(this);
+                playField.getPieces().add(this);
             }
             parentBox=findClosestBox();
             onField=true;
             reposition();
             parentBox.notGlow();
+            ArrayList<Box>temp=playField.getColumn();
+            for(Box b:temp){
+                b.notGlow();
+            }
         }
     }
     protected  double[] findPosition(){

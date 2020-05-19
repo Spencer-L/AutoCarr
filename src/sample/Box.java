@@ -14,20 +14,22 @@ public class Box {
     private Rectangle base;
     private Text IDDisplay;
     //constructor
-    Box(double s,int id,double[] boxesCount){
+    Box(double s,int coord,int id,double[] boxesCount){
         size=s;
         ID=id;
-        body.setLayoutX(id%(boxesCount[0])*s);
-        body.setLayoutY((int)(id/(boxesCount[0]))*s);
+        body.setLayoutX(coord%(boxesCount[0])*s);
+        body.setLayoutY((int)(coord/(boxesCount[0]))*s);
         base=new Rectangle(0,0,s,s);
         base.setFill(Color.BISQUE);
         base.setStroke(Color.BLACK);
         base.setStrokeWidth(size*0.0186);
         body.getChildren().add(base);
-        IDDisplay=new Text(0,35,id+"");
-        IDDisplay.setFill(Color.BLUE);
-        IDDisplay.setFont(new Font(40));
-        body.getChildren().add(IDDisplay);
+        if(id!=0) {
+            IDDisplay = new Text(0, 35, id + "");
+            IDDisplay.setFill(Color.BLUE);
+            IDDisplay.setFont(new Font(40));
+            body.getChildren().add(IDDisplay);
+        }
     }
     //setter/getter
 
@@ -45,7 +47,10 @@ public class Box {
 
     //public methods
     public void glow(){
-        base.setFill(Color.GOLD);
+        base.setFill(Color.GREEN);
+    }
+    public void altGlow(){
+        base.setFill(Color.RED);
     }
     public void notGlow(){
         base.setFill(Color.BISQUE);
