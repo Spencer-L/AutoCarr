@@ -1,19 +1,18 @@
 package sample;
 
-        import javafx.animation.Animation;
-        import javafx.animation.KeyFrame;
-        import javafx.animation.Timeline;
-        import javafx.event.ActionEvent;
-        import javafx.scene.input.MouseEvent;
-        import javafx.scene.layout.StackPane;
-        import javafx.scene.paint.Color;
-        import javafx.scene.shape.Rectangle;
-        import javafx.scene.text.Font;
-        import javafx.util.Duration;
-        import javafx.scene.text.Text;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
+import javafx.scene.text.Text;
 
-        import java.util.ArrayList;
-        import java.util.Stack;
+import java.util.ArrayList;
+import java.util.Stack;
 
 public abstract class Piece {
     //fields
@@ -27,10 +26,8 @@ public abstract class Piece {
     private MainGame mainGame;
     private PlayField playField;
     private int teamNum;
-    private Rectangle rarityBand;
-    private Text levels;
     private int cost;
-    private int level = 1;
+    private int level;
     private int rarity;
     private double damage;
     private double atkSpd;
@@ -51,10 +48,6 @@ public abstract class Piece {
         parentDeck=pD;
         size=s;
         teamNum=tN;
-        levels = new Text(Integer.toString(level));
-        levels.setFont(Font.font("Verdana", 20));
-        levels.setX((s / 2) - 1);
-        levels.setY((s / 2) - 1);
         body=new StackPane();
         body.setPrefSize(s,s);
         parentBox=null;
@@ -70,61 +63,37 @@ public abstract class Piece {
 
         healthPoints = new Text((health + ""));
         timerCounter=0;
-        generateRarityBand(rarity, s);
     }
     //setter/getter
-    public double getSize() {
+    public double getSize(){
         return size;
     }
-
-    public StackPane getBody() {
+    public StackPane getBody(){
         return body;
     }
-
-    public void setBody(StackPane sP) {
-        body = sP;
+    public void setBody(StackPane sP){
+        body=sP;
     }
-
-    public Box getParentBox() {
+    public Box getParentBox(){
         return parentBox;
     }
-
-    public void setParentBox(Box pB) {
-        parentBox = pB;
-    }
-
+    public void setParentBox(Box pB){parentBox=pB;}
     public void setID(String ID) {
         this.ID = ID;
     }
-
     public String getID() {
         return ID;
     }
-
     public double getHealth() {
         return health;
     }
-
     public void setHealth(double health) {
         this.health = health;
     }
 
-    public Text getLevels() {
-        return levels;
+    public int getTeamNum() {
+        return teamNum;
     }
-
-    public void setLevels(Text levels) {
-        this.levels = levels;
-    }
-
-    public Rectangle getRarityBand() {
-        return rarityBand;
-    }
-
-    public void setRarityBand(Rectangle rarityBand) {
-        this.rarityBand = rarityBand;
-    }
-
     public int getCost(){return cost;}
     public int getLevel(){return level;}
     public void setLevel(int lev){level = lev;}
@@ -135,14 +104,6 @@ public abstract class Piece {
     public void setAtkSpd(double atkSpd){this.atkSpd = atkSpd;}
     public Text getHealthPoints(){return healthPoints;}
     public void setHealthPoints(Text t){healthPoints=t;}
-
-    public int getTeamNum() {
-        return teamNum;
-    }
-
-    public void setTeamNum(int teamNum) {
-        this.teamNum = teamNum;
-    }
 
     public double[] getOverallPosition() {
         return overallPosition;
@@ -187,21 +148,21 @@ public abstract class Piece {
         double minDiff=Double.MAX_VALUE;
         int boxCount=0;
         if(getTeamNum()==1){
-            for(int i=0;i<playField.getp2Boxes().size();i++){
-                Box b=playField.getp2Boxes().get(i);
-                double centerX=getBody().getLayoutX()+(size/2);
-                double centerY=getBody().getLayoutY()+(size/2);
-                double centerBoxX=b.getBody().getLayoutX()+(b.getSize()/2)+mainGame.gDisplay.getBodyDimensions()[0];
-                double centerBoxY=b.getBody().getLayoutY()+(b.getSize()/2);
-                double diffX=centerX-centerBoxX;
-                double diffY=centerY-centerBoxY;
-                double diff=Math.sqrt(Math.pow(diffX,2)+Math.pow(diffY,2));
-                if(diff<minDiff){
-                    minDiff=diff;
-                    boxCount=i;
-                }
+         for(int i=0;i<playField.getp2Boxes().size();i++){
+            Box b=playField.getp2Boxes().get(i);
+            double centerX=getBody().getLayoutX()+(size/2);
+            double centerY=getBody().getLayoutY()+(size/2);
+            double centerBoxX=b.getBody().getLayoutX()+(b.getSize()/2)+mainGame.gDisplay.getBodyDimensions()[0];
+            double centerBoxY=b.getBody().getLayoutY()+(b.getSize()/2);
+            double diffX=centerX-centerBoxX;
+            double diffY=centerY-centerBoxY;
+            double diff=Math.sqrt(Math.pow(diffX,2)+Math.pow(diffY,2));
+            if(diff<minDiff){
+                minDiff=diff;
+                boxCount=i;
             }
-            return playField.getp2Boxes().get(boxCount);
+         }
+         return playField.getp2Boxes().get(boxCount);
         }else {
             for(int i=0;i<playField.getp1Boxes().size();i++){
                 Box b=playField.getp1Boxes().get(i);
@@ -285,9 +246,6 @@ public abstract class Piece {
         }
         return allPieces.get(boxCount);
     }
-
-
-
     protected void startFight(ArrayList<Piece> allPieces){
         target=findClosestEnemy(allPieces);
         if(target==null){
@@ -296,9 +254,9 @@ public abstract class Piece {
             moveUpClose(target);
             System.out.println("here");
             if(inRange(target)){
-                attackPacing =  new Timeline(new KeyFrame(Duration.millis(40),ae->doAttack()));
-                attackPacing.setCycleCount(Animation.INDEFINITE);
-                attackPacing.play();
+               attackPacing =  new Timeline(new KeyFrame(Duration.millis(40),ae->doAttack()));
+               attackPacing.setCycleCount(Animation.INDEFINITE);
+               attackPacing.play();
 
 
             }
@@ -352,21 +310,6 @@ public abstract class Piece {
         enemy.setHealth(enemy.getHealth()-damage);
         if(enemy.getHealth()<=0) return true;
         else return false;
-    }
-
-    protected void generateRarityBand(int rar, double s) {
-        rarityBand = new Rectangle();
-        rarityBand.setWidth(s / 2);
-        rarityBand.setHeight(15);
-        if (rar == 0) {
-            rarityBand.setFill(Color.WHITE);
-        } else if (rar == 1) {
-            rarityBand.setFill(Color.BLUE);
-        } else if (rar == 2) {
-            rarityBand.setFill(Color.PURPLE);
-        } else if (rar == 3) {
-            rarityBand.setFill(Color.YELLOW);
-        }
     }
 
 
