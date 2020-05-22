@@ -16,7 +16,8 @@ public class RectPiece extends Piece{
         }
 
         getBody().getChildren().add(base);
-        getBody().getChildren().add(getHealthPoints());
+        getBody().getChildren().add(getRarityBand());
+        getBody().getChildren().add(getLevels());
 
     }
 }
