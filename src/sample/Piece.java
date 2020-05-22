@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -8,6 +9,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 import java.util.Stack;
@@ -30,10 +32,15 @@ public abstract class Piece {
     private double damage;
     private double atkSpd;
     private String name;
+    private int range;
     private Piece target;
     private Timeline tL;
     private boolean onField=false;
     private Deck parentDeck;
+    private Text healthPoints;
+    private Timeline attackPacing;
+    private int timerCounter;
+
     //constructor
     Piece(double s,double h, String id,MainGame mG,PlayField pF,int tN,double[] pos,Deck pD){
         mainGame=mG;
@@ -51,6 +58,11 @@ public abstract class Piece {
         body.setLayoutX(pos[0]);
         body.setLayoutY(pos[1]);
         overallPosition=findPosition();
+        atkSpd=.9;
+        damage=10;
+
+        healthPoints = new Text((health + ""));
+        timerCounter=0;
     }
     //setter/getter
     public double getSize(){
@@ -90,6 +102,8 @@ public abstract class Piece {
     public void setDamage(double damage){this.damage = damage; }
     public double getAtkSpd(){return atkSpd;}
     public void setAtkSpd(double atkSpd){this.atkSpd = atkSpd;}
+    public Text getHealthPoints(){return healthPoints;}
+    public void setHealthPoints(Text t){healthPoints=t;}
 
     public double[] getOverallPosition() {
         return overallPosition;
@@ -128,8 +142,8 @@ public abstract class Piece {
                 b.altGlow();
             }
         }
-
     }
+
     protected Box findClosestBox(){
         double minDiff=Double.MAX_VALUE;
         int boxCount=0;
@@ -167,6 +181,7 @@ public abstract class Piece {
             return playField.getp1Boxes().get(boxCount);
         }
     }
+
     protected void releasePiece(MouseEvent e){
         isDragging=false;
         if(body.getLayoutY()>playField.getBodyDimensions()[1]){
@@ -199,12 +214,14 @@ public abstract class Piece {
             }
         }
     }
+
     protected  double[] findPosition(){
         //double xCord=parentBox.getBody().getLayoutX()+mainGame.gDisplay.getBodyDimensions()[0]+(getSize()/2);
         //double yCord=parentBox.getBody().getLayoutY()+(getSize()/2);
         //return new double[]{xCord,yCord};
         return new double[]{getBody().getLayoutX(),getBody().getLayoutY()};
     }
+
     protected Piece findClosestEnemy(ArrayList<Piece> allPieces){
         double minDiff=Double.MAX_VALUE;
         int boxCount=-1;
@@ -235,8 +252,17 @@ public abstract class Piece {
             playField.endRound();
         }else{
             moveUpClose(target);
+            System.out.println("here");
+            if(inRange(target)){
+               attackPacing =  new Timeline(new KeyFrame(Duration.millis(40),ae->doAttack()));
+               attackPacing.setCycleCount(Animation.INDEFINITE);
+               attackPacing.play();
+
+
+            }
         }
     }
+
     protected void moveUpClose(Piece target){
         double otherX=target.getOverallPosition()[0];
         double otherY=target.getOverallPosition()[1];
@@ -252,15 +278,41 @@ public abstract class Piece {
         tL.setCycleCount((int)cycles);
         tL.play();
     }
+
     protected void movePiece(double[] movement){
         getBody().setLayoutX(getBody().getLayoutX()+movement[0]);
         getBody().setLayoutY(getBody().getLayoutY()+movement[1]);
     }
+
     protected void reposition(){
         body.setLayoutX(parentBox.getBody().getLayoutX()+mainGame.gDisplay.getBodyDimensions()[0]+(getSize()/2));
         body.setLayoutY(parentBox.getBody().getLayoutY()+(getSize()/2));
         overallPosition=findPosition();
     }
+
+    protected void doAttack(){
+        if(timerCounter<(int)(30*atkSpd))timerCounter++;
+        else{
+            timerCounter=0;
+            if(inRange(target)){
+                boolean dead = dealDamage(target);
+                target.getHealthPoints().setText(target.getHealth()+ "");
+                if(dead) attackPacing.stop();
+            }
+        }
+
+    }
+    protected boolean inRange(Piece enemy){
+        //if(enemy.getBody().getLayoutBounds())
+        return true;
+    }
+    protected boolean dealDamage(Piece enemy){
+        enemy.setHealth(enemy.getHealth()-damage);
+        if(enemy.getHealth()<=0) return true;
+        else return false;
+    }
+
+
     //private methods
 
 }
