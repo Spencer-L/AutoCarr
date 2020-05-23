@@ -375,7 +375,12 @@ public abstract class Piece {
     }
 
     protected void calculateHealthBar(int damage){
-        healthBarGreen.setWidth(((health-damage)/maxHealth)*size);
+        if(health > 0) {
+            healthBarGreen.setWidth(((health - damage) / maxHealth) * size);
+        }
+        else if(health < 0){
+            healthBarGreen.setWidth(0);
+        }
     }
 
     protected void createRarityBand(){
