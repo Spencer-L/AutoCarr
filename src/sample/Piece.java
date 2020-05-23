@@ -4,7 +4,9 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
+import javafx.geometry.Pos;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -40,6 +42,8 @@ public abstract class Piece {
     private Text healthPoints;
     private Timeline attackPacing;
     private int timerCounter;
+    private StackPane healthBarRed;
+    private Rectangle healthBarGreen;
 
     //constructor
     Piece(double s,double h, String id,MainGame mG,PlayField pF,int tN,double[] pos,Deck pD){
@@ -60,6 +64,18 @@ public abstract class Piece {
         overallPosition=findPosition();
         atkSpd=.9;
         damage=10;
+
+
+        healthBarGreen = new Rectangle();
+        healthBarGreen.setWidth(s);
+        healthBarGreen.setHeight(15);
+        healthBarGreen.setFill(Color.GREEN);
+
+        healthBarRed = new StackPane();
+        healthBarRed.setMaxSize(s,15);
+        healthBarRed.setStyle("-fx-background-color:RED");
+        healthBarRed.setAlignment(healthBarGreen, Pos.CENTER_LEFT);
+        healthBarRed.getChildren().add(healthBarGreen);
 
         healthPoints = new Text((health + ""));
         timerCounter=0;
@@ -104,6 +120,22 @@ public abstract class Piece {
     public void setAtkSpd(double atkSpd){this.atkSpd = atkSpd;}
     public Text getHealthPoints(){return healthPoints;}
     public void setHealthPoints(Text t){healthPoints=t;}
+
+    public StackPane getHealthBarRed() {
+        return healthBarRed;
+    }
+
+    public void setHealthBarRed(StackPane healthBarRed) {
+        this.healthBarRed = healthBarRed;
+    }
+
+    public Rectangle getHealthBarGreen() {
+        return healthBarGreen;
+    }
+
+    public void setHealthBarGreen(Rectangle healthBarGreen) {
+        this.healthBarGreen = healthBarGreen;
+    }
 
     public double[] getOverallPosition() {
         return overallPosition;
@@ -310,6 +342,10 @@ public abstract class Piece {
         enemy.setHealth(enemy.getHealth()-damage);
         if(enemy.getHealth()<=0) return true;
         else return false;
+    }
+
+    protected void calculateHealthBar(int damage){
+        healthBarGreen.setWidth(((health-damage)/health)*size);
     }
 
 

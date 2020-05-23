@@ -6,13 +6,13 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AutoCarr/sample/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AutoCarr/sample/Controller.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AutoCarr/sample/GoldDisplay.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AutoCarr/sample/GoldDisplay.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/AutoCarr/sample/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AutoCarr/sample/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AutoCarr/sample/MainGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AutoCarr/sample/MainGame.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AutoCarr/sample/Playfield.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AutoCarr/sample/Playfield.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AutoCarr/sample/Score.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AutoCarr/sample/Score.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/AutoCarr/sample/Shop.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/AutoCarr/sample/Shop.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Piece.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/sample/RectPiece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/RectPiece.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Shop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Shop.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +102,7 @@
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dynamic.classpath" value="false" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
@@ -369,14 +369,18 @@
     <option name="LAST_COMMIT_MESSAGE" value="Updated Menu class now launches game or shows rules" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="362" y="73" key="#Project_Structure" timestamp="1590188148022">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="362" y="73" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1590188148022" />
     <state x="1776" y="185" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587513946339">
       <screen x="1366" y="0" width="1360" height="768" />
     </state>
     <state x="1776" y="185" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.768/1366.0.1360.768@1366.0.1360.768" timestamp="1587513946339" />
-    <state x="857" y="120" key="#com.intellij.ide.util.MemberChooser" timestamp="1589926006365">
+    <state x="857" y="120" key="#com.intellij.ide.util.MemberChooser" timestamp="1590263274668">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="857" y="120" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1589926006365" />
+    <state x="857" y="120" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1590263274668" />
     <state x="756" y="405" width="408" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1590018469149">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -393,29 +397,29 @@
     </state>
     <state x="1458" y="92" width="1176" height="584" key="DiffContextDialog/0.0.1366.768/1366.0.1360.768@0.0.1366.768" timestamp="1584819935487" />
     <state x="252" y="249" width="1661" height="791" key="DiffContextDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1590014654082" />
-    <state width="1877" height="274" key="GridCell.Tab.0.bottom" timestamp="1590181209200">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1590263534489">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1316" height="187" key="GridCell.Tab.0.bottom/0.0.1366.768/1366.0.1360.768@1366.0.1360.768" timestamp="1588008646250" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1589925767271" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1590263534489" />
     <state width="1877" height="274" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1590181209200" />
-    <state width="1877" height="274" key="GridCell.Tab.0.center" timestamp="1590181209200">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1590263534489">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1316" height="187" key="GridCell.Tab.0.center/0.0.1366.768/1366.0.1360.768@1366.0.1360.768" timestamp="1588008646250" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1589925767270" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1590263534489" />
     <state width="1877" height="274" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1590181209200" />
-    <state width="1877" height="274" key="GridCell.Tab.0.left" timestamp="1590181209200">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1590263534489">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1316" height="187" key="GridCell.Tab.0.left/0.0.1366.768/1366.0.1360.768@1366.0.1360.768" timestamp="1588008646250" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1589925767270" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1590263534489" />
     <state width="1877" height="274" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1590181209200" />
-    <state width="1877" height="274" key="GridCell.Tab.0.right" timestamp="1590181209200">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1590263534489">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1316" height="187" key="GridCell.Tab.0.right/0.0.1366.768/1366.0.1360.768@1366.0.1360.768" timestamp="1588008646250" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1589925767270" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1590263534489" />
     <state width="1877" height="274" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1590181209200" />
     <state width="1316" height="233" key="GridCell.Tab.1.bottom" timestamp="1587275539431">
       <screen x="1366" y="0" width="1360" height="768" />
