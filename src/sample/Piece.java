@@ -22,6 +22,7 @@ public abstract class Piece {
     private double size;
     private Box parentBox;
     private double health;
+    private double maxHealth;
     private String ID;
     private double[] overallPosition;
     boolean isDragging=false;
@@ -66,6 +67,7 @@ public abstract class Piece {
         overallPosition=findPosition();
         atkSpd=.9;
         damage=10;
+        maxHealth = h;
 
         levels = new Text(Integer.toString(level));
 
@@ -353,8 +355,8 @@ public abstract class Piece {
             timerCounter=0;
             if(target.getHealth()==0) attackPacing.stop();
             if(inRange(target)){
-                boolean dead = dealDamage(target);
                 calculateHealthBar((int)damage);
+                boolean dead = dealDamage(target);
                 target.getHealthPoints().setText(target.getHealth()+ "");
                 if(dead) attackPacing.stop();
             }
@@ -373,7 +375,7 @@ public abstract class Piece {
     }
 
     protected void calculateHealthBar(int damage){
-        healthBarGreen.setWidth(((health-damage)/health)*size);
+        healthBarGreen.setWidth(((health-damage)/maxHealth)*size);
     }
 
     protected void createRarityBand(){
