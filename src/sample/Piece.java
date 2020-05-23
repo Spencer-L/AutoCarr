@@ -29,8 +29,10 @@ public abstract class Piece {
     private PlayField playField;
     private int teamNum;
     private int cost;
-    private int level;
+    private int level = 1;
+    private Text levels;
     private int rarity;
+    private Rectangle rarityBand;
     private double damage;
     private double atkSpd;
     private String name;
@@ -65,6 +67,11 @@ public abstract class Piece {
         atkSpd=.9;
         damage=10;
 
+        levels = new Text(Integer.toString(level));
+
+        rarityBand = new Rectangle(s/2,10);
+        createRarityBand();
+
 
         healthBarGreen = new Rectangle();
         healthBarGreen.setWidth(s);
@@ -81,6 +88,16 @@ public abstract class Piece {
         timerCounter=0;
     }
     //setter/getter
+
+
+    public Rectangle getRarityBand() {
+        return rarityBand;
+    }
+
+    public void setRarityBand(Rectangle rarityBand) {
+        this.rarityBand = rarityBand;
+    }
+
     public double getSize(){
         return size;
     }
@@ -105,6 +122,14 @@ public abstract class Piece {
     }
     public void setHealth(double health) {
         this.health = health;
+    }
+
+    public Text getLevels() {
+        return levels;
+    }
+
+    public void setLevels(Text levels) {
+        this.levels = levels;
     }
 
     public int getTeamNum() {
@@ -346,6 +371,21 @@ public abstract class Piece {
 
     protected void calculateHealthBar(int damage){
         healthBarGreen.setWidth(((health-damage)/health)*size);
+    }
+
+    protected void createRarityBand(){
+        if(rarity == 0){
+            rarityBand.setFill(Color.WHITE);
+        }
+        else if(rarity == 1){
+            rarityBand.setFill(Color.BLUE);
+        }
+        else if(rarity == 2){
+            rarityBand.setFill(Color.PURPLE);
+        }
+        else if(rarity == 3){
+            rarityBand.setFill(Color.GOLD);
+        }
     }
 
 

@@ -17,6 +17,9 @@ public class RectPiece extends Piece{
         }
 
         getBody().getChildren().add(base);
+        getBody().setAlignment(getRarityBand(), Pos.TOP_CENTER);
+        getBody().getChildren().add(getRarityBand());
+        getBody().getChildren().add((getLevels()));
         getBody().setAlignment(getHealthBarRed(), Pos.BOTTOM_CENTER);
         getBody().getChildren().add(getHealthBarRed());
 
