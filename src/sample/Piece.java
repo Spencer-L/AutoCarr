@@ -311,7 +311,6 @@ public abstract class Piece {
             playField.endRound();
         }else{
             moveUpClose(target);
-            System.out.println("here");
             if(inRange(target)){
                attackPacing =  new Timeline(new KeyFrame(Duration.millis(40),ae->doAttack()));
                attackPacing.setCycleCount(Animation.INDEFINITE);
@@ -330,7 +329,6 @@ public abstract class Piece {
         double diffX=otherX-x;
         double diffY=otherY-y;
         diffX=diffX>0? diffX-size-(parentBox.getSize()*0.46502976):diffX+size+(parentBox.getSize()*0.46502976);
-        System.out.println(parentBox.getSize());
         double cycles=80;
         double[] eachMove=new double[]{(diffX/cycles/2d),(diffY/cycles/2d)};
         tL=new Timeline(new KeyFrame(Duration.millis(30),ae->movePiece(eachMove)));
