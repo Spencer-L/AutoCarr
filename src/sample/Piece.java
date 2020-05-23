@@ -351,18 +351,21 @@ public abstract class Piece {
         if(timerCounter<(int)(30*atkSpd))timerCounter++;
         else{
             timerCounter=0;
+            if(target.getHealth()==0) attackPacing.stop();
             if(inRange(target)){
                 boolean dead = dealDamage(target);
+                calculateHealthBar((int)damage);
                 target.getHealthPoints().setText(target.getHealth()+ "");
                 if(dead) attackPacing.stop();
             }
         }
-
     }
+
     protected boolean inRange(Piece enemy){
         //if(enemy.getBody().getLayoutBounds())
         return true;
     }
+
     protected boolean dealDamage(Piece enemy){
         enemy.setHealth(enemy.getHealth()-damage);
         if(enemy.getHealth()<=0) return true;
