@@ -25,15 +25,7 @@ public class MainGame {
         initAllVars();
         createPlayers();
         appendBodies();
-    }
-    private boolean start=false;
-    public void startFight(){
-            if(!start){
-                pField.startFight();
-            }else{
-                pField.repositionPieces();
-            }
-        start=!start;
+        nextPhase();
     }
     //setter/getter
     public Pane getWrapper(){return wrapper;}
@@ -62,12 +54,28 @@ public class MainGame {
         shop.setBodyDimensions(new double[]{GlobalVariable.screenDimensions[0],
                 shop.getBodyDimensions()[1]+(additionalVerticalSpace/2)});
     }
+    public void nextPhase(){
+        System.out.println("Next Phase Called");
+        pField.repositionPieces();
+        if(turn%3==0){
+            players.get(0).getDeck().showDeck();
+            players.get(1).getDeck().hideDeck();
+        }else if(turn%3==1){
+            players.get(0).getDeck().hideDeck();
+            players.get(1).getDeck().showDeck();
+        }else if(turn%3==2){
+            startFight();
+            players.get(0).getDeck().hideDeck();
+            players.get(1).getDeck().hideDeck();
+        }
+        turn++;
+    }
     //private methods
     public void createPlayers(){
         players.add(new Player("Player 1",1,500d,pField,this));
         players.add(new Player("Player 2",2,500d,pField,this));
-        players.get(0).getDeck().showDeck();
-        players.get(1).getDeck().hideDeck();
+        //players.get(0).getDeck().showDeck();
+        //players.get(1).getDeck().hideDeck();
     }
     private void appendBodies(){
         Pane shopBody=(Pane)shop.getBody();
@@ -88,13 +96,20 @@ public class MainGame {
         PFBody.relocate(gDisplay.getBodyDimensions()[0], 0);
         GDBody.relocate(0,0);
     }
-
-
     private void initAllVars(){
         shop = new Shop();
         gDisplay = new GoldDisplay();
         deck = new Deck();
         pField = new PlayField(this);
+    }
+    //private boolean start=false;
+    private void startFight(){
+        //if(!start){
+            pField.startFight();
+        //}else{
+        //    pField.repositionPieces();
+       // }
+        //start=!start;
     }
     //this is the mainGame file
 }

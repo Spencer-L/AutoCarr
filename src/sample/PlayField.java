@@ -135,7 +135,7 @@ public class PlayField {
     private void createRoundBtn(){
         Box parentBox=boxes.get((int)boxesCount[0]/2);
         roundBtn=new Button();
-        roundBtn.setText("Start Fight");
+        roundBtn.setText("Next Phase");
         roundBtn.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -148,6 +148,7 @@ public class PlayField {
         parentBox.getBody().getChildren().add(roundBtn);
     }
     private void nextPhase(){
-        mainGame.startFight();
+        mainGame.nextPhase();
+
     }
 }

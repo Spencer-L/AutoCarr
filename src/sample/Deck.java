@@ -39,7 +39,7 @@ public class Deck {
         screenDimensions= GlobalVariable.screenDimensions;
         bodyDimensions=new double[]{screenDimensions[0]*1,screenDimensions[1]*0.14};
         base = new Rectangle(bodyDimensions[0],bodyDimensions[1]);
-        base.setFill(Color.TRANSPARENT);
+        base.setFill(Color.ORANGE);
         body.getChildren().add(base);
     }
     //setter/getter
@@ -76,6 +76,7 @@ public class Deck {
     public void fieldToDeck(Piece p){
         int index=piecesInDock.size();
         piecesInDock.add(p);
+        p.setParentBox(null);
         p.getBody().setLayoutX(slots.get(index)[0]);
         p.getBody().setLayoutY(slots.get(index)[1]);
     }
@@ -95,14 +96,23 @@ public class Deck {
         int index=piecesInDock.indexOf(p);
         p.getBody().setLayoutX(slots.get(index)[0]);
         p.getBody().setLayoutY(slots.get(index)[1]);
+        if(piecesInDock.indexOf(p)!=-1){
+            piecesInDock.add(p);
+        }
     }
     public void showDeck(){
         getBody().setVisible(true);
-        System.out.println("deck should be displayed");
+        for(Piece p:piecesInDock){
+            p.getBody().setVisible(true);
+        }
+        System.out.println(player.getTeamNum()+" deck should be displayed");
     }
     public void hideDeck(){
         getBody().setVisible(false);
-        System.out.println("deck should be hidden");
+        for(Piece p:piecesInDock){
+            p.getBody().setVisible(false);
+        }
+        System.out.println(player.getTeamNum()+" deck should be hidden");
     }
     //private methods
     private void createPieces(){
