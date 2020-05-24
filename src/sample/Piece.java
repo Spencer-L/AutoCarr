@@ -370,15 +370,27 @@ public abstract class Piece {
     }
 
     protected void doAttack(){
-        if(timerCounter<(int)(30*atkSpd))timerCounter++;
-        else{
-            timerCounter=0;
-            if(target.getHealth()==0) attackPacing.stop();
-            if(inRange(target)){
-                calculateHealthBar((int)damage);
-                boolean dead = dealDamage(target);
-                target.getHealthPoints().setText(target.getHealth()+ "");
-                if(dead) attackPacing.stop();
+        boolean alive=true;
+        if(health<=0) {
+            alive = false;
+            //System.out.println("I have " + health + " and am part of " + teamNum + ", my opponent has " + target.getHealth());
+            calculateHealthBar();
+            attackPacing.stop();
+            target.getAttackPacing().stop();
+        }
+        if(alive) {
+            if (timerCounter < (int) (60 - (30 * atkSpd))) timerCounter++;
+            else {
+                timerCounter = 0;
+                if (target.getHealth() == 0) attackPacing.stop();
+                if (inRange(target)) {
+                    boolean dead = dealDamage(target);
+                    calculateHealthBar();
+                    //System.out.println("I have " + health + " and I did " + damage + " to my target, " + teamNum );
+                    if(dead){
+
+                    }
+                }
             }
         }
     }
@@ -395,7 +407,7 @@ public abstract class Piece {
     }
 
     protected void calculateHealthBar(int damage){
-        if(health > 0) {
+        if(health >= 0) {
             healthBarGreen.setWidth(((health - damage) / maxHealth) * size);
         }
         else if(health < 0){
