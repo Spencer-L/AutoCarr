@@ -9,7 +9,7 @@ public class CirPiece extends Piece{
     private Circle base;
     CirPiece(double s,double h, String id,MainGame mG,PlayField pF,int tN,double[] pos,Deck pD){
         super(s,h,id,mG,pF,tN,pos,pD);
-        setHealth(6);
+        setHealth(60);
         setAtkSpd(0.25);
         setDps(5);
         setRange(5);

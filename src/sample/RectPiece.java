@@ -10,7 +10,7 @@ public class RectPiece extends Piece{
     private Rectangle base;
     RectPiece(double s,double h, String id,MainGame mG,PlayField pF,int tN,double[] pos,Deck pD){
         super(s,h,id,mG,pF,tN,pos,pD);
-        setHealth(20);
+        setHealth(200);
         setAtkSpd(2);
         setDps(1);
         setRange(1);

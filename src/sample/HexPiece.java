@@ -9,7 +9,7 @@ public class HexPiece extends Piece{
     private Polygon base;
     HexPiece(double s,double h, String id,MainGame mG,PlayField pF,int tN,double[] pos,Deck pD){
         super(s,h,id,mG,pF,tN,pos,pD);
-        setHealth(10);
+        setHealth(100);
         setAtkSpd(4);
         setDps(0.5);
         setRange(1);
