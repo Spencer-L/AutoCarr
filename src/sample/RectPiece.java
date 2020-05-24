@@ -12,8 +12,8 @@ public class RectPiece extends Piece{
         super(s,h,id,mG,pF,tN,pos,pD);
         setHealth(200);
         setMaxHealth(200);
-        setAtkSpd(2);
-        setDamage(1);
+        setAtkSpd(.9);
+        setDamage(20);
         setRange(1);
         base=new Rectangle(0,0,getSize(),getSize());
         if(getTeamNum()==1){

@@ -266,13 +266,13 @@ public abstract class Piece {
             playField.endRound();
         }else{
             moveUpClose(target);
-            if(inRange(target)){
-                attackPacing =  new Timeline(new KeyFrame(Duration.millis(40),ae->doAttack()));
-                attackPacing.setCycleCount(Animation.INDEFINITE);
-                attackPacing.play();
 
+              //   if(inRange(target)) {
+                       attackPacing = new Timeline(new KeyFrame(Duration.millis(40), ae -> doAttack()));
+                       attackPacing.setCycleCount(Animation.INDEFINITE);
+                 //      attackPacing.play();
+              //  }
 
-            }
         }
     }
 
@@ -284,16 +284,20 @@ public abstract class Piece {
         double diffX=otherX-x;
         double diffY=otherY-y;
         diffX=diffX>0? diffX-size-(parentBox.getSize()*0.46502976):diffX+size+(parentBox.getSize()*0.46502976);
-        double cycles=80;
-        double[] eachMove=new double[]{(diffX/cycles/2d),(diffY/cycles/2d)};
+        //double cycles=80;
+        double[] eachMove=new double[]{(diffX/50/2d),(diffY/50/2d)};
         tL=new Timeline(new KeyFrame(Duration.millis(30),ae->movePiece(eachMove)));
-        tL.setCycleCount((int)cycles);
+        tL.setCycleCount(Animation.INDEFINITE);
         tL.play();
     }
 
     protected void movePiece(double[] movement){
         getBody().setLayoutX(getBody().getLayoutX()+movement[0]);
         getBody().setLayoutY(getBody().getLayoutY()+movement[1]);
+        if(getBody().getBoundsInParent().intersects(target.getBody().getBoundsInParent())){
+            tL.stop();
+            attackPacing.play();
+        }
     }
 
     protected void reposition(){
@@ -331,8 +335,12 @@ public abstract class Piece {
     }
 
     protected boolean inRange(Piece enemy){
-        //if(enemy.getBody().getLayoutBounds())
-        return true;
+       // while(target!=null) {
+            if (getBody().getBoundsInParent().intersects(target.getBody().getBoundsInParent())) {
+                return true;
+            }
+       // }
+        return false;
     }
 
     protected boolean dealDamage(Piece enemy){
