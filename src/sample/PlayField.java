@@ -1,5 +1,8 @@
 package sample;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -21,6 +24,7 @@ public class PlayField {
     private ArrayList<Box> column=new ArrayList<Box>();
     private ArrayList<Piece> pieces=new ArrayList<Piece>();
     private boolean roundEnd=false;
+    private Button roundBtn;
 
     //constructor
     public PlayField(MainGame mG){
@@ -35,6 +39,7 @@ public class PlayField {
         mainGame.adjustLayout(boxSize,boxesCount);
         createBoxes();
         setBodyDimensions(new double[]{boxSize*boxesCount[0],boxSize*boxesCount[1]});
+        createRoundBtn();
     }
 
     //setter/getter
@@ -127,5 +132,22 @@ public class PlayField {
     private double findBoxSize(){
         return Math.min(bodyDimensions[0] / boxesCount[0], bodyDimensions[1] / boxesCount[1]);
     }
-
+    private void createRoundBtn(){
+        Box parentBox=boxes.get((int)boxesCount[0]/2);
+        roundBtn=new Button();
+        roundBtn.setText("Start Fight");
+        roundBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                nextPhase();
+            }
+        });
+        roundBtn.setPrefWidth(boxSize-10d);
+        roundBtn.setLayoutX(boxSize*0.0465);
+        roundBtn.setLayoutY(boxSize*0.093);
+        parentBox.getBody().getChildren().add(roundBtn);
+    }
+    private void nextPhase(){
+        mainGame.startFight();
+    }
 }

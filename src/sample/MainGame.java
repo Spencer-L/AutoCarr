@@ -21,13 +21,13 @@ public class MainGame {
     public MainGame(double[] wSize){
         dimensions=wSize;
         wrapper.setPrefSize(wSize[0],wSize[1]);
-        wrapper.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> console(event));
+        //wrapper.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> console(event));
         initAllVars();
         createPlayers();
         appendBodies();
     }
     private boolean start=false;
-    private void console(MouseEvent e){
+    public void startFight(){
             if(!start){
                 pField.startFight();
             }else{
