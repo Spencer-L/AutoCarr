@@ -36,7 +36,7 @@ public class Shop {
         base = new Rectangle(bodyDimensions[0],bodyDimensions[1]);
         base.setFill(Color.LIGHTGREEN);
         body.getChildren().add(base);
-        refresh();
+        refreshShop();
         r=new Rectangle(bodyDimensions[0]/6,bodyDimensions[1]/2);
         r.setFill(Color.TAN);
         r1=new Rectangle(bodyDimensions[0]/6,bodyDimensions[1]/2);
@@ -77,12 +77,27 @@ public class Shop {
         btn.getChildren().addAll(r1,txt1,gold1,num1);
         btn1.getChildren().addAll(r,txt,gold,num);
         body.getChildren().addAll(btn,btn1);
+        actions();
+    }
+    //setter/getter
+    public Pane getBody(){return body;}
+    public double[] getBodyDimensions(){return bodyDimensions;}
+    public void setBodyDimensions(double[] bD) {
+        bodyDimensions = bD;
+        base.setWidth(bD[0]);
+        base.setHeight(bD[1]);
+    }
+
+    //methods
+    public void actions(){
         r.setOnMouseClicked(new EventHandler<MouseEvent>(){
             public void handle(MouseEvent event){
                 if(check){
-                    body.getChildren().removeAll(u1,u2,u3,u4,u5);
+                    body.getChildren().removeAll(btn,btn1,u1,u2,u3,u4,u5);
                 }
-                refresh();
+                refreshShop();
+                body.getChildren().addAll(btn,btn1);
+                actions();
             }
         });
         r.setOnMouseEntered(new EventHandler<MouseEvent>(){
@@ -106,17 +121,7 @@ public class Shop {
             }
         });
     }
-    //setter/getter
-    public Pane getBody(){return body;}
-    public double[] getBodyDimensions(){return bodyDimensions;}
-    public void setBodyDimensions(double[] bD) {
-        bodyDimensions = bD;
-        base.setWidth(bD[0]);
-        base.setHeight(bD[1]);
-    }
-
-    //methods
-    public void refresh(){
+    public void refreshShop(){
         //unit 1
         u1=new Pane();
         Rectangle a1=new Rectangle(bodyDimensions[0]/6,bodyDimensions[1]/1.5);
@@ -148,7 +153,7 @@ public class Shop {
         gold1.getChildren().addAll(c1,g1);
         Text t1=new Text(bodyDimensions[0]/6+bodyDimensions[0]/7,bodyDimensions[1]/1.225,Integer.toString(num1));
         t1.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/100));
-        t1.setFill(Color.WHITE);
+        t1.setFill(Color.BLACK);
         u1.getChildren().addAll(a1,b1,gold1,t1);
         //unit 2
         u2=new Pane();
@@ -181,7 +186,7 @@ public class Shop {
         gold2.getChildren().addAll(c2,g2);
         Text t2=new Text(bodyDimensions[0]/3+bodyDimensions[0]/7,bodyDimensions[1]/1.225,Integer.toString(num2));
         t2.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/100));
-        t2.setFill(Color.WHITE);
+        t2.setFill(Color.BLACK);
         u2.getChildren().addAll(a2,b2,gold2,t2);
         //unit 3
         u3=new Pane();
@@ -214,7 +219,7 @@ public class Shop {
         gold3.getChildren().addAll(c3,g3);
         Text t3=new Text(bodyDimensions[0]/2+bodyDimensions[0]/7,bodyDimensions[1]/1.225,Integer.toString(num3));
         t3.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/100));
-        t3.setFill(Color.WHITE);
+        t3.setFill(Color.BLACK);
         u3.getChildren().addAll(a3,b3,gold3,t3);
         //unit 4
         u4=new Pane();
@@ -247,7 +252,7 @@ public class Shop {
         gold4.getChildren().addAll(c4,g4);
         Text t4=new Text(bodyDimensions[0]/1.5+bodyDimensions[0]/7,bodyDimensions[1]/1.225,Integer.toString(num4));
         t4.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/100));
-        t4.setFill(Color.WHITE);
+        t4.setFill(Color.BLACK);
         u4.getChildren().addAll(a4,b4,gold4,t4);
         //unit 5
         u5=new Pane();
@@ -280,7 +285,7 @@ public class Shop {
         gold5.getChildren().addAll(c5,g5);
         Text t5=new Text(bodyDimensions[0]/1.2+bodyDimensions[0]/7,bodyDimensions[1]/1.225,Integer.toString(num5));
         t5.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/100));
-        t5.setFill(Color.WHITE);
+        t5.setFill(Color.BLACK);
         u5.getChildren().addAll(a5,b5,gold5,t5);
         body.getChildren().addAll(u1,u2,u3,u4,u5);
         check=true;
