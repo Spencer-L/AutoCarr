@@ -161,6 +161,7 @@ public abstract class Piece {
     public void setAtkSpd(double atkSpd){this.atkSpd = atkSpd;}
     public Text getHealthPoints(){return healthPoints;}
     public void setHealthPoints(Text t){healthPoints=t;}
+    public Timeline getAttackPacing(){return attackPacing;}
 
     public double getDps() {
         return dps;
