@@ -35,6 +35,7 @@ public abstract class Piece {
     private int rarity;
     private Rectangle rarityBand;
     private double damage;
+    private double dps;
     private double atkSpd;
     private String name;
     private int range;
@@ -116,6 +117,19 @@ public abstract class Piece {
     public void setID(String ID) {
         this.ID = ID;
     }
+
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
+    public int getRange() {
+        return range;
+    }
+
+    public void setRange(int range) {
+        this.range = range;
+    }
+
     public String getID() {
         return ID;
     }
@@ -147,6 +161,14 @@ public abstract class Piece {
     public void setAtkSpd(double atkSpd){this.atkSpd = atkSpd;}
     public Text getHealthPoints(){return healthPoints;}
     public void setHealthPoints(Text t){healthPoints=t;}
+
+    public double getDps() {
+        return dps;
+    }
+
+    public void setDps(double dps) {
+        this.dps = dps;
+    }
 
     public StackPane getHealthBarRed() {
         return healthBarRed;
