@@ -122,49 +122,21 @@ public abstract class Piece {
     public void setHealthPoints(Text t){healthPoints=t;}
     public Timeline getAttackPacing(){return attackPacing;}
     public void setMaxHealth(int mH){maxHealth=mH;}
-
     public double getDps() {
         return dps;
     }
-
-    public void setDps(double dps) {
-        this.dps = dps;
-    }
-
-    public StackPane getHealthBarRed() {
-        return healthBarRed;
-    }
-
-    public void setHealthBarRed(StackPane healthBarRed) {
-        this.healthBarRed = healthBarRed;
-    }
-
-    public Rectangle getHealthBarGreen() {
-        return healthBarGreen;
-    }
-
-    public void setHealthBarGreen(Rectangle healthBarGreen) {
-        this.healthBarGreen = healthBarGreen;
-    }
-
-    public double[] getOverallPosition() {
-        return overallPosition;
-    }
+    public void setDps(double dps) { this.dps = dps; }
+    public StackPane getHealthBarRed() { return healthBarRed; }
+    public void setHealthBarRed(StackPane healthBarRed) { this.healthBarRed = healthBarRed; }
+    public Rectangle getHealthBarGreen() { return healthBarGreen; }
+    public void setHealthBarGreen(Rectangle healthBarGreen) { this.healthBarGreen = healthBarGreen; }
+    public double[] getOverallPosition() { return overallPosition; }
     public boolean getOnField(){
         return onField;
     }
-
-    public void setOnField(boolean onField) {
-        this.onField = onField;
-    }
-
-    public Timeline getTL() {
-        return tL;
-    }
-
-    public void setTL(Timeline tL) {
-        this.tL = tL;
-    }
+    public void setOnField(boolean onField) { this.onField = onField; }
+    public Timeline getTL() { return tL; }
+    public void setTL(Timeline tL) { this.tL = tL; }
 
     //public methods
     protected void dragPiece(MouseEvent e){
@@ -190,21 +162,21 @@ public abstract class Piece {
         double minDiff=Double.MAX_VALUE;
         int boxCount=0;
         if(getTeamNum()==1){
-         for(int i=0;i<playField.getp2Boxes().size();i++){
-            Box b=playField.getp2Boxes().get(i);
-            double centerX=getBody().getLayoutX()+(size/2);
-            double centerY=getBody().getLayoutY()+(size/2);
-            double centerBoxX=b.getBody().getLayoutX()+(b.getSize()/2)+mainGame.gDisplay.getBodyDimensions()[0];
-            double centerBoxY=b.getBody().getLayoutY()+(b.getSize()/2);
-            double diffX=centerX-centerBoxX;
-            double diffY=centerY-centerBoxY;
-            double diff=Math.sqrt(Math.pow(diffX,2)+Math.pow(diffY,2));
-            if(diff<minDiff){
-                minDiff=diff;
-                boxCount=i;
+            for(int i=0;i<playField.getp2Boxes().size();i++){
+                Box b=playField.getp2Boxes().get(i);
+                double centerX=getBody().getLayoutX()+(size/2);
+                double centerY=getBody().getLayoutY()+(size/2);
+                double centerBoxX=b.getBody().getLayoutX()+(b.getSize()/2)+mainGame.gDisplay.getBodyDimensions()[0];
+                double centerBoxY=b.getBody().getLayoutY()+(b.getSize()/2);
+                double diffX=centerX-centerBoxX;
+                double diffY=centerY-centerBoxY;
+                double diff=Math.sqrt(Math.pow(diffX,2)+Math.pow(diffY,2));
+                if(diff<minDiff){
+                    minDiff=diff;
+                    boxCount=i;
+                }
             }
-         }
-         return playField.getp2Boxes().get(boxCount);
+            return playField.getp2Boxes().get(boxCount);
         }else {
             for(int i=0;i<playField.getp1Boxes().size();i++){
                 Box b=playField.getp1Boxes().get(i);
@@ -295,9 +267,9 @@ public abstract class Piece {
         }else{
             moveUpClose(target);
             if(inRange(target)){
-               attackPacing =  new Timeline(new KeyFrame(Duration.millis(40),ae->doAttack()));
-               attackPacing.setCycleCount(Animation.INDEFINITE);
-               attackPacing.play();
+                attackPacing =  new Timeline(new KeyFrame(Duration.millis(40),ae->doAttack()));
+                attackPacing.setCycleCount(Animation.INDEFINITE);
+                attackPacing.play();
 
 
             }
