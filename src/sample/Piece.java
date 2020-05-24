@@ -407,7 +407,7 @@ public abstract class Piece {
         else return false;
     }
 
-    protected void calculateHealthBar(int damage){
+    protected void calculateHealthBar(){
         if(health >= 0) {
             healthBarGreen.setWidth(((health - damage) / maxHealth) * size);
         }
