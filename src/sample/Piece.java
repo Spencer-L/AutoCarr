@@ -93,64 +93,23 @@ public abstract class Piece {
     //setter/getter
 
 
-    public Rectangle getRarityBand() {
-        return rarityBand;
-    }
-
-    public void setRarityBand(Rectangle rarityBand) {
-        this.rarityBand = rarityBand;
-    }
-
-    public double getSize(){
-        return size;
-    }
-    public StackPane getBody(){
-        return body;
-    }
-    public void setBody(StackPane sP){
-        body=sP;
-    }
-    public Box getParentBox(){
-        return parentBox;
-    }
+    public Rectangle getRarityBand() { return rarityBand; }
+    public void setRarityBand(Rectangle rarityBand) { this.rarityBand = rarityBand; }
+    public double getSize(){ return size; }
+    public StackPane getBody(){ return body; }
+    public void setBody(StackPane sP){ body=sP; }
+    public Box getParentBox(){ return parentBox; }
     public void setParentBox(Box pB){parentBox=pB;}
-    public void setID(String ID) {
-        this.ID = ID;
-    }
-
-    public void setCost(int cost) {
-        this.cost = cost;
-    }
-
-    public int getRange() {
-        return range;
-    }
-
-    public void setRange(int range) {
-        this.range = range;
-    }
-
-    public String getID() {
-        return ID;
-    }
-    public double getHealth() {
-        return health;
-    }
-    public void setHealth(double health) {
-        this.health = health;
-    }
-
-    public Text getLevels() {
-        return levels;
-    }
-
-    public void setLevels(Text levels) {
-        this.levels = levels;
-    }
-
-    public int getTeamNum() {
-        return teamNum;
-    }
+    public void setID(String ID) { this.ID = ID; }
+    public void setCost(int cost) { this.cost = cost; }
+    public int getRange() { return range; }
+    public void setRange(int range) { this.range = range; }
+    public String getID() { return ID; }
+    public double getHealth() { return health; }
+    public void setHealth(double health) { this.health = health; }
+    public Text getLevels() { return levels; }
+    public void setLevels(Text levels) { this.levels = levels; }
+    public int getTeamNum() { return teamNum; }
     public int getCost(){return cost;}
     public int getLevel(){return level;}
     public void setLevel(int lev){level = lev;}
@@ -162,6 +121,7 @@ public abstract class Piece {
     public Text getHealthPoints(){return healthPoints;}
     public void setHealthPoints(Text t){healthPoints=t;}
     public Timeline getAttackPacing(){return attackPacing;}
+    public void setMaxHealth(int mH){maxHealth=mH;}
 
     public double getDps() {
         return dps;
@@ -365,9 +325,11 @@ public abstract class Piece {
     }
 
     protected void reposition(){
-        body.setLayoutX(parentBox.getBody().getLayoutX()+mainGame.gDisplay.getBodyDimensions()[0]+(getSize()/2));
-        body.setLayoutY(parentBox.getBody().getLayoutY()+(getSize()/2));
-        overallPosition=findPosition();
+        if(parentBox!=null) {
+            body.setLayoutX(parentBox.getBody().getLayoutX() + mainGame.gDisplay.getBodyDimensions()[0] + (getSize() / 2));
+            body.setLayoutY(parentBox.getBody().getLayoutY() + (getSize() / 2));
+            overallPosition = findPosition();
+        }
     }
 
     protected void doAttack(){
@@ -409,7 +371,7 @@ public abstract class Piece {
 
     protected void calculateHealthBar(){
         if(health >= 0) {
-            healthBarGreen.setWidth(((health - damage) / maxHealth) * size);
+            healthBarGreen.setWidth(((health) / maxHealth) * size);
         }
         else if(health < 0){
             healthBarGreen.setWidth(0);
