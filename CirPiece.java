@@ -1,21 +1,20 @@
 package sample;
 
 import javafx.geometry.Pos;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Circle;
 
-//paladin class
-public class RectPiece extends Piece{
-    private Rectangle base;
-    RectPiece(double s,double h, String id,MainGame mG,PlayField pF,int tN,double[] pos,Deck pD){
+//wizard class
+public class CirPiece extends Piece{
+    private Circle base;
+    CirPiece(double s,double h, String id,MainGame mG,PlayField pF,int tN,double[] pos,Deck pD){
         super(s,h,id,mG,pF,tN,pos,pD);
-        setHealth(getHealth()+200);
+        setHealth(getHealth()+50);
         setMaxHealth((int)getHealth());
-        setAtkSpd(.9);
-        setDamage(getDamage()+20);
-        setRange(1);
-        base=new Rectangle(0,0,getSize(),getSize());
+        setAtkSpd(0.25);
+        setDamage(getDamage()+50);
+        setRange(3);
+        base=new Circle(0,0,getSize());
         if(getTeamNum()==1){
             base.setFill(Color.VIOLET);
         }else if(getTeamNum()==2){
@@ -28,6 +27,5 @@ public class RectPiece extends Piece{
         getBody().getChildren().add((getLevels()));
         getBody().setAlignment(getHealthBarRed(), Pos.BOTTOM_CENTER);
         getBody().getChildren().add(getHealthBarRed());
-
     }
 }
