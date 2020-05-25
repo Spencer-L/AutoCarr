@@ -13,6 +13,7 @@ public class MainGame {
     GoldDisplay gDisplay;
     PlayField pField;
     Deck deck;
+    WinRound windRound;
     ArrayList<Player> players=new ArrayList<Player>();
     Pane wrapper = new Pane();
     int turn=0;
@@ -105,6 +106,7 @@ public class MainGame {
         gDisplay = new GoldDisplay();
         deck = new Deck();
         pField = new PlayField(this);
+        windRound=new WinRound(this);
     }
     //private boolean start=false;
     private void startFight(){
