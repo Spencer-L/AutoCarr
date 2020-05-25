@@ -13,7 +13,7 @@ public class RectPiece extends Piece{
         setHealth(getHealth()+200);
         setMaxHealth((int)getHealth());
         setAtkSpd(.9);
-        setDamage(20);
+        setDamage(getDamage()+20);
         setRange(1);
         base=new Rectangle(0,0,getSize(),getSize());
         if(getTeamNum()==1){
