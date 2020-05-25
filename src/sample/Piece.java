@@ -131,6 +131,7 @@ public abstract class Piece {
     public Rectangle getHealthBarGreen() { return healthBarGreen; }
     public void setHealthBarGreen(Rectangle healthBarGreen) { this.healthBarGreen = healthBarGreen; }
     public double[] getOverallPosition() { return overallPosition; }
+    public void setOverallPosition(double[] oP){overallPosition=oP;}
     public boolean getOnField(){
         return onField;
     }
@@ -277,26 +278,49 @@ public abstract class Piece {
     }
 
     protected void moveUpClose(Piece target){
+
+
+        //double cycles=80;
+
+        tL=new Timeline(new KeyFrame(Duration.millis(30),ae->movePiece()));
+        tL.setCycleCount(Animation.INDEFINITE);
+        tL.play();
+    }
+
+    protected void movePiece(){
+        setOverallPosition(findPosition());
+        target.setOverallPosition(target.findPosition());
+
         double otherX=target.getOverallPosition()[0];
         double otherY=target.getOverallPosition()[1];
         double x=getOverallPosition()[0];
         double y=getOverallPosition()[1];
         double diffX=otherX-x;
         double diffY=otherY-y;
-        diffX=diffX>0? diffX-size-(parentBox.getSize()*0.46502976):diffX+size+(parentBox.getSize()*0.46502976);
-        //double cycles=80;
-        double[] eachMove=new double[]{(diffX/50/2d),(diffY/50/2d)};
-        tL=new Timeline(new KeyFrame(Duration.millis(30),ae->movePiece(eachMove)));
-        tL.setCycleCount(Animation.INDEFINITE);
-        tL.play();
-    }
+        diffX=diffX>0? diffX+size+(parentBox.getSize()*0.46502976):diffX-size-(parentBox.getSize()*0.46502976);
 
-    protected void movePiece(double[] movement){
-        getBody().setLayoutX(getBody().getLayoutX()+movement[0]);
-        getBody().setLayoutY(getBody().getLayoutY()+movement[1]);
-        if(getBody().getBoundsInParent().intersects(target.getBody().getBoundsInParent())){
-            tL.stop();
-            attackPacing.play();
+        double[] movement =new double[]{(diffX/50/2),(diffY/50/2)};
+        if(movement[0]<2 && movement[0]>0) movement[0]=2;
+        if(movement[0]>-2 && movement[0]<0) movement[0]=-2;
+        if(movement[0]==0) movement[0]=0;
+        if(movement[1]<2 && movement[1]>0) movement[1]=2;
+        if(movement[1]>-2 && movement[1]<0) movement[1]=-2;
+        if(movement[1]==0) movement[1]=0;
+        if(diffX<3 && diffX>-3) movement[0]=0;
+        if(diffY<3 && diffY>-3) movement[1]=0;
+
+        if(!getBody().getBoundsInParent().intersects(target.getBody().getBoundsInParent())) {
+            getBody().setLayoutX(getBody().getLayoutX() + movement[0]);
+            getBody().setLayoutY(getBody().getLayoutY() + movement[1]);
+        }
+
+        if(range==1){
+            if(getBody().getBoundsInParent().intersects(target.getBody().getBoundsInParent())) {
+                tL.stop();
+                attackPacing.play();
+            }
+        }else{
+            playField.getBoxSize();
         }
     }
 
@@ -315,7 +339,7 @@ public abstract class Piece {
             //System.out.println("I have " + health + " and am part of " + teamNum + ", my opponent has " + target.getHealth());
             calculateHealthBar();
             attackPacing.stop();
-            target.getAttackPacing().stop();
+            //target.getAttackPacing().stop();
         }
         if(alive) {
             if (timerCounter < (int) (60 - (30 * atkSpd))) timerCounter++;
@@ -356,6 +380,10 @@ public abstract class Piece {
         else if(health < 0){
             healthBarGreen.setWidth(0);
         }
+    }
+    protected void restoreHealth(){
+        setHealth(maxHealth);
+        calculateHealthBar();
     }
 
     protected void createRarityBand(){

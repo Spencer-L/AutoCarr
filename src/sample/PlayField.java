@@ -148,6 +148,13 @@ public class PlayField {
         parentBox.getBody().getChildren().add(roundBtn);
     }
     private void nextPhase(){
+        for(Piece p:pieces){
+            if(p.getTL()!=null) {
+                p.getTL().stop();
+                p.getAttackPacing().stop();
+            }
+            p.restoreHealth();
+        }
         mainGame.nextPhase();
 
     }
