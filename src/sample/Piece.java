@@ -364,12 +364,21 @@ public abstract class Piece {
         }
         else if(rarity == 1){
             rarityBand.setFill(Color.BLUE);
+            health+=20;
+            maxHealth+=20;
+            damage+=1;
         }
         else if(rarity == 2){
             rarityBand.setFill(Color.PURPLE);
+            health+=40;
+            maxHealth+=40;
+            damage+=2;
         }
         else if(rarity == 3){
             rarityBand.setFill(Color.GOLD);
+            health+=60;
+            maxHealth+=40;
+            damage+=3;
         }
     }
 

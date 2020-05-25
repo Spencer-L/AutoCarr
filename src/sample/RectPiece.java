@@ -10,10 +10,10 @@ public class RectPiece extends Piece{
     private Rectangle base;
     RectPiece(double s,double h, String id,MainGame mG,PlayField pF,int tN,double[] pos,Deck pD){
         super(s,h,id,mG,pF,tN,pos,pD);
-        setHealth(200);
-        setMaxHealth(200);
+        setHealth(getHealth()+200);
+        setMaxHealth((int)getHealth());
         setAtkSpd(.9);
-        setDamage(20);
+        setDamage(getDamage()+20);
         setRange(1);
         base=new Rectangle(0,0,getSize(),getSize());
         if(getTeamNum()==1){
