@@ -3,8 +3,11 @@ package sample;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
@@ -21,6 +24,7 @@ public class Deck {
     private Player player;
     private MainGame mainGame;
     private PlayField playField;
+    private StackPane nameTag=new StackPane();
     private int teamNum;
     //constructor
     public Deck(Player p){
@@ -28,12 +32,14 @@ public class Deck {
         bodyDimensions=new double[]{screenDimensions[0]*1,screenDimensions[1]*0.14};
         base = new Rectangle(bodyDimensions[0],bodyDimensions[1]);
         base.setFill(Color.ORANGE);
-        body.getChildren().add(base);
+        //base.setFill(Color.TRANSPARENT);
+        body.getChildren().add(0,base);
         player=p;
         mainGame=player.getMainGame();
         playField=player.getPlayField();
         teamNum=player.getTeamNum();
         createPieces();
+        createNameTag();
     }
     public Deck(){
         screenDimensions= GlobalVariable.screenDimensions;
@@ -87,6 +93,7 @@ public class Deck {
         int index=0;
         for(int i=0;i<piecesInDock.size();i++){
             index=piecesInDock.indexOf(p);
+            System.out.println(index);
             slots.get(index)[2]=0;
             piecesInDock.remove(p);
         }
@@ -105,14 +112,12 @@ public class Deck {
         for(Piece p:piecesInDock){
             p.getBody().setVisible(true);
         }
-        System.out.println(player.getTeamNum()+" deck should be displayed");
     }
     public void hideDeck(){
         getBody().setVisible(false);
         for(Piece p:piecesInDock){
             p.getBody().setVisible(false);
         }
-        System.out.println(player.getTeamNum()+" deck should be hidden");
     }
     //private methods
     private void createPieces(){
@@ -142,5 +147,15 @@ public class Deck {
         Piece p=piecesInDock.get(index);
         p.getBody().setLayoutX(p.getBody().getLayoutX()-distance);
         System.out.println("shuffling left");
+    }
+    private void createNameTag(){
+        Text name=new Text();
+        name.setText(player.getName());
+        name.setFont(new Font(50));
+        name.setFill(Color.RED);
+        //name.setFill(Color.web("ECA310"));
+        nameTag.getChildren().add(name);
+        nameTag.setLayoutY(-30);
+        body.getChildren().add(nameTag);
     }
 }

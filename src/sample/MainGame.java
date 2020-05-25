@@ -60,6 +60,8 @@ public class MainGame {
         if(turn%3==0){
             players.get(0).getDeck().showDeck();
             players.get(1).getDeck().hideDeck();
+            System.out.println(deck);
+            deck.hideDeck();
         }else if(turn%3==1){
             players.get(0).getDeck().hideDeck();
             players.get(1).getDeck().showDeck();
@@ -67,6 +69,7 @@ public class MainGame {
             startFight();
             players.get(0).getDeck().hideDeck();
             players.get(1).getDeck().hideDeck();
+            deck.showDeck();
         }
         turn++;
     }
@@ -87,6 +90,7 @@ public class MainGame {
         wrapper.getChildren().add(PFBody);
         wrapper.getChildren().add(SDBody);
         for(Player player:players){
+            player.appendDeck();
             for(Piece p:player.getDeck().getPieces()){
                 wrapper.getChildren().add(p.getBody());
             }
@@ -104,12 +108,7 @@ public class MainGame {
     }
     //private boolean start=false;
     private void startFight(){
-        //if(!start){
-            pField.startFight();
-        //}else{
-        //    pField.repositionPieces();
-       // }
-        //start=!start;
+        pField.startFight();
     }
     //this is the mainGame file
 }

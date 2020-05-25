@@ -42,8 +42,12 @@ public class Player {
     public int getTeamNum() {
         return teamNum;
     }
-    //public methods
 
+    public String getName(){return name;}
+    //public methods
+    public void appendDeck(){
+        mainGame.getWrapper().getChildren().add(deck.getBody());
+    }
     //private methods
     private void createDeck(){
         //ArrayList<Box> boxes=playField.getBoxes();
@@ -58,6 +62,5 @@ public class Player {
         deck=new Deck(this);
         deck.getBody().relocate(0,playField.getBodyDimensions()[1]);
         deck.movePieces();
-        mainGame.getWrapper().getChildren().add(deck.getBody());
     }
 }
