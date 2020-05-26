@@ -2,15 +2,20 @@ package sample;
 
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.control.Button;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.shape.Shape;
+
+import java.util.Stack;
 
 
 public class Shop {
@@ -19,6 +24,11 @@ public class Shop {
     private Rectangle base;
     private Rectangle r1;
     private Rectangle r;
+    private Rectangle a5;
+    private Rectangle a4;
+    private Rectangle a3;
+    private Rectangle a2;
+    private Rectangle a1;
     private Pane btn;
     private Pane btn1;
     private Pane u1;
@@ -26,6 +36,7 @@ public class Shop {
     private Pane u3;
     private Pane u4;
     private Pane u5;
+    private int counter=1;
     private boolean check=false;
     private double [] screenDimensions;
     private double [] bodyDimensions;
@@ -36,6 +47,7 @@ public class Shop {
         base = new Rectangle(bodyDimensions[0],bodyDimensions[1]);
         base.setFill(Color.LIGHTGREEN);
         body.getChildren().add(base);
+        a1=new Rectangle(bodyDimensions[0]/6,bodyDimensions[1]/1.75);
         refreshShop();
         r=new Rectangle(bodyDimensions[0]/6,bodyDimensions[1]/2);
         r.setFill(Color.TAN);
@@ -120,18 +132,73 @@ public class Shop {
                 r.setFill(Color.TAN);
             }
         });
+        //unit 1
+        u1.setOnMouseEntered(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent event){
+                a1.setFill(Color.PEACHPUFF);
+            }
+        });
+        u1.setOnMouseExited(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent event){
+                a1.setFill(Color.BEIGE);
+            }
+        });
+        //unit 2
+        u2.setOnMouseEntered(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent event){
+                a2.setFill(Color.PEACHPUFF);
+            }
+        });
+        u2.setOnMouseExited(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent event){
+                a2.setFill(Color.BEIGE);
+            }
+        });
+        //unit 3
+        u3.setOnMouseEntered(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent event){
+                a3.setFill(Color.PEACHPUFF);
+            }
+        });
+        u3.setOnMouseExited(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent event){
+                a3.setFill(Color.BEIGE);
+            }
+        });
+        //unit 4
+        u4.setOnMouseEntered(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent event){
+                a4.setFill(Color.PEACHPUFF);
+            }
+        });
+        u4.setOnMouseExited(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent event){
+                a4.setFill(Color.BEIGE);
+            }
+        });
+        //unit 5
+        u5.setOnMouseEntered(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent event){
+                a5.setFill(Color.PEACHPUFF);
+            }
+        });
+        u5.setOnMouseExited(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent event){
+                a5.setFill(Color.BEIGE);
+            }
+        });
     }
     public void refreshShop(){
         //unit 1
         u1=new Pane();
-        Rectangle a1=new Rectangle(bodyDimensions[0]/6,bodyDimensions[1]/1.5);
+        a1=new Rectangle(bodyDimensions[0]/6,bodyDimensions[1]);
         a1.setX(bodyDimensions[0]/6);
         a1.setFill(Color.BEIGE);
         a1.setStroke(Color.BLACK);
         int num1=rarityCalc();
-        Rectangle b1=new Rectangle(bodyDimensions[0]/6,bodyDimensions[1]/3);
+        Rectangle b1=new Rectangle(bodyDimensions[0]/6,bodyDimensions[1]/2.333);
         b1.setX(bodyDimensions[0]/6);
-        b1.setY(bodyDimensions[1]/1.5);
+        b1.setY(bodyDimensions[1]/1.75);
         b1.setStroke(Color.BLACK);
         if(num1==1){
             b1.setFill(Color.GREY);
@@ -144,27 +211,35 @@ public class Shop {
         }
         StackPane gold1=new StackPane();
         gold1.setLayoutX(bodyDimensions[0]/6+bodyDimensions[0]/8);
-        gold1.setLayoutY(bodyDimensions[1]/1.4);
+        gold1.setLayoutY(bodyDimensions[1]/1.6);
         Circle c1=new Circle(bodyDimensions[0]/175);
         c1.setFill(Color.GOLD);
         Text g1=new Text("G");
         g1.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/175));
         g1.setFill(Color.BLACK);
         gold1.getChildren().addAll(c1,g1);
-        Text t1=new Text(bodyDimensions[0]/6+bodyDimensions[0]/7,bodyDimensions[1]/1.225,Integer.toString(num1));
+        Text t1=new Text(bodyDimensions[0]/6+bodyDimensions[0]/7,bodyDimensions[1]/1.375,Integer.toString(num1));
         t1.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/100));
         t1.setFill(Color.BLACK);
         u1.getChildren().addAll(a1,b1,gold1,t1);
+        String class1=randomClass();
+        Text n1=new Text(bodyDimensions[0]/6+bodyDimensions[0]/20,bodyDimensions[1]/1.375,class1);
+        n1.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/90));
+        n1.setFill(Color.BLACK);
+        u1.getChildren().addAll(n1);
+        counter++;
         //unit 2
         u2=new Pane();
-        Rectangle a2=new Rectangle(bodyDimensions[0]/6,bodyDimensions[1]/1.5);
+        a2=new Rectangle(bodyDimensions[0]/6,bodyDimensions[1]/1.75);
         a2.setX(bodyDimensions[0]/3);
         a2.setFill(Color.BEIGE);
         a2.setStroke(Color.BLACK);
         int num2=rarityCalc();
-        Rectangle b2=new Rectangle(bodyDimensions[0]/6,bodyDimensions[1]/3);
+        Rectangle b2=new Rectangle();
         b2.setX(bodyDimensions[0]/3);
-        b2.setY(bodyDimensions[1]/1.5);
+        b2.setY(bodyDimensions[1]/1.75);
+        b2.setWidth(bodyDimensions[0]/6);
+        b2.setHeight(bodyDimensions[1]/2.333);
         b2.setStroke(Color.BLACK);
         if(num2==1){
             b2.setFill(Color.GREY);
@@ -177,27 +252,33 @@ public class Shop {
         }
         StackPane gold2=new StackPane();
         gold2.setLayoutX(bodyDimensions[0]/3+bodyDimensions[0]/8);
-        gold2.setLayoutY(bodyDimensions[1]/1.4);
+        gold2.setLayoutY(bodyDimensions[1]/1.6);
         Circle c2=new Circle(bodyDimensions[0]/175);
         c2.setFill(Color.GOLD);
         Text g2=new Text("G");
         g2.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/175));
         g2.setFill(Color.BLACK);
         gold2.getChildren().addAll(c2,g2);
-        Text t2=new Text(bodyDimensions[0]/3+bodyDimensions[0]/7,bodyDimensions[1]/1.225,Integer.toString(num2));
+        Text t2=new Text(bodyDimensions[0]/3+bodyDimensions[0]/7,bodyDimensions[1]/1.375,Integer.toString(num2));
         t2.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/100));
         t2.setFill(Color.BLACK);
         u2.getChildren().addAll(a2,b2,gold2,t2);
+        String class2=randomClass();
+        Text n2=new Text(bodyDimensions[0]/3+bodyDimensions[0]/20,bodyDimensions[1]/1.375,class2);
+        n2.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/90));
+        n2.setFill(Color.BLACK);
+        u2.getChildren().addAll(n2);
+        counter++;
         //unit 3
         u3=new Pane();
-        Rectangle a3=new Rectangle(bodyDimensions[0]/6,bodyDimensions[1]/1.5);
+        a3=new Rectangle(bodyDimensions[0]/6,bodyDimensions[1]/1.75);
         a3.setX(bodyDimensions[0]/2);
         a3.setFill(Color.BEIGE);
         a3.setStroke(Color.BLACK);
         int num3=rarityCalc();
-        Rectangle b3=new Rectangle(bodyDimensions[0]/6,bodyDimensions[1]/3);
+        Rectangle b3=new Rectangle(bodyDimensions[0]/6,bodyDimensions[1]/2.333);
         b3.setX(bodyDimensions[0]/2);
-        b3.setY(bodyDimensions[1]/1.5);
+        b3.setY(bodyDimensions[1]/1.75);
         b3.setStroke(Color.BLACK);
         if(num3==1){
             b3.setFill(Color.GREY);
@@ -210,27 +291,33 @@ public class Shop {
         }
         StackPane gold3=new StackPane();
         gold3.setLayoutX(bodyDimensions[0]/2+bodyDimensions[0]/8);
-        gold3.setLayoutY(bodyDimensions[1]/1.4);
+        gold3.setLayoutY(bodyDimensions[1]/1.6);
         Circle c3=new Circle(bodyDimensions[0]/175);
         c3.setFill(Color.GOLD);
         Text g3=new Text("G");
         g3.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/175));
         g3.setFill(Color.BLACK);
         gold3.getChildren().addAll(c3,g3);
-        Text t3=new Text(bodyDimensions[0]/2+bodyDimensions[0]/7,bodyDimensions[1]/1.225,Integer.toString(num3));
+        Text t3=new Text(bodyDimensions[0]/2+bodyDimensions[0]/7,bodyDimensions[1]/1.375,Integer.toString(num3));
         t3.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/100));
         t3.setFill(Color.BLACK);
         u3.getChildren().addAll(a3,b3,gold3,t3);
+        String class3=randomClass();
+        Text n3=new Text(bodyDimensions[0]/2+bodyDimensions[0]/20,bodyDimensions[1]/1.375,class3);
+        n3.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/90));
+        n3.setFill(Color.BLACK);
+        u3.getChildren().addAll(n3);
+        counter++;
         //unit 4
         u4=new Pane();
-        Rectangle a4=new Rectangle(bodyDimensions[0]/6,bodyDimensions[1]/1.5);
+        a4=new Rectangle(bodyDimensions[0]/6,bodyDimensions[1]/1.75);
         a4.setX(bodyDimensions[0]/1.5);
         a4.setFill(Color.BEIGE);
         a4.setStroke(Color.BLACK);
         int num4=rarityCalc();
-        Rectangle b4=new Rectangle(bodyDimensions[0]/6,bodyDimensions[1]/3);
+        Rectangle b4=new Rectangle(bodyDimensions[0]/6,bodyDimensions[1]/2.333);
         b4.setX(bodyDimensions[0]/1.5);
-        b4.setY(bodyDimensions[1]/1.5);
+        b4.setY(bodyDimensions[1]/1.75);
         b4.setStroke(Color.BLACK);
         if(num4==1){
             b4.setFill(Color.GREY);
@@ -243,27 +330,33 @@ public class Shop {
         }
         StackPane gold4=new StackPane();
         gold4.setLayoutX(bodyDimensions[0]/1.5+bodyDimensions[0]/8);
-        gold4.setLayoutY(bodyDimensions[1]/1.4);
+        gold4.setLayoutY(bodyDimensions[1]/1.6);
         Circle c4=new Circle(bodyDimensions[0]/175);
         c4.setFill(Color.GOLD);
         Text g4=new Text("G");
         g4.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/175));
         g4.setFill(Color.BLACK);
         gold4.getChildren().addAll(c4,g4);
-        Text t4=new Text(bodyDimensions[0]/1.5+bodyDimensions[0]/7,bodyDimensions[1]/1.225,Integer.toString(num4));
+        Text t4=new Text(bodyDimensions[0]/1.5+bodyDimensions[0]/7,bodyDimensions[1]/1.375,Integer.toString(num4));
         t4.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/100));
         t4.setFill(Color.BLACK);
         u4.getChildren().addAll(a4,b4,gold4,t4);
+        String class4=randomClass();
+        Text n4=new Text(bodyDimensions[0]/1.5+bodyDimensions[0]/20,bodyDimensions[1]/1.375,class4);
+        n4.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/90));
+        n4.setFill(Color.BLACK);
+        u4.getChildren().addAll(n4);
+        counter++;
         //unit 5
         u5=new Pane();
-        Rectangle a5=new Rectangle(bodyDimensions[0]/6,bodyDimensions[1]/1.5);
+        a5=new Rectangle(bodyDimensions[0]/6,bodyDimensions[1]/1.75);
         a5.setX(bodyDimensions[0]/1.2);
         a5.setFill(Color.BEIGE);
         a5.setStroke(Color.BLACK);
         int num5=rarityCalc();
-        Rectangle b5=new Rectangle(bodyDimensions[0]/6,bodyDimensions[1]/3);
+        Rectangle b5=new Rectangle(bodyDimensions[0]/6,bodyDimensions[1]/2.333);
         b5.setX(bodyDimensions[0]/1.2);
-        b5.setY(bodyDimensions[1]/1.5);
+        b5.setY(bodyDimensions[1]/1.75);
         b5.setStroke(Color.BLACK);
         if(num5==1){
             b5.setFill(Color.GREY);
@@ -276,19 +369,25 @@ public class Shop {
         }
         StackPane gold5=new StackPane();
         gold5.setLayoutX(bodyDimensions[0]/1.2+bodyDimensions[0]/8);
-        gold5.setLayoutY(bodyDimensions[1]/1.4);
+        gold5.setLayoutY(bodyDimensions[1]/1.6);
         Circle c5=new Circle(bodyDimensions[0]/175);
         c5.setFill(Color.GOLD);
         Text g5=new Text("G");
         g5.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/175));
         g5.setFill(Color.BLACK);
         gold5.getChildren().addAll(c5,g5);
-        Text t5=new Text(bodyDimensions[0]/1.2+bodyDimensions[0]/7,bodyDimensions[1]/1.225,Integer.toString(num5));
+        Text t5=new Text(bodyDimensions[0]/1.2+bodyDimensions[0]/7,bodyDimensions[1]/1.375,Integer.toString(num5));
         t5.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/100));
         t5.setFill(Color.BLACK);
         u5.getChildren().addAll(a5,b5,gold5,t5);
-        body.getChildren().addAll(u1,u2,u3,u4,u5);
+        String class5=randomClass();
+        Text n5=new Text(bodyDimensions[0]/1.2+bodyDimensions[0]/20,bodyDimensions[1]/1.375,class5);
+        n5.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/90));
+        n5.setFill(Color.BLACK);
+        u5.getChildren().addAll(n5);
+        body.getChildren().addAll(u5,u4,u3,u2,u1);
         check=true;
+        counter=1;
     }
     public int rarityCalc(){
         int num=(int)(Math.random()*100);
@@ -300,6 +399,234 @@ public class Shop {
             return 3;
         }else{
             return 4;
+        }
+    }
+    public String randomClass(){
+        int num =(int)(Math.random()*5);
+        //0=wizard
+        //1=archer
+        //2=Paladin
+        //3=Priest
+        //4=berserker
+        createClass(num);
+        if(num==0){
+            return "Wizard";
+        }else if(num==1){
+            return "Archer";
+        }else if(num==2){
+            return "Paladin";
+        }else if(num==3){
+            return "Priest";
+        }else {
+            return "Berserker";
+        }
+    }
+    public void createClass(int num){
+        if(counter==1){
+            if(num==0){
+                Circle c1=new Circle(bodyDimensions[0]/6+bodyDimensions[0]/12,bodyDimensions[1]/4,bodyDimensions[0]/55);
+                c1.setFill(Color.BROWN);
+                u1.getChildren().add(c1);
+            }else if(num==1){
+                Polygon t1=new Polygon(bodyDimensions[0]/6+bodyDimensions[0]/17.5,bodyDimensions[1]/2.5,
+                        bodyDimensions[0]/6+bodyDimensions[0]/9,bodyDimensions[1]/2.5,
+                        (bodyDimensions[0]/6+bodyDimensions[0]/9+bodyDimensions[0]/6+bodyDimensions[0]/17.5)/2,bodyDimensions[1]/70);
+                t1.setFill(Color.BROWN);
+                u1.getChildren().add(t1);
+            }else if(num==2) {
+                Rectangle e1 = new Rectangle(bodyDimensions[0] / 25, bodyDimensions[1] / 2.25);
+                e1.setX(bodyDimensions[0] / 6 + bodyDimensions[0] / 15.75);
+                e1.setY(bodyDimensions[1] / 20);
+                e1.setFill(Color.BROWN);
+                u1.getChildren().add(e1);
+            }else if(num==3) {
+                int s = 45;
+                Polygon p1 = new Polygon(0.0, 0.0,
+                        s, 0.0,
+                        s + (0.309 * s), s * 0.951,
+                        s / 2, s * 0.951 + s * 0.588,
+                        0 - (0.309 * s), s * 0.951);
+                p1.setLayoutX(bodyDimensions[0] / 6 + bodyDimensions[0] / 14);
+                p1.setLayoutY(bodyDimensions[1] / 10);
+                p1.setFill(Color.BROWN);
+                u1.getChildren().add(p1);
+            } else {
+                int h = 43;
+                Polygon h1 = new Polygon(0.0, 0.0,
+                        h, 0.0,
+                        h + (h / 2), h * 0.866,
+                        h, h * 0.866 * 2,
+                        0.0, h * 0.866 * 2,
+                        0 - h / 2, h * 0.866);
+                h1.setLayoutX(bodyDimensions[0] / 6 + bodyDimensions[0] / 14);
+                h1.setLayoutY(bodyDimensions[1] / 15);
+                h1.setFill(Color.BROWN);
+                u1.getChildren().add(h1);
+            }
+        }else if(counter==2){
+            if(num==0){
+                Circle c1=new Circle(bodyDimensions[0]/3+bodyDimensions[0]/12,bodyDimensions[1]/4,bodyDimensions[0]/55);
+                c1.setFill(Color.BROWN);
+                u2.getChildren().add(c1);
+            }else if(num==1){
+                Polygon t1=new Polygon(bodyDimensions[0]/3+bodyDimensions[0]/17.5,bodyDimensions[1]/2.5,
+                        bodyDimensions[0]/3+bodyDimensions[0]/9,bodyDimensions[1]/2.5,
+                        (bodyDimensions[0]/3+bodyDimensions[0]/9+bodyDimensions[0]/3+bodyDimensions[0]/17.5)/2,bodyDimensions[1]/70);
+                t1.setFill(Color.BROWN);
+                u2.getChildren().add(t1);
+            }else if(num==2) {
+                Rectangle e1 = new Rectangle(bodyDimensions[0] / 25, bodyDimensions[1] / 2.25);
+                e1.setX(bodyDimensions[0] / 3 + bodyDimensions[0] / 15.75);
+                e1.setY(bodyDimensions[1] / 20);
+                e1.setFill(Color.BROWN);
+                u2.getChildren().add(e1);
+            }else if(num==3) {
+                int s = 45;
+                Polygon p1 = new Polygon(0.0, 0.0,
+                        s, 0.0,
+                        s + (0.309 * s), s * 0.951,
+                        s / 2, s * 0.951 + s * 0.588,
+                        0 - (0.309 * s), s * 0.951);
+                p1.setLayoutX(bodyDimensions[0] / 3 + bodyDimensions[0] / 14);
+                p1.setLayoutY(bodyDimensions[1] / 10);
+                p1.setFill(Color.BROWN);
+                u2.getChildren().add(p1);
+            } else {
+                int h = 43;
+                Polygon h1 = new Polygon(0.0, 0.0,
+                        h, 0.0,
+                        h + (h / 2), h * 0.866,
+                        h, h * 0.866 * 2,
+                        0.0, h * 0.866 * 2,
+                        0 - h / 2, h * 0.866);
+                h1.setLayoutX(bodyDimensions[0] / 3 + bodyDimensions[0] / 14);
+                h1.setLayoutY(bodyDimensions[1] / 15);
+                h1.setFill(Color.BROWN);
+                u2.getChildren().add(h1);
+            }
+        }else if(counter==3) {
+            if (num == 0) {
+                Circle c1 = new Circle(bodyDimensions[0] / 2 + bodyDimensions[0] / 12, bodyDimensions[1] / 4, bodyDimensions[0] / 55);
+                c1.setFill(Color.BROWN);
+                u3.getChildren().add(c1);
+            } else if (num == 1) {
+                Polygon t1 = new Polygon(bodyDimensions[0] / 2 + bodyDimensions[0] / 17.5, bodyDimensions[1] / 2.5,
+                        bodyDimensions[0] / 2 + bodyDimensions[0] / 9, bodyDimensions[1] / 2.5,
+                        (bodyDimensions[0] / 2 + bodyDimensions[0] / 9 + bodyDimensions[0] / 2 + bodyDimensions[0] / 17.5) / 2, bodyDimensions[1] / 70);
+                t1.setFill(Color.BROWN);
+                u3.getChildren().add(t1);
+            } else if (num == 2) {
+                Rectangle e1 = new Rectangle(bodyDimensions[0] / 25, bodyDimensions[1] / 2.25);
+                e1.setX(bodyDimensions[0] / 2 + bodyDimensions[0] / 15.75);
+                e1.setY(bodyDimensions[1] / 20);
+                e1.setFill(Color.BROWN);
+                u3.getChildren().add(e1);
+            } else if (num == 3) {
+                int s = 45;
+                Polygon p1 = new Polygon(0.0, 0.0,
+                        s, 0.0,
+                        s + (0.309 * s), s * 0.951,
+                        s / 2, s * 0.951 + s * 0.588,
+                        0 - (0.309 * s), s * 0.951);
+                p1.setLayoutX(bodyDimensions[0] / 2 + bodyDimensions[0] / 14);
+                p1.setLayoutY(bodyDimensions[1] / 10);
+                p1.setFill(Color.BROWN);
+                u3.getChildren().add(p1);
+            } else {
+                int h = 43;
+                Polygon h1 = new Polygon(0.0, 0.0,
+                        h, 0.0,
+                        h + (h / 2), h * 0.866,
+                        h, h * 0.866 * 2,
+                        0.0, h * 0.866 * 2,
+                        0 - h / 2, h * 0.866);
+                h1.setLayoutX(bodyDimensions[0] / 2 + bodyDimensions[0] / 14);
+                h1.setLayoutY(bodyDimensions[1] / 15);
+                h1.setFill(Color.BROWN);
+                u3.getChildren().add(h1);
+            }
+        }else if(counter==4){
+            if(num==0){
+                Circle c1=new Circle(bodyDimensions[0]/1.5+bodyDimensions[0]/12,bodyDimensions[1]/4,bodyDimensions[0]/55);
+                c1.setFill(Color.BROWN);
+                u4.getChildren().add(c1);
+            }else if(num==1){
+                Polygon t1=new Polygon(bodyDimensions[0]/1.5+bodyDimensions[0]/17.5,bodyDimensions[1]/2.5,
+                        bodyDimensions[0]/1.5+bodyDimensions[0]/9,bodyDimensions[1]/2.5,
+                        (bodyDimensions[0]/1.5+bodyDimensions[0]/9+bodyDimensions[0]/1.5+bodyDimensions[0]/17.5)/2,bodyDimensions[1]/70);
+                t1.setFill(Color.BROWN);
+                u4.getChildren().add(t1);
+            }else if(num==2) {
+                Rectangle e1 = new Rectangle(bodyDimensions[0] / 25, bodyDimensions[1] / 2.25);
+                e1.setX(bodyDimensions[0] / 1.5 + bodyDimensions[0] / 15.75);
+                e1.setY(bodyDimensions[1] / 20);
+                e1.setFill(Color.BROWN);
+                u4.getChildren().add(e1);
+            }else if(num==3) {
+                int s = 45;
+                Polygon p1 = new Polygon(0.0, 0.0,
+                        s, 0.0,
+                        s + (0.309 * s), s * 0.951,
+                        s / 2, s * 0.951 + s * 0.588,
+                        0 - (0.309 * s), s * 0.951);
+                p1.setLayoutX(bodyDimensions[0] / 1.5 + bodyDimensions[0] / 14);
+                p1.setLayoutY(bodyDimensions[1] / 10);
+                p1.setFill(Color.BROWN);
+                u4.getChildren().add(p1);
+            } else {
+                int h = 43;
+                Polygon h1 = new Polygon(0.0, 0.0,
+                        h, 0.0,
+                        h + (h / 2), h * 0.866,
+                        h, h * 0.866 * 2,
+                        0.0, h * 0.866 * 2,
+                        0 - h / 2, h * 0.866);
+                h1.setLayoutX(bodyDimensions[0] / 1.5 + bodyDimensions[0] / 14);
+                h1.setLayoutY(bodyDimensions[1] / 15);
+                h1.setFill(Color.BROWN);
+                u4.getChildren().add(h1);
+            }
+        }else{
+            if(num==0){
+                Circle c1=new Circle(bodyDimensions[0]/1.2+bodyDimensions[0]/12,bodyDimensions[1]/4,bodyDimensions[0]/55);
+                c1.setFill(Color.BROWN);
+                u5.getChildren().add(c1);
+            }else if(num==1){
+                Polygon t1=new Polygon(bodyDimensions[0]/1.2+bodyDimensions[0]/17.5,bodyDimensions[1]/2.5,
+                        bodyDimensions[0]/1.2+bodyDimensions[0]/9,bodyDimensions[1]/2.5,
+                        (bodyDimensions[0]/1.2+bodyDimensions[0]/9+bodyDimensions[0]/1.2+bodyDimensions[0]/17.5)/2,bodyDimensions[1]/70);
+                t1.setFill(Color.BROWN);
+                u5.getChildren().add(t1);
+            }else if(num==2) {
+                Rectangle e1 = new Rectangle(bodyDimensions[0] / 25, bodyDimensions[1] / 2.25);
+                e1.setX(bodyDimensions[0] / 1.2 + bodyDimensions[0] / 15.75);
+                e1.setY(bodyDimensions[1] / 20);
+                e1.setFill(Color.BROWN);
+                u5.getChildren().add(e1);
+            }else if(num==3) {
+                int s = 45;
+                Polygon p1 = new Polygon(0.0, 0.0,
+                        s, 0.0,
+                        s + (0.309 * s), s * 0.951,
+                        s / 2, s * 0.951 + s * 0.588,
+                        0 - (0.309 * s), s * 0.951);
+                p1.setLayoutX(bodyDimensions[0] / 1.2 + bodyDimensions[0] / 14);
+                p1.setLayoutY(bodyDimensions[1] / 10);
+                p1.setFill(Color.BROWN);
+                u5.getChildren().add(p1);
+            } else {
+                int h = 43;
+                Polygon h1 = new Polygon(0.0, 0.0,
+                        h, 0.0,
+                        h + (h / 2), h * 0.866,
+                        h, h * 0.866 * 2,
+                        0.0, h * 0.866 * 2,
+                        0 - h / 2, h * 0.866);
+                h1.setLayoutX(bodyDimensions[0] / 1.2 + bodyDimensions[0] / 14);
+                h1.setLayoutY(bodyDimensions[1] / 15);
+                h1.setFill(Color.BROWN);
+                u5.getChildren().add(h1);
+            }
         }
     }
 }
