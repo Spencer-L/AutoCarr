@@ -9,10 +9,11 @@ public class TriPiece extends Piece{
     private Polygon base;
     TriPiece(double s,double h, String id,MainGame mG,PlayField pF,int tN,double[] pos,Deck pD){
         super(s,h,id,mG,pF,tN,pos,pD);
-        setHealth(80);
-        setAtkSpd(1);
-        setDps(2);
-        setRange(2);
+        setHealth(getHealth()+80);
+        setMaxHealth((int)getHealth());
+        setAtkSpd(.9);
+        setDamage(getDamage()+20);
+        setRange(3);
         base=new Polygon();
         base.getPoints().addAll(
                 0.0, 0.0,
@@ -31,5 +32,7 @@ public class TriPiece extends Piece{
         getBody().getChildren().add((getLevels()));
         getBody().setAlignment(getHealthBarRed(), Pos.BOTTOM_CENTER);
         getBody().getChildren().add(getHealthBarRed());
+        setRangeBox(makeRangeBox());
+
     }
 }

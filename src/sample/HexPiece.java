@@ -9,9 +9,10 @@ public class HexPiece extends Piece{
     private Polygon base;
     HexPiece(double s,double h, String id,MainGame mG,PlayField pF,int tN,double[] pos,Deck pD){
         super(s,h,id,mG,pF,tN,pos,pD);
-        setHealth(100);
-        setAtkSpd(4);
-        setDps(0.5);
+        setHealth(getHealth()+100);
+        setMaxHealth((int)getHealth());
+        setAtkSpd(2);
+        setDamage(getDamage()+10);
         setRange(1);
         base=new Polygon();
         base.getPoints().addAll(
@@ -34,5 +35,7 @@ public class HexPiece extends Piece{
         getBody().getChildren().add((getLevels()));
         getBody().setAlignment(getHealthBarRed(), Pos.BOTTOM_CENTER);
         getBody().getChildren().add(getHealthBarRed());
+        setRangeBox(makeRangeBox());
+
     }
 }

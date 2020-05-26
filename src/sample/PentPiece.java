@@ -9,9 +9,10 @@ public class PentPiece extends Piece {
     private Polygon base;
     PentPiece(double s,double h, String id,MainGame mG,PlayField pF,int tN,double[] pos,Deck pD){
         super(s,h,id,mG,pF,tN,pos,pD);
-        setHealth(80);
-        setAtkSpd(1);
-        setDps(2);
+        setHealth(getHealth()+120);
+        setMaxHealth((int)getHealth());
+        setAtkSpd(.9);
+        setDamage(getDamage()+5);
         setRange(2);
         base=new Polygon();
         base.getPoints().addAll(
@@ -33,5 +34,6 @@ public class PentPiece extends Piece {
         getBody().getChildren().add((getLevels()));
         getBody().setAlignment(getHealthBarRed(), Pos.BOTTOM_CENTER);
         getBody().getChildren().add(getHealthBarRed());
+        setRangeBox(makeRangeBox());
     }
 }
