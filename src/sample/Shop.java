@@ -20,6 +20,14 @@ import java.util.Stack;
 
 public class Shop {
     //fields
+    private PlayField pF;
+    private MainGame mG;
+    private Player p1;
+    private Player p2;
+    private Deck d1;
+    private Deck d2;
+    private int teamnum1;
+    private int teamnum2;
     private Pane body = new Pane();
     private Rectangle base;
     private Rectangle r1;
@@ -37,6 +45,7 @@ public class Shop {
     private Pane u4;
     private Pane u5;
     private int counter=1;
+    private int turn=0;
     private boolean check=false;
     private double [] screenDimensions;
     private double [] bodyDimensions;
@@ -99,7 +108,20 @@ public class Shop {
         base.setWidth(bD[0]);
         base.setHeight(bD[1]);
     }
-
+    public void setPlayField(PlayField p){
+        pF=p;
+    }
+    public void setMainGame(MainGame m){
+        mG=m;
+    }
+    public void setPlayers(Player pl1,Player pl2){
+        p1=pl1;
+        p2=pl2;
+        d1=p1.getDeck();
+        d2=p2.getDeck();
+        teamnum1=p1.getTeamNum();
+        teamnum2=p2.getTeamNum();
+    }
     //methods
     public void actions(){
         r.setOnMouseClicked(new EventHandler<MouseEvent>(){
@@ -425,19 +447,31 @@ public class Shop {
         if(counter==1){
             if(num==0){
                 Circle c1=new Circle(bodyDimensions[0]/6+bodyDimensions[0]/12,bodyDimensions[1]/4,bodyDimensions[0]/55);
-                c1.setFill(Color.BROWN);
+                if(turn%3==0) {
+                    c1.setFill(Color.VIOLET);
+                }else{
+                    c1.setFill(Color.BROWN);
+                }
                 u1.getChildren().add(c1);
             }else if(num==1){
                 Polygon t1=new Polygon(bodyDimensions[0]/6+bodyDimensions[0]/17.5,bodyDimensions[1]/2.5,
                         bodyDimensions[0]/6+bodyDimensions[0]/9,bodyDimensions[1]/2.5,
                         (bodyDimensions[0]/6+bodyDimensions[0]/9+bodyDimensions[0]/6+bodyDimensions[0]/17.5)/2,bodyDimensions[1]/70);
-                t1.setFill(Color.BROWN);
+                if(turn%3==0) {
+                    t1.setFill(Color.VIOLET);
+                }else{
+                    t1.setFill(Color.BROWN);
+                }
                 u1.getChildren().add(t1);
             }else if(num==2) {
                 Rectangle e1 = new Rectangle(bodyDimensions[0] / 25, bodyDimensions[1] / 2.25);
                 e1.setX(bodyDimensions[0] / 6 + bodyDimensions[0] / 15.75);
                 e1.setY(bodyDimensions[1] / 20);
-                e1.setFill(Color.BROWN);
+                if(turn%3==0) {
+                    e1.setFill(Color.VIOLET);
+                }else{
+                    e1.setFill(Color.BROWN);
+                }
                 u1.getChildren().add(e1);
             }else if(num==3) {
                 int s = 45;
@@ -448,7 +482,11 @@ public class Shop {
                         0 - (0.309 * s), s * 0.951);
                 p1.setLayoutX(bodyDimensions[0] / 6 + bodyDimensions[0] / 14);
                 p1.setLayoutY(bodyDimensions[1] / 10);
-                p1.setFill(Color.BROWN);
+                if(turn%3==0) {
+                    p1.setFill(Color.VIOLET);
+                }else{
+                    p1.setFill(Color.BROWN);
+                }
                 u1.getChildren().add(p1);
             } else {
                 int h = 43;
@@ -460,25 +498,41 @@ public class Shop {
                         0 - h / 2, h * 0.866);
                 h1.setLayoutX(bodyDimensions[0] / 6 + bodyDimensions[0] / 14);
                 h1.setLayoutY(bodyDimensions[1] / 15);
-                h1.setFill(Color.BROWN);
+                if(turn%3==0) {
+                    h1.setFill(Color.VIOLET);
+                }else{
+                    h1.setFill(Color.BROWN);
+                }
                 u1.getChildren().add(h1);
             }
         }else if(counter==2){
             if(num==0){
                 Circle c1=new Circle(bodyDimensions[0]/3+bodyDimensions[0]/12,bodyDimensions[1]/4,bodyDimensions[0]/55);
-                c1.setFill(Color.BROWN);
+                if(turn%3==0) {
+                    c1.setFill(Color.VIOLET);
+                }else{
+                    c1.setFill(Color.BROWN);
+                }
                 u2.getChildren().add(c1);
             }else if(num==1){
                 Polygon t1=new Polygon(bodyDimensions[0]/3+bodyDimensions[0]/17.5,bodyDimensions[1]/2.5,
                         bodyDimensions[0]/3+bodyDimensions[0]/9,bodyDimensions[1]/2.5,
                         (bodyDimensions[0]/3+bodyDimensions[0]/9+bodyDimensions[0]/3+bodyDimensions[0]/17.5)/2,bodyDimensions[1]/70);
-                t1.setFill(Color.BROWN);
+                if(turn%3==0) {
+                    t1.setFill(Color.VIOLET);
+                }else{
+                    t1.setFill(Color.BROWN);
+                }
                 u2.getChildren().add(t1);
             }else if(num==2) {
                 Rectangle e1 = new Rectangle(bodyDimensions[0] / 25, bodyDimensions[1] / 2.25);
                 e1.setX(bodyDimensions[0] / 3 + bodyDimensions[0] / 15.75);
                 e1.setY(bodyDimensions[1] / 20);
-                e1.setFill(Color.BROWN);
+                if(turn%3==0) {
+                    e1.setFill(Color.VIOLET);
+                }else{
+                    e1.setFill(Color.BROWN);
+                }
                 u2.getChildren().add(e1);
             }else if(num==3) {
                 int s = 45;
@@ -489,7 +543,11 @@ public class Shop {
                         0 - (0.309 * s), s * 0.951);
                 p1.setLayoutX(bodyDimensions[0] / 3 + bodyDimensions[0] / 14);
                 p1.setLayoutY(bodyDimensions[1] / 10);
-                p1.setFill(Color.BROWN);
+                if(turn%3==0) {
+                    p1.setFill(Color.VIOLET);
+                }else{
+                    p1.setFill(Color.BROWN);
+                }
                 u2.getChildren().add(p1);
             } else {
                 int h = 43;
@@ -501,25 +559,41 @@ public class Shop {
                         0 - h / 2, h * 0.866);
                 h1.setLayoutX(bodyDimensions[0] / 3 + bodyDimensions[0] / 14);
                 h1.setLayoutY(bodyDimensions[1] / 15);
-                h1.setFill(Color.BROWN);
+                if(turn%3==0) {
+                    h1.setFill(Color.VIOLET);
+                }else{
+                    h1.setFill(Color.BROWN);
+                }
                 u2.getChildren().add(h1);
             }
         }else if(counter==3) {
             if (num == 0) {
                 Circle c1 = new Circle(bodyDimensions[0] / 2 + bodyDimensions[0] / 12, bodyDimensions[1] / 4, bodyDimensions[0] / 55);
-                c1.setFill(Color.BROWN);
+                if(turn%3==0) {
+                    c1.setFill(Color.VIOLET);
+                }else{
+                    c1.setFill(Color.BROWN);
+                }
                 u3.getChildren().add(c1);
             } else if (num == 1) {
                 Polygon t1 = new Polygon(bodyDimensions[0] / 2 + bodyDimensions[0] / 17.5, bodyDimensions[1] / 2.5,
                         bodyDimensions[0] / 2 + bodyDimensions[0] / 9, bodyDimensions[1] / 2.5,
                         (bodyDimensions[0] / 2 + bodyDimensions[0] / 9 + bodyDimensions[0] / 2 + bodyDimensions[0] / 17.5) / 2, bodyDimensions[1] / 70);
-                t1.setFill(Color.BROWN);
+                if(turn%3==0) {
+                    t1.setFill(Color.VIOLET);
+                }else{
+                    t1.setFill(Color.BROWN);
+                }
                 u3.getChildren().add(t1);
             } else if (num == 2) {
                 Rectangle e1 = new Rectangle(bodyDimensions[0] / 25, bodyDimensions[1] / 2.25);
                 e1.setX(bodyDimensions[0] / 2 + bodyDimensions[0] / 15.75);
                 e1.setY(bodyDimensions[1] / 20);
-                e1.setFill(Color.BROWN);
+                if(turn%3==0) {
+                    e1.setFill(Color.VIOLET);
+                }else{
+                    e1.setFill(Color.BROWN);
+                }
                 u3.getChildren().add(e1);
             } else if (num == 3) {
                 int s = 45;
@@ -530,7 +604,11 @@ public class Shop {
                         0 - (0.309 * s), s * 0.951);
                 p1.setLayoutX(bodyDimensions[0] / 2 + bodyDimensions[0] / 14);
                 p1.setLayoutY(bodyDimensions[1] / 10);
-                p1.setFill(Color.BROWN);
+                if(turn%3==0) {
+                    p1.setFill(Color.VIOLET);
+                }else{
+                    p1.setFill(Color.BROWN);
+                }
                 u3.getChildren().add(p1);
             } else {
                 int h = 43;
@@ -542,25 +620,41 @@ public class Shop {
                         0 - h / 2, h * 0.866);
                 h1.setLayoutX(bodyDimensions[0] / 2 + bodyDimensions[0] / 14);
                 h1.setLayoutY(bodyDimensions[1] / 15);
-                h1.setFill(Color.BROWN);
+                if(turn%3==0) {
+                    h1.setFill(Color.VIOLET);
+                }else{
+                    h1.setFill(Color.BROWN);
+                }
                 u3.getChildren().add(h1);
             }
         }else if(counter==4){
             if(num==0){
                 Circle c1=new Circle(bodyDimensions[0]/1.5+bodyDimensions[0]/12,bodyDimensions[1]/4,bodyDimensions[0]/55);
-                c1.setFill(Color.BROWN);
+                if(turn%3==0) {
+                    c1.setFill(Color.VIOLET);
+                }else{
+                    c1.setFill(Color.BROWN);
+                }
                 u4.getChildren().add(c1);
             }else if(num==1){
                 Polygon t1=new Polygon(bodyDimensions[0]/1.5+bodyDimensions[0]/17.5,bodyDimensions[1]/2.5,
                         bodyDimensions[0]/1.5+bodyDimensions[0]/9,bodyDimensions[1]/2.5,
                         (bodyDimensions[0]/1.5+bodyDimensions[0]/9+bodyDimensions[0]/1.5+bodyDimensions[0]/17.5)/2,bodyDimensions[1]/70);
-                t1.setFill(Color.BROWN);
+                if(turn%3==0) {
+                    t1.setFill(Color.VIOLET);
+                }else{
+                    t1.setFill(Color.BROWN);
+                }
                 u4.getChildren().add(t1);
             }else if(num==2) {
                 Rectangle e1 = new Rectangle(bodyDimensions[0] / 25, bodyDimensions[1] / 2.25);
                 e1.setX(bodyDimensions[0] / 1.5 + bodyDimensions[0] / 15.75);
                 e1.setY(bodyDimensions[1] / 20);
-                e1.setFill(Color.BROWN);
+                if(turn%3==0) {
+                    e1.setFill(Color.VIOLET);
+                }else{
+                    e1.setFill(Color.BROWN);
+                }
                 u4.getChildren().add(e1);
             }else if(num==3) {
                 int s = 45;
@@ -571,7 +665,11 @@ public class Shop {
                         0 - (0.309 * s), s * 0.951);
                 p1.setLayoutX(bodyDimensions[0] / 1.5 + bodyDimensions[0] / 14);
                 p1.setLayoutY(bodyDimensions[1] / 10);
-                p1.setFill(Color.BROWN);
+                if(turn%3==0) {
+                    p1.setFill(Color.VIOLET);
+                }else{
+                    p1.setFill(Color.BROWN);
+                }
                 u4.getChildren().add(p1);
             } else {
                 int h = 43;
@@ -583,25 +681,41 @@ public class Shop {
                         0 - h / 2, h * 0.866);
                 h1.setLayoutX(bodyDimensions[0] / 1.5 + bodyDimensions[0] / 14);
                 h1.setLayoutY(bodyDimensions[1] / 15);
-                h1.setFill(Color.BROWN);
+                if(turn%3==0) {
+                    h1.setFill(Color.VIOLET);
+                }else{
+                    h1.setFill(Color.BROWN);
+                }
                 u4.getChildren().add(h1);
             }
         }else{
             if(num==0){
                 Circle c1=new Circle(bodyDimensions[0]/1.2+bodyDimensions[0]/12,bodyDimensions[1]/4,bodyDimensions[0]/55);
-                c1.setFill(Color.BROWN);
+                if(turn%3==0) {
+                    c1.setFill(Color.VIOLET);
+                }else{
+                    c1.setFill(Color.BROWN);
+                }
                 u5.getChildren().add(c1);
             }else if(num==1){
                 Polygon t1=new Polygon(bodyDimensions[0]/1.2+bodyDimensions[0]/17.5,bodyDimensions[1]/2.5,
                         bodyDimensions[0]/1.2+bodyDimensions[0]/9,bodyDimensions[1]/2.5,
                         (bodyDimensions[0]/1.2+bodyDimensions[0]/9+bodyDimensions[0]/1.2+bodyDimensions[0]/17.5)/2,bodyDimensions[1]/70);
-                t1.setFill(Color.BROWN);
+                if(turn%3==0) {
+                    t1.setFill(Color.VIOLET);
+                }else{
+                    t1.setFill(Color.BROWN);
+                }
                 u5.getChildren().add(t1);
             }else if(num==2) {
                 Rectangle e1 = new Rectangle(bodyDimensions[0] / 25, bodyDimensions[1] / 2.25);
                 e1.setX(bodyDimensions[0] / 1.2 + bodyDimensions[0] / 15.75);
                 e1.setY(bodyDimensions[1] / 20);
-                e1.setFill(Color.BROWN);
+                if(turn%3==0) {
+                    e1.setFill(Color.VIOLET);
+                }else{
+                    e1.setFill(Color.BROWN);
+                }
                 u5.getChildren().add(e1);
             }else if(num==3) {
                 int s = 45;
@@ -612,7 +726,11 @@ public class Shop {
                         0 - (0.309 * s), s * 0.951);
                 p1.setLayoutX(bodyDimensions[0] / 1.2 + bodyDimensions[0] / 14);
                 p1.setLayoutY(bodyDimensions[1] / 10);
-                p1.setFill(Color.BROWN);
+                if(turn%3==0) {
+                    p1.setFill(Color.VIOLET);
+                }else{
+                    p1.setFill(Color.BROWN);
+                }
                 u5.getChildren().add(p1);
             } else {
                 int h = 43;
@@ -624,9 +742,20 @@ public class Shop {
                         0 - h / 2, h * 0.866);
                 h1.setLayoutX(bodyDimensions[0] / 1.2 + bodyDimensions[0] / 14);
                 h1.setLayoutY(bodyDimensions[1] / 15);
-                h1.setFill(Color.BROWN);
+                if(turn%3==0) {
+                    h1.setFill(Color.VIOLET);
+                }else{
+                    h1.setFill(Color.BROWN);
+                }
                 u5.getChildren().add(h1);
             }
         }
+    }
+    public void nextPhase(){
+        turn++;
+        body.getChildren().removeAll(btn,btn1,u1,u2,u3,u4,u5);
+        refreshShop();
+        body.getChildren().addAll(btn,btn1);
+        actions();
     }
 }

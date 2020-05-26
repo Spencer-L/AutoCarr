@@ -2,6 +2,7 @@ package sample;
 
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
@@ -73,11 +74,15 @@ public class MainGame {
             deck.showDeck();
         }
         turn++;
+        if(turn>1){
+         shop.nextPhase();
+        }
     }
     //private methods
     public void createPlayers(){
         players.add(new Player("Player 1",1,500d,pField,this));
         players.add(new Player("Player 2",2,500d,pField,this));
+        shop.setPlayers(players.get(0),players.get(1));
         //players.get(0).getDeck().showDeck();
         //players.get(1).getDeck().hideDeck();
     }
@@ -113,6 +118,8 @@ public class MainGame {
         deck = new Deck();
         pField = new PlayField(this);
         windRound=new WinRound(this);
+        shop.setPlayField(pField);
+        shop.setMainGame(this);
     }
     //private boolean start=false;
     private void startFight(){
