@@ -152,9 +152,6 @@ public class PlayField {
             if(p.getTL()!=null && p.getAttackPacing()!=null) {
                 p.getTL().stop();
                 p.getAttackPacing().stop();
-
-
-
             }
             p.restoreHealth();
         }
