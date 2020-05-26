@@ -82,6 +82,11 @@ public class MainGame {
         //players.get(1).getDeck().hideDeck();
     }
     private void appendBodies(){
+        for(Player player:players){
+            for(Piece p:player.getDeck().getPieces()){
+                wrapper.getChildren().add(p.getRangeBox());
+            }
+        }
         Pane shopBody=(Pane)shop.getBody();
         Pane SDBody=(Pane)deck.getBody();
         Pane PFBody=(Pane)pField.getBody();
@@ -94,6 +99,7 @@ public class MainGame {
             player.appendDeck();
             for(Piece p:player.getDeck().getPieces()){
                 wrapper.getChildren().add(p.getBody());
+
             }
         }
         shopBody.relocate(0, pField.getBodyDimensions()[1]+deck.getBodyDimensions()[1]);

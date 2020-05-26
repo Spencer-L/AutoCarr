@@ -149,9 +149,12 @@ public class PlayField {
     }
     private void nextPhase(){
         for(Piece p:pieces){
-            if(p.getTL()!=null) {
+            if(p.getTL()!=null && p.getAttackPacing()!=null) {
                 p.getTL().stop();
                 p.getAttackPacing().stop();
+
+
+
             }
             p.restoreHealth();
         }

@@ -29,5 +29,6 @@ public class RectPiece extends Piece{
         getBody().setAlignment(getHealthBarRed(), Pos.BOTTOM_CENTER);
         getBody().getChildren().add(getHealthBarRed());
 
+        setRangeBox(makeRangeBox());
     }
 }

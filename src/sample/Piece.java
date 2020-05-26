@@ -48,6 +48,7 @@ public abstract class Piece {
     private int timerCounter;
     private StackPane healthBarRed;
     private Rectangle healthBarGreen;
+    private Rectangle rangeBox;
 
     //constructor
     Piece(double s,double h, String id,MainGame mG,PlayField pF,int tN,double[] pos,Deck pD){
@@ -69,6 +70,7 @@ public abstract class Piece {
         atkSpd=.9;
         damage=10;
         maxHealth = h;
+        range = 1;
 
         levels = new Text(Integer.toString(level));
 
@@ -87,14 +89,15 @@ public abstract class Piece {
         healthBarRed.setAlignment(healthBarGreen, Pos.CENTER_LEFT);
         healthBarRed.getChildren().add(healthBarGreen);
 
-        healthPoints = new Text((health + ""));
-        timerCounter=0;
+
     }
     //setter/getter
 
 
     public Rectangle getRarityBand() { return rarityBand; }
     public void setRarityBand(Rectangle rarityBand) { this.rarityBand = rarityBand; }
+    public Rectangle getRangeBox(){return rangeBox;}
+    public void setRangeBox(Rectangle rB){rangeBox=rB;}
     public double getSize(){ return size; }
     public StackPane getBody(){ return body; }
     public void setBody(StackPane sP){ body=sP; }
@@ -300,34 +303,36 @@ public abstract class Piece {
         diffX=diffX>0? diffX+size+(parentBox.getSize()*0.46502976):diffX-size-(parentBox.getSize()*0.46502976);
 
         double[] movement =new double[]{(diffX/50/2),(diffY/50/2)};
-        if(movement[0]<2 && movement[0]>0) movement[0]=2;
-        if(movement[0]>-2 && movement[0]<0) movement[0]=-2;
+        if(movement[0]<2 && movement[0]>0) movement[0]=1.5;
+        if(movement[0]>-2 && movement[0]<0) movement[0]=-1.5;
         if(movement[0]==0) movement[0]=0;
         if(movement[1]<2 && movement[1]>0) movement[1]=2;
         if(movement[1]>-2 && movement[1]<0) movement[1]=-2;
         if(movement[1]==0) movement[1]=0;
-        if(diffX<3 && diffX>-3) movement[0]=0;
+        if(diffX<9 && diffX>-9) movement[0]=0;
         if(diffY<3 && diffY>-3) movement[1]=0;
 
-        if(!getBody().getBoundsInParent().intersects(target.getBody().getBoundsInParent())) {
+        if(!getRangeBox().getBoundsInParent().intersects(target.getBody().getBoundsInParent())) {
             getBody().setLayoutX(getBody().getLayoutX() + movement[0]);
             getBody().setLayoutY(getBody().getLayoutY() + movement[1]);
+            getRangeBox().setLayoutX(getBody().getLayoutX()-(size * (0.5*(range-1))));
+            getRangeBox().setLayoutY(getBody().getLayoutY()-(size * (0.5*(range-1))));
         }
 
-        if(range==1){
-            if(getBody().getBoundsInParent().intersects(target.getBody().getBoundsInParent())) {
+        //if(range==1) {
+            if (getRangeBox().getBoundsInParent().intersects(target.getBody().getBoundsInParent())) {
                 tL.stop();
                 attackPacing.play();
             }
-        }else{
-            playField.getBoxSize();
-        }
+        //}
     }
 
     protected void reposition(){
         if(parentBox!=null) {
             body.setLayoutX(parentBox.getBody().getLayoutX() + mainGame.gDisplay.getBodyDimensions()[0] + (getSize() / 2));
             body.setLayoutY(parentBox.getBody().getLayoutY() + (getSize() / 2));
+            rangeBox.setLayoutX(-10000);
+            rangeBox.setLayoutY(-10000);
             overallPosition = findPosition();
         }
     }
@@ -348,11 +353,11 @@ public abstract class Piece {
                 if (target.getHealth() == 0) attackPacing.stop();
                 if (inRange(target)) {
                     boolean dead = dealDamage(target);
-                    calculateHealthBar();
-                    //System.out.println("I have " + health + " and I did " + damage + " to my target, " + teamNum );
-                    if(dead){
-
+                    if(dead) {
+                        //insert methods to remove the newly dead unit.
                     }
+                    //System.out.println("I have " + health + " and I did " + damage + " to my target, " + teamNum );
+
                 }
             }
         }
@@ -360,7 +365,7 @@ public abstract class Piece {
 
     protected boolean inRange(Piece enemy){
        // while(target!=null) {
-            if (getBody().getBoundsInParent().intersects(target.getBody().getBoundsInParent())) {
+            if (getRangeBox().getBoundsInParent().intersects(target.getBody().getBoundsInParent())) {
                 return true;
             }
        // }
@@ -369,6 +374,7 @@ public abstract class Piece {
 
     protected boolean dealDamage(Piece enemy){
         enemy.setHealth(enemy.getHealth()-damage);
+        enemy.calculateHealthBar();
         if(enemy.getHealth()<=0) return true;
         else return false;
     }
@@ -410,7 +416,12 @@ public abstract class Piece {
         }
     }
 
-
+    public Rectangle makeRangeBox(){
+            Rectangle rB = new Rectangle (0,0,size*getRange(),size*getRange());
+            //System.out.println("Rectangle with range " + getRange()+ " created");
+            rB.setFill(Color.RED);
+            return rB;
+    }
     //private methods
 
 }
