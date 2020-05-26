@@ -27,7 +27,7 @@ public abstract class Piece {
     private double[] overallPosition;
     boolean isDragging=false;
     private MainGame mainGame;
-    private PlayField playField;
+    private     PlayField playField;
     private int teamNum;
     private int cost;
     private int level = 1;
@@ -50,6 +50,8 @@ public abstract class Piece {
     private StackPane healthBarRed;
     private Rectangle healthBarGreen;
     private Rectangle rangeBox;
+
+    private static ArrayList<Piece> allPiece;
 
     //constructor
     Piece(double s,double h, String id,MainGame mG,PlayField pF,int tN,double[] pos,Deck pD){
@@ -116,15 +118,10 @@ public abstract class Piece {
     public void setLevels(Text levels) { this.levels = levels; }
     public int getTeamNum() { return teamNum; }
     public int getCost(){return cost;}
-
-    public boolean isDead() {
-        return isDead;
-    }
-
-    public void setDead(boolean dead) {
-        isDead = dead;
-    }
-
+    public void setName(String name) { this.name = name; }
+    public String getName() { return name; }
+    public boolean isDead() { return isDead; }
+    public void setDead(boolean dead) { isDead = dead; }
     public int getLevel(){return level;}
     public void setLevel(int lev){level = lev;}
     public int getRarity(){return rarity;}
@@ -136,9 +133,7 @@ public abstract class Piece {
     public void setHealthPoints(Text t){healthPoints=t;}
     public Timeline getAttackPacing(){return attackPacing;}
     public void setMaxHealth(int mH){maxHealth=mH;}
-    public double getDps() {
-        return dps;
-    }
+    public double getDps() { return dps; }
     public void setDps(double dps) { this.dps = dps; }
     public StackPane getHealthBarRed() { return healthBarRed; }
     public void setHealthBarRed(StackPane healthBarRed) { this.healthBarRed = healthBarRed; }
@@ -146,9 +141,7 @@ public abstract class Piece {
     public void setHealthBarGreen(Rectangle healthBarGreen) { this.healthBarGreen = healthBarGreen; }
     public double[] getOverallPosition() { return overallPosition; }
     public void setOverallPosition(double[] oP){overallPosition=oP;}
-    public boolean getOnField(){
-        return onField;
-    }
+    public boolean getOnField(){ return onField; }
     public void setOnField(boolean onField) { this.onField = onField; }
     public Timeline getTL() { return tL; }
     public void setTL(Timeline tL) { this.tL = tL; }
@@ -283,8 +276,8 @@ public abstract class Piece {
             moveUpClose(target);
 
               //   if(inRange(target)) {
-                       attackPacing = new Timeline(new KeyFrame(Duration.millis(40), ae -> doAttack()));
-                       attackPacing.setCycleCount(Animation.INDEFINITE);
+            attackPacing = new Timeline(new KeyFrame(Duration.millis(40), ae -> doAttack()));
+            attackPacing.setCycleCount(Animation.INDEFINITE);
                  //      attackPacing.play();
               //  }
 
@@ -292,10 +285,6 @@ public abstract class Piece {
     }
 
     protected void moveUpClose(Piece target){
-
-
-        //double cycles=80;
-
         tL=new Timeline(new KeyFrame(Duration.millis(30),ae->movePiece()));
         tL.setCycleCount(Animation.INDEFINITE);
         tL.play();
@@ -328,14 +317,12 @@ public abstract class Piece {
             getBody().setLayoutY(getBody().getLayoutY() + movement[1]);
             getRangeBox().setLayoutX(getBody().getLayoutX()-(size * (0.5*(range-1))));
             getRangeBox().setLayoutY(getBody().getLayoutY()-(size * (0.5*(range-1))));
-        }
+         }
 
-        //if(range==1) {
-            if (getRangeBox().getBoundsInParent().intersects(target.getBody().getBoundsInParent())) {
-                tL.stop();
-                attackPacing.play();
-            }
-        //}
+         if (getRangeBox().getBoundsInParent().intersects(target.getBody().getBoundsInParent())) {
+             tL.stop();
+             attackPacing.play();
+         }
     }
 
     protected void reposition(){
@@ -366,6 +353,9 @@ public abstract class Piece {
                     boolean dead = dealDamage(target);
                     if(dead) {
                         target.setDead();
+                        System.out.println(target);
+                       // target=findClosestEnemy();
+                        System.out.println(target);
                     }
                     //System.out.println("I have " + health + " and I did " + damage + " to my target, " + teamNum );
 
@@ -430,7 +420,7 @@ public abstract class Piece {
     public void setDead(){
         isDead = true;
         mainGame.getWrapper().getChildren().remove(this.getBody());
-//        playField.getPieces().remove(this);
+        playField.getPieces().remove(this);
 //        playField.getBody().getChildren().remove(this);
     }
 
