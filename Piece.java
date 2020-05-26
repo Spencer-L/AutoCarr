@@ -32,6 +32,7 @@ public abstract class Piece {
     private int cost;
     private int level = 1;
     private Text levels;
+    private boolean isDead;
     private int rarity;
     private Rectangle rarityBand;
     private double damage;
@@ -48,6 +49,7 @@ public abstract class Piece {
     private int timerCounter;
     private StackPane healthBarRed;
     private Rectangle healthBarGreen;
+    private Rectangle rangeBox;
 
     //constructor
     Piece(double s,double h, String id,MainGame mG,PlayField pF,int tN,double[] pos,Deck pD){
@@ -69,6 +71,8 @@ public abstract class Piece {
         atkSpd=.9;
         damage=10;
         maxHealth = h;
+        range = 1;
+        isDead = false;
 
         levels = new Text(Integer.toString(level));
 
@@ -87,14 +91,15 @@ public abstract class Piece {
         healthBarRed.setAlignment(healthBarGreen, Pos.CENTER_LEFT);
         healthBarRed.getChildren().add(healthBarGreen);
 
-        healthPoints = new Text((health + ""));
-        timerCounter=0;
+
     }
     //setter/getter
 
 
     public Rectangle getRarityBand() { return rarityBand; }
     public void setRarityBand(Rectangle rarityBand) { this.rarityBand = rarityBand; }
+    public Rectangle getRangeBox(){return rangeBox;}
+    public void setRangeBox(Rectangle rB){rangeBox=rB;}
     public double getSize(){ return size; }
     public StackPane getBody(){ return body; }
     public void setBody(StackPane sP){ body=sP; }
@@ -111,6 +116,15 @@ public abstract class Piece {
     public void setLevels(Text levels) { this.levels = levels; }
     public int getTeamNum() { return teamNum; }
     public int getCost(){return cost;}
+
+    public boolean isDead() {
+        return isDead;
+    }
+
+    public void setDead(boolean dead) {
+        isDead = dead;
+    }
+
     public int getLevel(){return level;}
     public void setLevel(int lev){level = lev;}
     public int getRarity(){return rarity;}
@@ -131,6 +145,7 @@ public abstract class Piece {
     public Rectangle getHealthBarGreen() { return healthBarGreen; }
     public void setHealthBarGreen(Rectangle healthBarGreen) { this.healthBarGreen = healthBarGreen; }
     public double[] getOverallPosition() { return overallPosition; }
+    public void setOverallPosition(double[] oP){overallPosition=oP;}
     public boolean getOnField(){
         return onField;
     }
@@ -277,33 +292,58 @@ public abstract class Piece {
     }
 
     protected void moveUpClose(Piece target){
+
+
+        //double cycles=80;
+
+        tL=new Timeline(new KeyFrame(Duration.millis(30),ae->movePiece()));
+        tL.setCycleCount(Animation.INDEFINITE);
+        tL.play();
+    }
+
+    protected void movePiece(){
+        setOverallPosition(findPosition());
+        target.setOverallPosition(target.findPosition());
+
         double otherX=target.getOverallPosition()[0];
         double otherY=target.getOverallPosition()[1];
         double x=getOverallPosition()[0];
         double y=getOverallPosition()[1];
         double diffX=otherX-x;
         double diffY=otherY-y;
-        diffX=diffX>0? diffX-size-(parentBox.getSize()*0.46502976):diffX+size+(parentBox.getSize()*0.46502976);
-        //double cycles=80;
-        double[] eachMove=new double[]{(diffX/50/2d),(diffY/50/2d)};
-        tL=new Timeline(new KeyFrame(Duration.millis(30),ae->movePiece(eachMove)));
-        tL.setCycleCount(Animation.INDEFINITE);
-        tL.play();
-    }
+        diffX=diffX>0? diffX+size+(parentBox.getSize()*0.46502976):diffX-size-(parentBox.getSize()*0.46502976);
 
-    protected void movePiece(double[] movement){
-        getBody().setLayoutX(getBody().getLayoutX()+movement[0]);
-        getBody().setLayoutY(getBody().getLayoutY()+movement[1]);
-        if(getBody().getBoundsInParent().intersects(target.getBody().getBoundsInParent())){
-            tL.stop();
-            attackPacing.play();
+        double[] movement =new double[]{(diffX/50/2),(diffY/50/2)};
+        if(movement[0]<2 && movement[0]>0) movement[0]=1.5;
+        if(movement[0]>-2 && movement[0]<0) movement[0]=-1.5;
+        if(movement[0]==0) movement[0]=0;
+        if(movement[1]<2 && movement[1]>0) movement[1]=2;
+        if(movement[1]>-2 && movement[1]<0) movement[1]=-2;
+        if(movement[1]==0) movement[1]=0;
+        if(diffX<9 && diffX>-9) movement[0]=0;
+        if(diffY<3 && diffY>-3) movement[1]=0;
+
+        if(!getRangeBox().getBoundsInParent().intersects(target.getBody().getBoundsInParent())) {
+            getBody().setLayoutX(getBody().getLayoutX() + movement[0]);
+            getBody().setLayoutY(getBody().getLayoutY() + movement[1]);
+            getRangeBox().setLayoutX(getBody().getLayoutX()-(size * (0.5*(range-1))));
+            getRangeBox().setLayoutY(getBody().getLayoutY()-(size * (0.5*(range-1))));
         }
+
+        //if(range==1) {
+            if (getRangeBox().getBoundsInParent().intersects(target.getBody().getBoundsInParent())) {
+                tL.stop();
+                attackPacing.play();
+            }
+        //}
     }
 
     protected void reposition(){
         if(parentBox!=null) {
             body.setLayoutX(parentBox.getBody().getLayoutX() + mainGame.gDisplay.getBodyDimensions()[0] + (getSize() / 2));
             body.setLayoutY(parentBox.getBody().getLayoutY() + (getSize() / 2));
+            rangeBox.setLayoutX(-10000);
+            rangeBox.setLayoutY(-10000);
             overallPosition = findPosition();
         }
     }
@@ -315,7 +355,7 @@ public abstract class Piece {
             //System.out.println("I have " + health + " and am part of " + teamNum + ", my opponent has " + target.getHealth());
             calculateHealthBar();
             attackPacing.stop();
-            target.getAttackPacing().stop();
+            //target.getAttackPacing().stop();
         }
         if(alive) {
             if (timerCounter < (int) (60 - (30 * atkSpd))) timerCounter++;
@@ -324,11 +364,11 @@ public abstract class Piece {
                 if (target.getHealth() == 0) attackPacing.stop();
                 if (inRange(target)) {
                     boolean dead = dealDamage(target);
-                    calculateHealthBar();
-                    //System.out.println("I have " + health + " and I did " + damage + " to my target, " + teamNum );
-                    if(dead){
-
+                    if(dead) {
+                        target.setDead();
                     }
+                    //System.out.println("I have " + health + " and I did " + damage + " to my target, " + teamNum );
+
                 }
             }
         }
@@ -336,7 +376,7 @@ public abstract class Piece {
 
     protected boolean inRange(Piece enemy){
        // while(target!=null) {
-            if (getBody().getBoundsInParent().intersects(target.getBody().getBoundsInParent())) {
+            if (getRangeBox().getBoundsInParent().intersects(target.getBody().getBoundsInParent())) {
                 return true;
             }
        // }
@@ -345,17 +385,22 @@ public abstract class Piece {
 
     protected boolean dealDamage(Piece enemy){
         enemy.setHealth(enemy.getHealth()-damage);
+        enemy.calculateHealthBar();
         if(enemy.getHealth()<=0) return true;
         else return false;
     }
 
     protected void calculateHealthBar(){
-        if(health >= 0) {
+        if(health > 0) {
             healthBarGreen.setWidth(((health) / maxHealth) * size);
         }
-        else if(health < 0){
+        else if(health <= 0){
             healthBarGreen.setWidth(0);
         }
+    }
+    protected void restoreHealth(){
+        setHealth(maxHealth);
+        calculateHealthBar();
     }
 
     protected void createRarityBand(){
@@ -382,7 +427,25 @@ public abstract class Piece {
         }
     }
 
+    public void setDead(){
+        isDead = true;
+        mainGame.getWrapper().getChildren().remove(this.getBody());
+//        playField.getPieces().remove(this);
+//        playField.getBody().getChildren().remove(this);
+    }
 
+    public void revive(){
+        restoreHealth();
+        mainGame.getWrapper().getChildren().add(this.getBody());
+        isDead = false;
+    }
+
+    public Rectangle makeRangeBox(){
+            Rectangle rB = new Rectangle (0,0,size*getRange(),size*getRange());
+            //System.out.println("Rectangle with range " + getRange()+ " created");
+            rB.setFill(Color.RED);
+            return rB;
+    }
     //private methods
 
 }
