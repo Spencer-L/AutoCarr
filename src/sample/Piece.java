@@ -32,6 +32,7 @@ public abstract class Piece {
     private int cost;
     private int level = 1;
     private Text levels;
+    private boolean isDead;
     private int rarity;
     private Rectangle rarityBand;
     private double damage;
@@ -71,6 +72,7 @@ public abstract class Piece {
         damage=10;
         maxHealth = h;
         range = 1;
+        isDead = false;
 
         levels = new Text(Integer.toString(level));
 
@@ -114,6 +116,15 @@ public abstract class Piece {
     public void setLevels(Text levels) { this.levels = levels; }
     public int getTeamNum() { return teamNum; }
     public int getCost(){return cost;}
+
+    public boolean isDead() {
+        return isDead;
+    }
+
+    public void setDead(boolean dead) {
+        isDead = dead;
+    }
+
     public int getLevel(){return level;}
     public void setLevel(int lev){level = lev;}
     public int getRarity(){return rarity;}
@@ -354,7 +365,7 @@ public abstract class Piece {
                 if (inRange(target)) {
                     boolean dead = dealDamage(target);
                     if(dead) {
-                        //insert methods to remove the newly dead unit.
+                        setDead();
                     }
                     //System.out.println("I have " + health + " and I did " + damage + " to my target, " + teamNum );
 
@@ -380,10 +391,10 @@ public abstract class Piece {
     }
 
     protected void calculateHealthBar(){
-        if(health >= 0) {
+        if(health > 0) {
             healthBarGreen.setWidth(((health) / maxHealth) * size);
         }
-        else if(health < 0){
+        else if(health <= 0){
             healthBarGreen.setWidth(0);
         }
     }
@@ -414,6 +425,18 @@ public abstract class Piece {
             maxHealth+=40;
             damage+=3;
         }
+    }
+
+    public void setDead(){
+        isDead = true;
+        playField.getPieces().remove(this);
+//        playField.getBody().getChildren().remove(this);
+    }
+
+    public void revive(){
+        playField.getPieces().add(this);
+        restoreHealth();
+        isDead = false;
     }
 
     public Rectangle makeRangeBox(){

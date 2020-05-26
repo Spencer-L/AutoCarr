@@ -154,6 +154,9 @@ public class PlayField {
                 p.getAttackPacing().stop();
             }
             p.restoreHealth();
+            if(p.isDead()){
+                p.revive();
+            }
         }
         mainGame.nextPhase();
 
