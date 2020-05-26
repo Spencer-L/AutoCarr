@@ -23,6 +23,7 @@ public class PlayField {
     private ArrayList<Box> p2Boxes=new ArrayList<Box>();
     private ArrayList<Box> column=new ArrayList<Box>();
     private ArrayList<Piece> pieces=new ArrayList<Piece>();
+    private ArrayList<Piece> deadPieces=new ArrayList<Piece>();
     private boolean roundEnd=false;
     private Button roundBtn;
 
@@ -65,6 +66,8 @@ public class PlayField {
 
     public ArrayList<Box> getp2Boxes() { return p2Boxes; }
 
+    public ArrayList<Piece> getDeadPieces() { return deadPieces; }
+
     public ArrayList<Box> getColumn() { return column; }
 
     public boolean getRoundEnd(){
@@ -87,6 +90,10 @@ public class PlayField {
                 break;
             }
         }
+    }
+
+    public void findNewFight(Piece p){
+        p.startFight(pieces);
     }
     public void repositionPieces(){
         for(Piece p:pieces){
@@ -154,9 +161,12 @@ public class PlayField {
                 p.getAttackPacing().stop();
             }
             p.restoreHealth();
-            if(p.isDead()){
-                p.revive();
-            }
+        }
+        for(Piece p:deadPieces){
+            p.revive();
+        }
+        while(deadPieces.size()>0){
+            deadPieces.remove(0);
         }
         mainGame.nextPhase();
 

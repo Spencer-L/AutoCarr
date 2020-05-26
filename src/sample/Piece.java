@@ -351,10 +351,12 @@ public abstract class Piece {
                 if (target.getHealth() == 0) attackPacing.stop();
                 if (inRange(target)) {
                     boolean dead = dealDamage(target);
+                    calculateHealthBar();
                     if(dead) {
                         target.setDead();
                         System.out.println(target);
-                       // target=findClosestEnemy();
+                        attackPacing.stop();
+                        playField.findNewFight(this);
                         System.out.println(target);
                     }
                     //System.out.println("I have " + health + " and I did " + damage + " to my target, " + teamNum );
@@ -421,10 +423,12 @@ public abstract class Piece {
         isDead = true;
         mainGame.getWrapper().getChildren().remove(this.getBody());
         playField.getPieces().remove(this);
+        playField.getDeadPieces().add(this);
 //        playField.getBody().getChildren().remove(this);
     }
 
     public void revive(){
+        System.out.println("reviving " + this);
         playField.getPieces().add(this);
         restoreHealth();
         mainGame.getWrapper().getChildren().add(this.getBody());
