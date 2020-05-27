@@ -123,18 +123,16 @@ public class Deck {
         double boxSize=playField.getBoxSize();
         RectPiece tempPiece=new RectPiece(boxSize*0.5,100,"Rect1",mainGame,playField,teamNum,new double[]{0,0},this);
         RectPiece tempPiece2=new RectPiece(boxSize*0.5,100,"Rect2",mainGame,playField,teamNum,new double[]{0,0},this);
-        RectPiece tempPiece7=new RectPiece(boxSize*0.5,100,"Rect3",mainGame,playField,teamNum,new double[]{0,0},this);
-     //  PentPiece tempPiece3=new PentPiece(boxSize*0.5,100,"Pent1",mainGame,playField,teamNum,new double[]{0,0},this);
-      //  CirPiece tempPiece4=new CirPiece(boxSize*0.5,100,"Cir1",mainGame,playField,teamNum,new double[]{0,0},this);
-      //  TriPiece tempPiece5=new TriPiece(boxSize*0.4,100,"Tri1",mainGame,playField,teamNum,new double[]{0,0},this);
-      //  HexPiece tempPiece6=new HexPiece(boxSize*0.4,100,"Hex1",mainGame,playField,teamNum,new double[]{0,0},this);
+        PentPiece tempPiece3=new PentPiece(boxSize*0.4,100,"Pent1",mainGame,playField,teamNum,new double[]{0,0},this);
+        CirPiece tempPiece4=new CirPiece(boxSize*0.35,100,"Cir1",mainGame,playField,teamNum,new double[]{0,0},this);
+        TriPiece tempPiece5=new TriPiece(boxSize*0.5,100,"Tri1",mainGame,playField,teamNum,new double[]{0,0},this);
+        HexPiece tempPiece6=new HexPiece(boxSize*0.35,100,"Hex1",mainGame,playField,teamNum,new double[]{0,0},this);
         pieces.add(tempPiece);
         pieces.add(tempPiece2);
-        pieces.add(tempPiece7);
-       // pieces.add(tempPiece3);
-       // pieces.add(tempPiece4);
-       // pieces.add(tempPiece5);
-      //  pieces.add(tempPiece6);
+        pieces.add(tempPiece3);
+        pieces.add(tempPiece4);
+        pieces.add(tempPiece5);
+        pieces.add(tempPiece6);
         for(Piece p:pieces){
             if(!p.getOnField()){
                 piecesInDock.add(p);
