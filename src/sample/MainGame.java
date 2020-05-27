@@ -112,6 +112,7 @@ public class MainGame {
         SDBody.relocate(0, pField.getBodyDimensions()[1]);
         PFBody.relocate(gDisplay.getBodyDimensions()[0], 0);
         GDBody.relocate(0,0);
+        wrapper.getChildren().add(windRound.getBody());
     }
     private void initAllVars(){
         shop = new Shop();
