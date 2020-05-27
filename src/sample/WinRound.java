@@ -110,6 +110,7 @@ public class WinRound {
             if(seconds==3){
                 body.setVisible(false);
                 timer.stop();
+                seconds=0;
             }
         }
     }

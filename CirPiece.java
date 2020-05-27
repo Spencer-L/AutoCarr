@@ -13,7 +13,7 @@ public class CirPiece extends Piece{
         setMaxHealth((int)getHealth());
         setAtkSpd(0.25);
         setDamage(getDamage()+50);
-        setRange(3);
+        setRange(5);
         base=new Circle(0,0,getSize());
         if(getTeamNum()==1){
             base.setFill(Color.VIOLET);
