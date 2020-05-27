@@ -35,6 +35,8 @@ public class Player {
 
     public int getMoney() { return money; }
 
+    public void setMoney(int money) { this.money = money; }
+
     public MainGame getMainGame() {
         return mainGame;
     }
@@ -46,6 +48,8 @@ public class Player {
     public String getName(){return name;}
 
     public int getHP() { return HP; }
+
+    public void setHP(int HP) { this.HP = HP; }
 
     //public methods
     public void appendDeck(){

@@ -116,12 +116,27 @@ public class Shop {
     public void actions(){
         r.setOnMouseClicked(new EventHandler<MouseEvent>(){
             public void handle(MouseEvent event){
-                if(check){
-                    body.getChildren().removeAll(btn,btn1,u1,u2,u3,u4,u5);
+                if(turn%3!=2) {
+                    if(turn%3==0&&p1.getMoney()-2>=0){
+                        p1.setMoney(p1.getMoney()-2);
+                        mG.getGoldDisplay().updateMoney(1);
+                        if (check) {
+                            body.getChildren().removeAll(btn, btn1, u1, u2, u3, u4, u5);
+                        }
+                        refreshShop();
+                        body.getChildren().addAll(btn, btn1);
+                        actions();
+                    }else if(turn%3==1&&p2.getMoney()-2>=0){
+                        p2.setMoney(p2.getMoney()-2);
+                        mG.getGoldDisplay().updateMoney(2);
+                        if (check) {
+                            body.getChildren().removeAll(btn, btn1, u1, u2, u3, u4, u5);
+                        }
+                        refreshShop();
+                        body.getChildren().addAll(btn, btn1);
+                        actions();
+                    }
                 }
-                refreshShop();
-                body.getChildren().addAll(btn,btn1);
-                actions();
             }
         });
         r.setOnMouseEntered(new EventHandler<MouseEvent>(){
@@ -157,36 +172,39 @@ public class Shop {
         });
         u1.setOnMouseClicked(new EventHandler<MouseEvent>(){
             public void handle(MouseEvent event){
-                body.getChildren().removeAll(u1);
-                if (class1 == "Wizard") {
-                    if (turn % 3 == 0) {
-                        p1.getDeck().createWizard(num1);
-                    } else if (turn % 3 == 1) {
-                        p2.getDeck().createWizard(num1);
+                if(turn%3==0){
+                    if(p1.getMoney()-num1>=0&&p1.getDeck().getSlots().size()>p1.getDeck().getPieces().size()){
+                        body.getChildren().removeAll(u1);
+                        p1.setMoney(p1.getMoney()-num1);
+                        mG.getGoldDisplay().updateMoney(1);
+                        if(class1=="Wizard"){
+                            p1.getDeck().createWizard(num1);
+                        }else if(class1=="Archer"){
+                            p1.getDeck().createArcher(num1);
+                        }else if(class1=="Paladin"){
+                            p1.getDeck().createPaladin(num1);
+                        }else if(class1=="Priest"){
+                            p1.getDeck().createPriest(num1);
+                        }else{
+                            p1.getDeck().createBerserker(num1);
+                        }
                     }
-                } else if (class1 == "Archer") {
-                    if (turn % 3 == 0) {
-                        p1.getDeck().createArcher(num1);
-                    } else if (turn % 3 == 1) {
-                        p2.getDeck().createArcher(num1);
-                    }
-                } else if (class1 == "Paladin") {
-                    if (turn % 3 == 0) {
-                        p1.getDeck().createPaladin(num1);
-                    } else if (turn % 3 == 1) {
-                        p2.getDeck().createPaladin(num1);
-                    }
-                } else if (class1 == "Priest") {
-                    if (turn % 3 == 0) {
-                        p1.getDeck().createPriest(num1);
-                    } else if (turn % 3 == 1) {
-                        p2.getDeck().createPriest(num1);
-                    }
-                } else {
-                    if (turn % 3 == 0) {
-                        p1.getDeck().createBerserker(num1);
-                    } else if (turn % 3 == 1) {
-                        p2.getDeck().createBerserker(num1);
+                }else if(turn%3==1){
+                    if(p2.getMoney()-num1>=0&&p2.getDeck().getSlots().size()>p2.getDeck().getPieces().size()){
+                        body.getChildren().removeAll(u1);
+                        p2.setMoney(p2.getMoney()-num1);
+                        mG.getGoldDisplay().updateMoney(2);
+                        if(class1=="Wizard"){
+                            p2.getDeck().createWizard(num1);
+                        }else if(class1=="Archer"){
+                            p2.getDeck().createArcher(num1);
+                        }else if(class1=="Paladin"){
+                            p2.getDeck().createPaladin(num1);
+                        }else if(class1=="Priest"){
+                            p2.getDeck().createPriest(num1);
+                        }else{
+                            p2.getDeck().createBerserker(num1);
+                        }
                     }
                 }
                 actions();
@@ -205,36 +223,39 @@ public class Shop {
         });
         u2.setOnMouseClicked(new EventHandler<MouseEvent>(){
             public void handle(MouseEvent event){
-                body.getChildren().removeAll(u2);
-                if(class2=="Wizard"){
-                    if(turn%3==0){
-                        p1.getDeck().createWizard(num2);
-                    }else if(turn%3==1){
-                        p2.getDeck().createWizard(num2);
+                if(turn%3==0){
+                    if(p1.getMoney()-num2>=0&&p1.getDeck().getSlots().size()>p1.getDeck().getPieces().size()){
+                        body.getChildren().removeAll(u2);
+                        p1.setMoney(p1.getMoney()-num2);
+                        mG.getGoldDisplay().updateMoney(1);
+                        if(class2=="Wizard"){
+                            p1.getDeck().createWizard(num2);
+                        }else if(class2=="Archer"){
+                            p1.getDeck().createArcher(num2);
+                        }else if(class2=="Paladin"){
+                            p1.getDeck().createPaladin(num2);
+                        }else if(class2=="Priest"){
+                            p1.getDeck().createPriest(num2);
+                        }else{
+                            p1.getDeck().createBerserker(num2);
+                        }
                     }
-                }else if(class2=="Archer"){
-                    if(turn%3==0){
-                        p1.getDeck().createArcher(num2);
-                    }else if(turn%3==1){
-                        p2.getDeck().createArcher(num2);
-                    }
-                }else if(class2=="Paladin"){
-                    if(turn%3==0){
-                        p1.getDeck().createPaladin(num2);
-                    }else if(turn%3==1){
-                        p2.getDeck().createPaladin(num2);
-                    }
-                }else if(class2=="Priest"){
-                    if(turn%3==0){
-                        p1.getDeck().createPriest(num2);
-                    }else if(turn%3==1){
-                        p2.getDeck().createPriest(num2);
-                    }
-                }else{
-                    if(turn%3==0){
-                        p1.getDeck().createBerserker(num2);
-                    }else if(turn%3==1){
-                        p2.getDeck().createBerserker(num2);
+                }else if(turn%3==1){
+                    if(p2.getMoney()-num2>=0&&p2.getDeck().getSlots().size()>p2.getDeck().getPieces().size()){
+                        body.getChildren().removeAll(u2);
+                        p2.setMoney(p2.getMoney()-num2);
+                        mG.getGoldDisplay().updateMoney(2);
+                        if(class2=="Wizard"){
+                            p2.getDeck().createWizard(num2);
+                        }else if(class2=="Archer"){
+                            p2.getDeck().createArcher(num2);
+                        }else if(class2=="Paladin"){
+                            p2.getDeck().createPaladin(num2);
+                        }else if(class2=="Priest"){
+                            p2.getDeck().createPriest(num2);
+                        }else{
+                            p2.getDeck().createBerserker(num2);
+                        }
                     }
                 }
                 actions();
@@ -253,36 +274,39 @@ public class Shop {
         });
         u3.setOnMouseClicked(new EventHandler<MouseEvent>(){
             public void handle(MouseEvent event){
-                body.getChildren().removeAll(u3);
-                if(class3=="Wizard"){
-                    if(turn%3==0){
-                        p1.getDeck().createWizard(num3);
-                    }else if(turn%3==1){
-                        p2.getDeck().createWizard(num3);
+                if(turn%3==0){
+                    if(p1.getMoney()-num3>=0&&p1.getDeck().getSlots().size()>p1.getDeck().getPieces().size()){
+                        body.getChildren().removeAll(u3);
+                        p1.setMoney(p1.getMoney()-num3);
+                        mG.getGoldDisplay().updateMoney(1);
+                        if(class3=="Wizard"){
+                            p1.getDeck().createWizard(num3);
+                        }else if(class3=="Archer"){
+                            p1.getDeck().createArcher(num3);
+                        }else if(class3=="Paladin"){
+                            p1.getDeck().createPaladin(num3);
+                        }else if(class3=="Priest"){
+                            p1.getDeck().createPriest(num3);
+                        }else{
+                            p1.getDeck().createBerserker(num3);
+                        }
                     }
-                }else if(class3=="Archer"){
-                    if(turn%3==0){
-                        p1.getDeck().createArcher(num3);
-                    }else if(turn%3==1){
-                        p2.getDeck().createArcher(num3);
-                    }
-                }else if(class3=="Paladin"){
-                    if(turn%3==0){
-                        p1.getDeck().createPaladin(num3);
-                    }else if(turn%3==1){
-                        p2.getDeck().createPaladin(num3);
-                    }
-                }else if(class3=="Priest"){
-                    if(turn%3==0){
-                        p1.getDeck().createPriest(num3);
-                    }else if(turn%3==1){
-                        p2.getDeck().createPriest(num3);
-                    }
-                }else{
-                    if(turn%3==0){
-                        p1.getDeck().createBerserker(num3);
-                    }else if(turn%3==1){
-                        p2.getDeck().createBerserker(num3);
+                }else if(turn%3==1){
+                    if(p2.getMoney()-num3>=0&&p2.getDeck().getSlots().size()>p2.getDeck().getPieces().size()){
+                        body.getChildren().removeAll(u3);
+                        p2.setMoney(p2.getMoney()-num3);
+                        mG.getGoldDisplay().updateMoney(2);
+                        if(class3=="Wizard"){
+                            p2.getDeck().createWizard(num3);
+                        }else if(class3=="Archer"){
+                            p2.getDeck().createArcher(num3);
+                        }else if(class3=="Paladin"){
+                            p2.getDeck().createPaladin(num3);
+                        }else if(class3=="Priest"){
+                            p2.getDeck().createPriest(num3);
+                        }else{
+                            p2.getDeck().createBerserker(num3);
+                        }
                     }
                 }
                 actions();
@@ -301,36 +325,39 @@ public class Shop {
         });
         u4.setOnMouseClicked(new EventHandler<MouseEvent>(){
             public void handle(MouseEvent event){
-                body.getChildren().removeAll(u4);
-                if(class4=="Wizard"){
-                    if(turn%3==0){
-                        p1.getDeck().createWizard(num4);
-                    }else if(turn%3==1){
-                        p2.getDeck().createWizard(num4);
+                if(turn%3==0){
+                    if(p1.getMoney()-num4>=0&&p1.getDeck().getSlots().size()>p1.getDeck().getPieces().size()){
+                        body.getChildren().removeAll(u4);
+                        p1.setMoney(p1.getMoney()-num4);
+                        mG.getGoldDisplay().updateMoney(1);
+                        if(class4=="Wizard"){
+                            p1.getDeck().createWizard(num4);
+                        }else if(class4=="Archer"){
+                            p1.getDeck().createArcher(num4);
+                        }else if(class4=="Paladin"){
+                            p1.getDeck().createPaladin(num4);
+                        }else if(class4=="Priest"){
+                            p1.getDeck().createPriest(num4);
+                        }else{
+                            p1.getDeck().createBerserker(num4);
+                        }
                     }
-                }else if(class4=="Archer"){
-                    if(turn%3==0){
-                        p1.getDeck().createArcher(num4);
-                    }else if(turn%3==1){
-                        p2.getDeck().createArcher(num4);
-                    }
-                }else if(class4=="Paladin"){
-                    if(turn%3==0){
-                        p1.getDeck().createPaladin(num4);
-                    }else if(turn%3==1){
-                        p2.getDeck().createPaladin(num4);
-                    }
-                }else if(class4=="Priest"){
-                    if(turn%3==0){
-                        p1.getDeck().createPriest(num4);
-                    }else if(turn%3==1){
-                        p2.getDeck().createPriest(num4);
-                    }
-                }else{
-                    if(turn%3==0){
-                        p1.getDeck().createBerserker(num4);
-                    }else if(turn%3==1){
-                        p2.getDeck().createBerserker(num4);
+                }else if(turn%3==1){
+                    if(p2.getMoney()-num4>=0&&p2.getDeck().getSlots().size()>p2.getDeck().getPieces().size()){
+                        body.getChildren().removeAll(u4);
+                        p2.setMoney(p2.getMoney()-num4);
+                        mG.getGoldDisplay().updateMoney(2);
+                        if(class4=="Wizard"){
+                            p2.getDeck().createWizard(num4);
+                        }else if(class4=="Archer"){
+                            p2.getDeck().createArcher(num4);
+                        }else if(class4=="Paladin"){
+                            p2.getDeck().createPaladin(num4);
+                        }else if(class4=="Priest"){
+                            p2.getDeck().createPriest(num4);
+                        }else{
+                            p2.getDeck().createBerserker(num4);
+                        }
                     }
                 }
                 actions();
@@ -349,36 +376,39 @@ public class Shop {
         });
         u5.setOnMouseClicked(new EventHandler<MouseEvent>(){
             public void handle(MouseEvent event){
-                body.getChildren().removeAll(u5);
-                if(class5=="Wizard"){
-                    if(turn%3==0){
-                        p1.getDeck().createWizard(num5);
-                    }else if(turn%3==1){
-                        p2.getDeck().createWizard(num5);
+                if(turn%3==0){
+                    if(p1.getMoney()-num5>=0&&p1.getDeck().getSlots().size()>p1.getDeck().getPieces().size()){
+                        body.getChildren().removeAll(u5);
+                        p1.setMoney(p1.getMoney()-num5);
+                        mG.getGoldDisplay().updateMoney(1);
+                        if(class5=="Wizard"){
+                            p1.getDeck().createWizard(num5);
+                        }else if(class5=="Archer"){
+                            p1.getDeck().createArcher(num5);
+                        }else if(class5=="Paladin"){
+                            p1.getDeck().createPaladin(num5);
+                        }else if(class5=="Priest"){
+                            p1.getDeck().createPriest(num5);
+                        }else{
+                            p1.getDeck().createBerserker(num5);
+                        }
                     }
-                }else if(class5=="Archer"){
-                    if(turn%3==0){
-                        p1.getDeck().createArcher(num5);
-                    }else if(turn%3==1){
-                        p2.getDeck().createArcher(num5);
-                    }
-                }else if(class5=="Paladin"){
-                    if(turn%3==0){
-                        p1.getDeck().createPaladin(num5);
-                    }else if(turn%3==1){
-                        p2.getDeck().createPaladin(num5);
-                    }
-                }else if(class5=="Priest"){
-                    if(turn%3==0){
-                        p1.getDeck().createPriest(num5);
-                    }else if(turn%3==1){
-                        p2.getDeck().createPriest(num5);
-                    }
-                }else{
-                    if(turn%3==0){
-                        p1.getDeck().createBerserker(num5);
-                    }else if(turn%3==1){
-                        p2.getDeck().createBerserker(num5);
+                }else if(turn%3==1){
+                    if(p2.getMoney()-num5>=0&&p2.getDeck().getSlots().size()>p2.getDeck().getPieces().size()){
+                        body.getChildren().removeAll(u5);
+                        p2.setMoney(p2.getMoney()-num5);
+                        mG.getGoldDisplay().updateMoney(2);
+                        if(class5=="Wizard"){
+                            p2.getDeck().createWizard(num5);
+                        }else if(class5=="Archer"){
+                            p2.getDeck().createArcher(num5);
+                        }else if(class5=="Paladin"){
+                            p2.getDeck().createPaladin(num5);
+                        }else if(class5=="Priest"){
+                            p2.getDeck().createPriest(num5);
+                        }else{
+                            p2.getDeck().createBerserker(num5);
+                        }
                     }
                 }
                 actions();

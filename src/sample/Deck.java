@@ -57,6 +57,8 @@ public class Deck {
         base.setHeight(bD[1]);
     }
 
+    public ArrayList<double[]> getSlots() { return slots; }
+
     public ArrayList<Piece> getPieces() {
         return pieces;
     }
@@ -125,7 +127,7 @@ public class Deck {
     public void createWizard(int num){
         ArrayList<Box> boxes=playField.getBoxes();
         double boxSize=playField.getBoxSize();
-        CirPiece p=new CirPiece(boxSize*0.35,100,"Cir1",mainGame,playField,teamNum,new double[]{0,0},this);
+        CirPiece p=new CirPiece(num-1,1,boxSize*0.35,100,"Cir1",mainGame,playField,teamNum,new double[]{0,0},this);
         pieces.add(p);
         if(!p.getOnField()){
             piecesInDock.add(p);
@@ -136,7 +138,7 @@ public class Deck {
     public void createArcher(int num){
         ArrayList<Box> boxes=playField.getBoxes();
         double boxSize=playField.getBoxSize();
-        TriPiece p=new TriPiece(boxSize*0.5,100,"Tri1",mainGame,playField,teamNum,new double[]{0,0},this);
+        TriPiece p=new TriPiece(num-1,1,boxSize*0.5,100,"Tri1",mainGame,playField,teamNum,new double[]{0,0},this);
         pieces.add(p);
         if(!p.getOnField()){
             piecesInDock.add(p);
@@ -147,7 +149,7 @@ public class Deck {
     public void createPaladin(int num){
         ArrayList<Box> boxes=playField.getBoxes();
         double boxSize=playField.getBoxSize();
-        RectPiece p=new RectPiece(boxSize*0.5,100,"Rect1",mainGame,playField,teamNum,new double[]{0,0},this);
+        RectPiece p=new RectPiece(num-1,1,boxSize*0.5,100,"Rect1",mainGame,playField,teamNum,new double[]{0,0},this);
         pieces.add(p);
         if(!p.getOnField()){
             piecesInDock.add(p);
@@ -158,7 +160,7 @@ public class Deck {
     public void createPriest(int num){
         ArrayList<Box> boxes=playField.getBoxes();
         double boxSize=playField.getBoxSize();
-        PentPiece p=new PentPiece(boxSize*0.4,100,"Pent1",mainGame,playField,teamNum,new double[]{0,0},this);
+        PentPiece p=new PentPiece(num-1,1,boxSize*0.4,100,"Pent1",mainGame,playField,teamNum,new double[]{0,0},this);
         pieces.add(p);
         mainGame.updateDeck(p);
         if(!p.getOnField()){
@@ -169,7 +171,7 @@ public class Deck {
     public void createBerserker(int num){
         ArrayList<Box> boxes=playField.getBoxes();
         double boxSize=playField.getBoxSize();
-        HexPiece p=new HexPiece(boxSize*0.35,100,"Hex1",mainGame,playField,teamNum,new double[]{0,0},this);
+        HexPiece p=new HexPiece(num-1,1,boxSize*0.35,100,"Hex1",mainGame,playField,teamNum,new double[]{0,0},this);
         pieces.add(p);
         if(!p.getOnField()){
             piecesInDock.add(p);

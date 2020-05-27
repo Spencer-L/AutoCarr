@@ -17,7 +17,7 @@ public class GoldDisplay {
     private double [] bodyDimensions;
     private Rectangle base;
     private Player player1,player2;
-    private Text num,num1;
+    private Text num,num1,hp,hp1;
     //constructor
     public GoldDisplay(){
         screenDimensions=GlobalVariable.screenDimensions;
@@ -30,7 +30,7 @@ public class GoldDisplay {
         p1.setFill(Color.MEDIUMSLATEBLUE);
         p1.setStroke(Color.SEAGREEN);
         p1.setStrokeWidth(2);
-        Text hp=new Text(bodyDimensions[0]/12,bodyDimensions[1]/11.5,"HP: 100");
+        hp=new Text(bodyDimensions[0]/12,bodyDimensions[1]/11.5,"HP: 100");
         hp.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/6.5));
         hp.setFill(Color.RED);
         Text lvl=new Text(bodyDimensions[0]/12,bodyDimensions[1]/8,"LVL: 1 (XP ?/?)");
@@ -54,7 +54,7 @@ public class GoldDisplay {
         p2.setFill(Color.MEDIUMSLATEBLUE);
         p2.setStroke(Color.SEAGREEN);
         p2.setStrokeWidth(2);
-        Text hp1=new Text(bodyDimensions[0]/12,bodyDimensions[1]/3.4,"HP: 100");
+        hp1=new Text(bodyDimensions[0]/12,bodyDimensions[1]/3.4,"HP: 100");
         hp1.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/6.5));
         hp1.setFill(Color.RED);
         Text lvl1=new Text(bodyDimensions[0]/12,bodyDimensions[1]/3,"LVL: 1 (XP ?/?)");
@@ -90,9 +90,18 @@ public class GoldDisplay {
     //methods
 
     public void createPlayerInfo(){
-        num.setText(Double.toString(player1.getMoney()));
-        num1.setText(Double.toString(player2.getMoney()));
+        num.setText(Integer.toString(player1.getMoney()));
+        num1.setText(Integer.toString(player2.getMoney()));
+        hp.setText("HP: "+Integer.toString(player1.getHP()));
+        hp1.setText("HP: "+Integer.toString(player1.getHP()));
         //body.getChildren().add(num,num1);
     }
 
+    public void updateMoney(int n){
+        if(n==1){
+            num.setText(Integer.toString(player1.getMoney()));
+        }else{
+            num1.setText(Integer.toString(player2.getMoney()));
+        }
+    }
 }
