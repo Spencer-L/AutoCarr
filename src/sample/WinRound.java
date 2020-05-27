@@ -7,6 +7,7 @@ import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class WinRound {
     //field
@@ -63,17 +64,31 @@ public class WinRound {
         if(!dead1&&!dead2){
             return false;
         }else if(dead1&&dead2){
-            displayWinner("There is a tie");
+            try {
+                displayWinner("There is a tie");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }else if(dead1){
-            displayWinner("Player 2 Wins The Round!");
+            try {
+                displayWinner("Player 2 Wins The Round!");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }else if(dead2){
-            displayWinner("Player 1 Wins The Round!");
+            try {
+                displayWinner("Player 1 Wins The Round!");
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
         return true;
     }
-    public void displayWinner(String msg){
+    public void displayWinner(String msg) throws InterruptedException {
         toWrite=msg;
         body.setVisible(true);
+        TimeUnit.SECONDS.sleep(3);
+        body.setVisible(false);
     }
     //private methods
 
