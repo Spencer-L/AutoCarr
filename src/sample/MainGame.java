@@ -63,11 +63,13 @@ public class MainGame {
         pField.repositionPieces();
         if(turn%3==0){
             players.get(0).getDeck().showDeck();
+            players.get(0).getDeck().levelUp();
             players.get(1).getDeck().hideDeck();
             deck.hideDeck();
         }else if(turn%3==1){
             players.get(0).getDeck().hideDeck();
             players.get(1).getDeck().showDeck();
+            players.get(1).getDeck().levelUp();
         }else if(turn%3==2){
             startFight();
             players.get(0).getDeck().hideDeck();
@@ -112,7 +114,6 @@ public class MainGame {
             for(Piece p:player.getDeck().getPieces()){
                // wrapper.getChildren().add(p.getRangeBox());
                 wrapper.getChildren().add(p.getBody());
-
             }
         }
         shopBody.relocate(0, pField.getBodyDimensions()[1]+deck.getBodyDimensions()[1]);
