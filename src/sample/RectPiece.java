@@ -15,6 +15,7 @@ public class RectPiece extends Piece{
         setAtkSpd(.9);
         setDamage(getDamage()+20);
         setRange(1);
+        setRangeFactor(0.5);
         base=new Rectangle(0,0,getSize(),getSize());
         if(getTeamNum()==1){
             base.setFill(Color.VIOLET);
@@ -40,6 +41,7 @@ public class RectPiece extends Piece{
         setAtkSpd(.9);
         setDamage(getDamage()+20);
         setRange(1);
+        setRangeFactor(0.5);
         base=new Rectangle(0,0,getSize(),getSize());
         if(getTeamNum()==1){
             base.setFill(Color.VIOLET);
