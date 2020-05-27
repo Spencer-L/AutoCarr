@@ -11,9 +11,10 @@ public class HexPiece extends Piece{
         super(s,h,id,mG,pF,tN,pos,pD);
         setHealth(getHealth()+100);
         setMaxHealth((int)getHealth());
-        setAtkSpd(2);
+        setAtkSpd(1.5);
         setDamage(getDamage()+10);
-        setRange(1);
+        setRange(1.75);
+        setRangeFactor(0.00001);
         base=new Polygon();
         base.getPoints().addAll(
                 0.0, 0.0,
@@ -44,9 +45,9 @@ public class HexPiece extends Piece{
         super(r,l,s,h,id,mG,pF,tN,pos,pD);
         setHealth(getHealth()+100);
         setMaxHealth((int)getHealth());
-        setAtkSpd(2);
+        setAtkSpd(1.5);
         setDamage(getDamage()+10);
-        setRange(1);
+        setRange(1.75);
         base=new Polygon();
         base.getPoints().addAll(
                 0.0, 0.0,
