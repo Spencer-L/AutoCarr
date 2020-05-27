@@ -30,20 +30,10 @@ public class Shop {
     private int teamnum2;
     private Pane body = new Pane();
     private Rectangle base;
-    private Rectangle r1;
-    private Rectangle r;
-    private Rectangle a5;
-    private Rectangle a4;
-    private Rectangle a3;
-    private Rectangle a2;
-    private Rectangle a1;
-    private Pane btn;
-    private Pane btn1;
-    private Pane u1;
-    private Pane u2;
-    private Pane u3;
-    private Pane u4;
-    private Pane u5;
+    private Rectangle r,r1,a1,a2,a3,a4,a5;
+    private Pane btn,btn1,u1,u2,u3,u4,u5;
+    private int num1,num2,num3,num4,num5;
+    String class1,class2,class3,class4,class5;
     private int counter=1;
     private int turn=0;
     private boolean check=false;
@@ -165,6 +155,43 @@ public class Shop {
                 a1.setFill(Color.BEIGE);
             }
         });
+        u1.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent event){
+                body.getChildren().removeAll(u1);
+                if (class1 == "Wizard") {
+                    if (turn % 3 == 0) {
+                        p1.getDeck().createWizard(num1);
+                    } else if (turn % 3 == 1) {
+                        p2.getDeck().createWizard(num1);
+                    }
+                } else if (class1 == "Archer") {
+                    if (turn % 3 == 0) {
+                        p1.getDeck().createArcher(num1);
+                    } else if (turn % 3 == 1) {
+                        p2.getDeck().createArcher(num1);
+                    }
+                } else if (class1 == "Paladin") {
+                    if (turn % 3 == 0) {
+                        p1.getDeck().createPaladin(num1);
+                    } else if (turn % 3 == 1) {
+                        p2.getDeck().createPaladin(num1);
+                    }
+                } else if (class1 == "Priest") {
+                    if (turn % 3 == 0) {
+                        p1.getDeck().createPriest(num1);
+                    } else if (turn % 3 == 1) {
+                        p2.getDeck().createPriest(num1);
+                    }
+                } else {
+                    if (turn % 3 == 0) {
+                        p1.getDeck().createBerserker(num1);
+                    } else if (turn % 3 == 1) {
+                        p2.getDeck().createBerserker(num1);
+                    }
+                }
+                actions();
+            }
+        });
         //unit 2
         u2.setOnMouseEntered(new EventHandler<MouseEvent>(){
             public void handle(MouseEvent event){
@@ -174,6 +201,43 @@ public class Shop {
         u2.setOnMouseExited(new EventHandler<MouseEvent>(){
             public void handle(MouseEvent event){
                 a2.setFill(Color.BEIGE);
+            }
+        });
+        u2.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent event){
+                body.getChildren().removeAll(u2);
+                if(class2=="Wizard"){
+                    if(turn%3==0){
+                        p1.getDeck().createWizard(num2);
+                    }else if(turn%3==1){
+                        p2.getDeck().createWizard(num2);
+                    }
+                }else if(class2=="Archer"){
+                    if(turn%3==0){
+                        p1.getDeck().createArcher(num2);
+                    }else if(turn%3==1){
+                        p2.getDeck().createArcher(num2);
+                    }
+                }else if(class2=="Paladin"){
+                    if(turn%3==0){
+                        p1.getDeck().createPaladin(num2);
+                    }else if(turn%3==1){
+                        p2.getDeck().createPaladin(num2);
+                    }
+                }else if(class2=="Priest"){
+                    if(turn%3==0){
+                        p1.getDeck().createPriest(num2);
+                    }else if(turn%3==1){
+                        p2.getDeck().createPriest(num2);
+                    }
+                }else{
+                    if(turn%3==0){
+                        p1.getDeck().createBerserker(num2);
+                    }else if(turn%3==1){
+                        p2.getDeck().createBerserker(num2);
+                    }
+                }
+                actions();
             }
         });
         //unit 3
@@ -187,6 +251,43 @@ public class Shop {
                 a3.setFill(Color.BEIGE);
             }
         });
+        u3.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent event){
+                body.getChildren().removeAll(u3);
+                if(class3=="Wizard"){
+                    if(turn%3==0){
+                        p1.getDeck().createWizard(num3);
+                    }else if(turn%3==1){
+                        p2.getDeck().createWizard(num3);
+                    }
+                }else if(class3=="Archer"){
+                    if(turn%3==0){
+                        p1.getDeck().createArcher(num3);
+                    }else if(turn%3==1){
+                        p2.getDeck().createArcher(num3);
+                    }
+                }else if(class3=="Paladin"){
+                    if(turn%3==0){
+                        p1.getDeck().createPaladin(num3);
+                    }else if(turn%3==1){
+                        p2.getDeck().createPaladin(num3);
+                    }
+                }else if(class3=="Priest"){
+                    if(turn%3==0){
+                        p1.getDeck().createPriest(num3);
+                    }else if(turn%3==1){
+                        p2.getDeck().createPriest(num3);
+                    }
+                }else{
+                    if(turn%3==0){
+                        p1.getDeck().createBerserker(num3);
+                    }else if(turn%3==1){
+                        p2.getDeck().createBerserker(num3);
+                    }
+                }
+                actions();
+            }
+        });
         //unit 4
         u4.setOnMouseEntered(new EventHandler<MouseEvent>(){
             public void handle(MouseEvent event){
@@ -196,6 +297,43 @@ public class Shop {
         u4.setOnMouseExited(new EventHandler<MouseEvent>(){
             public void handle(MouseEvent event){
                 a4.setFill(Color.BEIGE);
+            }
+        });
+        u4.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent event){
+                body.getChildren().removeAll(u4);
+                if(class4=="Wizard"){
+                    if(turn%3==0){
+                        p1.getDeck().createWizard(num4);
+                    }else if(turn%3==1){
+                        p2.getDeck().createWizard(num4);
+                    }
+                }else if(class4=="Archer"){
+                    if(turn%3==0){
+                        p1.getDeck().createArcher(num4);
+                    }else if(turn%3==1){
+                        p2.getDeck().createArcher(num4);
+                    }
+                }else if(class4=="Paladin"){
+                    if(turn%3==0){
+                        p1.getDeck().createPaladin(num4);
+                    }else if(turn%3==1){
+                        p2.getDeck().createPaladin(num4);
+                    }
+                }else if(class4=="Priest"){
+                    if(turn%3==0){
+                        p1.getDeck().createPriest(num4);
+                    }else if(turn%3==1){
+                        p2.getDeck().createPriest(num4);
+                    }
+                }else{
+                    if(turn%3==0){
+                        p1.getDeck().createBerserker(num4);
+                    }else if(turn%3==1){
+                        p2.getDeck().createBerserker(num4);
+                    }
+                }
+                actions();
             }
         });
         //unit 5
@@ -209,6 +347,43 @@ public class Shop {
                 a5.setFill(Color.BEIGE);
             }
         });
+        u5.setOnMouseClicked(new EventHandler<MouseEvent>(){
+            public void handle(MouseEvent event){
+                body.getChildren().removeAll(u5);
+                if(class5=="Wizard"){
+                    if(turn%3==0){
+                        p1.getDeck().createWizard(num5);
+                    }else if(turn%3==1){
+                        p2.getDeck().createWizard(num5);
+                    }
+                }else if(class5=="Archer"){
+                    if(turn%3==0){
+                        p1.getDeck().createArcher(num5);
+                    }else if(turn%3==1){
+                        p2.getDeck().createArcher(num5);
+                    }
+                }else if(class5=="Paladin"){
+                    if(turn%3==0){
+                        p1.getDeck().createPaladin(num5);
+                    }else if(turn%3==1){
+                        p2.getDeck().createPaladin(num5);
+                    }
+                }else if(class5=="Priest"){
+                    if(turn%3==0){
+                        p1.getDeck().createPriest(num5);
+                    }else if(turn%3==1){
+                        p2.getDeck().createPriest(num5);
+                    }
+                }else{
+                    if(turn%3==0){
+                        p1.getDeck().createBerserker(num5);
+                    }else if(turn%3==1){
+                        p2.getDeck().createBerserker(num5);
+                    }
+                }
+                actions();
+            }
+        });
     }
     public void refreshShop(){
         //unit 1
@@ -217,7 +392,7 @@ public class Shop {
         a1.setX(bodyDimensions[0]/6);
         a1.setFill(Color.BEIGE);
         a1.setStroke(Color.BLACK);
-        int num1=rarityCalc();
+        num1=rarityCalc();
         Rectangle b1=new Rectangle(bodyDimensions[0]/6,bodyDimensions[1]/2.333);
         b1.setX(bodyDimensions[0]/6);
         b1.setY(bodyDimensions[1]/1.75);
@@ -244,7 +419,7 @@ public class Shop {
         t1.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/100));
         t1.setFill(Color.BLACK);
         u1.getChildren().addAll(a1,b1,gold1,t1);
-        String class1=randomClass();
+        class1=randomClass();
         Text n1=new Text(bodyDimensions[0]/6+bodyDimensions[0]/20,bodyDimensions[1]/1.375,class1);
         n1.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/90));
         n1.setFill(Color.BLACK);
@@ -256,7 +431,7 @@ public class Shop {
         a2.setX(bodyDimensions[0]/3);
         a2.setFill(Color.BEIGE);
         a2.setStroke(Color.BLACK);
-        int num2=rarityCalc();
+        num2=rarityCalc();
         Rectangle b2=new Rectangle();
         b2.setX(bodyDimensions[0]/3);
         b2.setY(bodyDimensions[1]/1.75);
@@ -285,7 +460,7 @@ public class Shop {
         t2.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/100));
         t2.setFill(Color.BLACK);
         u2.getChildren().addAll(a2,b2,gold2,t2);
-        String class2=randomClass();
+        class2=randomClass();
         Text n2=new Text(bodyDimensions[0]/3+bodyDimensions[0]/20,bodyDimensions[1]/1.375,class2);
         n2.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/90));
         n2.setFill(Color.BLACK);
@@ -297,7 +472,7 @@ public class Shop {
         a3.setX(bodyDimensions[0]/2);
         a3.setFill(Color.BEIGE);
         a3.setStroke(Color.BLACK);
-        int num3=rarityCalc();
+        num3=rarityCalc();
         Rectangle b3=new Rectangle(bodyDimensions[0]/6,bodyDimensions[1]/2.333);
         b3.setX(bodyDimensions[0]/2);
         b3.setY(bodyDimensions[1]/1.75);
@@ -324,7 +499,7 @@ public class Shop {
         t3.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/100));
         t3.setFill(Color.BLACK);
         u3.getChildren().addAll(a3,b3,gold3,t3);
-        String class3=randomClass();
+        class3=randomClass();
         Text n3=new Text(bodyDimensions[0]/2+bodyDimensions[0]/20,bodyDimensions[1]/1.375,class3);
         n3.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/90));
         n3.setFill(Color.BLACK);
@@ -336,7 +511,7 @@ public class Shop {
         a4.setX(bodyDimensions[0]/1.5);
         a4.setFill(Color.BEIGE);
         a4.setStroke(Color.BLACK);
-        int num4=rarityCalc();
+        num4=rarityCalc();
         Rectangle b4=new Rectangle(bodyDimensions[0]/6,bodyDimensions[1]/2.333);
         b4.setX(bodyDimensions[0]/1.5);
         b4.setY(bodyDimensions[1]/1.75);
@@ -363,7 +538,7 @@ public class Shop {
         t4.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/100));
         t4.setFill(Color.BLACK);
         u4.getChildren().addAll(a4,b4,gold4,t4);
-        String class4=randomClass();
+        class4=randomClass();
         Text n4=new Text(bodyDimensions[0]/1.5+bodyDimensions[0]/20,bodyDimensions[1]/1.375,class4);
         n4.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/90));
         n4.setFill(Color.BLACK);
@@ -375,7 +550,7 @@ public class Shop {
         a5.setX(bodyDimensions[0]/1.2);
         a5.setFill(Color.BEIGE);
         a5.setStroke(Color.BLACK);
-        int num5=rarityCalc();
+        num5=rarityCalc();
         Rectangle b5=new Rectangle(bodyDimensions[0]/6,bodyDimensions[1]/2.333);
         b5.setX(bodyDimensions[0]/1.2);
         b5.setY(bodyDimensions[1]/1.75);
@@ -402,7 +577,7 @@ public class Shop {
         t5.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/100));
         t5.setFill(Color.BLACK);
         u5.getChildren().addAll(a5,b5,gold5,t5);
-        String class5=randomClass();
+        class5=randomClass();
         Text n5=new Text(bodyDimensions[0]/1.2+bodyDimensions[0]/20,bodyDimensions[1]/1.375,class5);
         n5.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/90));
         n5.setFill(Color.BLACK);

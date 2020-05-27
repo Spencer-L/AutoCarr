@@ -79,6 +79,10 @@ public class MainGame {
          shop.nextPhase();
         }
     }
+    public void updateDeck(Piece p){
+        wrapper.getChildren().add(p.getBody());
+    }
+
     //private methods
     public void createPlayers(){
         players.add(new Player("Player 1",1,500d,pField,this));

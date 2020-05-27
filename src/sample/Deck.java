@@ -117,6 +117,62 @@ public class Deck {
             p.getBody().setVisible(false);
         }
     }
+    public void createWizard(int num){
+        ArrayList<Box> boxes=playField.getBoxes();
+        double boxSize=playField.getBoxSize();
+        CirPiece p=new CirPiece(boxSize*0.35,100,"Cir1",mainGame,playField,teamNum,new double[]{0,0},this);
+        pieces.add(p);
+        if(!p.getOnField()){
+            piecesInDock.add(p);
+        }
+        mainGame.updateDeck(p);
+        fieldToDeck(p);
+    }
+    public void createArcher(int num){
+        ArrayList<Box> boxes=playField.getBoxes();
+        double boxSize=playField.getBoxSize();
+        TriPiece p=new TriPiece(boxSize*0.4,100,"Tri1",mainGame,playField,teamNum,new double[]{0,0},this);
+        pieces.add(p);
+        if(!p.getOnField()){
+            piecesInDock.add(p);
+        }
+        mainGame.updateDeck(p);
+        fieldToDeck(p);
+    }
+    public void createPaladin(int num){
+        ArrayList<Box> boxes=playField.getBoxes();
+        double boxSize=playField.getBoxSize();
+        RectPiece p=new RectPiece(boxSize*0.5,100,"Rect1",mainGame,playField,teamNum,new double[]{0,0},this);
+        pieces.add(p);
+        if(!p.getOnField()){
+            piecesInDock.add(p);
+        }
+        mainGame.updateDeck(p);
+        fieldToDeck(p);
+    }
+    public void createPriest(int num){
+        ArrayList<Box> boxes=playField.getBoxes();
+        double boxSize=playField.getBoxSize();
+        PentPiece p=new PentPiece(boxSize*0.4,100,"Pent1",mainGame,playField,teamNum,new double[]{0,0},this);
+        pieces.add(p);
+        mainGame.updateDeck(p);
+        if(!p.getOnField()){
+            piecesInDock.add(p);
+        }
+        fieldToDeck(p);
+    }
+    public void createBerserker(int num){
+        ArrayList<Box> boxes=playField.getBoxes();
+        double boxSize=playField.getBoxSize();
+        HexPiece p=new HexPiece(boxSize*0.35,100,"Hex1",mainGame,playField,teamNum,new double[]{0,0},this);
+        pieces.add(p);
+        if(!p.getOnField()){
+            piecesInDock.add(p);
+        }
+        mainGame.updateDeck(p);
+        fieldToDeck(p);
+    }
+
     //private methods
     private void createPieces(){
         ArrayList<Box> boxes=playField.getBoxes();
