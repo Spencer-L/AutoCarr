@@ -39,7 +39,7 @@ public abstract class Piece {
     private double dps;
     private double atkSpd;
     private String name;
-    private int range;
+    private double range;
     private Piece target;
     private Timeline tL;
     private boolean onField=false;
@@ -50,6 +50,7 @@ public abstract class Piece {
     private StackPane healthBarRed;
     private Rectangle healthBarGreen;
     private Rectangle rangeBox;
+    private double rangeFactor;
 
     private static ArrayList<Piece> allPiece;
 
@@ -70,10 +71,7 @@ public abstract class Piece {
         body.setLayoutX(pos[0]);
         body.setLayoutY(pos[1]);
         overallPosition=findPosition();
-        atkSpd=.9;
-        damage=10;
         maxHealth = h;
-        range = 1;
         isDead = false;
 
         levels = new Text(Integer.toString(level));
@@ -114,10 +112,8 @@ public abstract class Piece {
         body.setLayoutY(pos[1]);
         overallPosition=findPosition();
         this.rarity=r;
-        atkSpd=.9;
-        damage=10;
         maxHealth = h;
-        range = 1;
+
         isDead = false;
         levels = new Text(Integer.toString(level));
 
@@ -141,6 +137,8 @@ public abstract class Piece {
     //setter/getter
 
 
+    public double getRangeFactor() { return rangeFactor; }
+    public void setRangeFactor(double rangeFactor) { this.rangeFactor = rangeFactor; }
     public Rectangle getRarityBand() { return rarityBand; }
     public void setRarityBand(Rectangle rarityBand) { this.rarityBand = rarityBand; }
     public Rectangle getRangeBox(){return rangeBox;}
@@ -152,8 +150,8 @@ public abstract class Piece {
     public void setParentBox(Box pB){parentBox=pB;}
     public void setID(String ID) { this.ID = ID; }
     public void setCost(int cost) { this.cost = cost; }
-    public int getRange() { return range; }
-    public void setRange(int range) { this.range = range; }
+    public double getRange() { return range; }
+    public void setRange(double range) { this.range = range; }
     public String getID() { return ID; }
     public double getHealth() { return health; }
     public void setHealth(double health) { this.health = health; }
@@ -252,6 +250,7 @@ public abstract class Piece {
         if(body.getLayoutY()>playField.getBodyDimensions()[1]){
             if(onField){
                 parentDeck.fieldToDeck(this);
+                playField.getPieces().remove(this);
             }else{
                 parentDeck.deckToDeck(this);
             }
@@ -358,8 +357,8 @@ public abstract class Piece {
         if(!getRangeBox().getBoundsInParent().intersects(target.getBody().getBoundsInParent())) {
             getBody().setLayoutX(getBody().getLayoutX() + movement[0]);
             getBody().setLayoutY(getBody().getLayoutY() + movement[1]);
-            getRangeBox().setLayoutX(getBody().getLayoutX()-(size * (0.5*(range-1))));
-            getRangeBox().setLayoutY(getBody().getLayoutY()-(size * (0.5*(range-1))));
+            getRangeBox().setLayoutX(getBody().getLayoutX()-(size * (rangeFactor*(range-1))));
+            getRangeBox().setLayoutY(getBody().getLayoutY()-(size * (rangeFactor*(range-1))));
          }
 
          if (getRangeBox().getBoundsInParent().intersects(target.getBody().getBoundsInParent())) {
@@ -398,10 +397,10 @@ public abstract class Piece {
                     calculateHealthBar();
                     if(dead) {
                         target.setDead();
-                        System.out.println(target);
+                       // System.out.println(target);
                         attackPacing.stop();
                         playField.findNewFight(this);
-                        System.out.println(target);
+                      //  System.out.println(target);
                     }
                     //System.out.println("I have " + health + " and I did " + damage + " to my target, " + teamNum );
 
