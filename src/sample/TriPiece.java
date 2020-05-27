@@ -48,6 +48,7 @@ public class TriPiece extends Piece{
         setAtkSpd(1.2);
         setDamage(getDamage()+20);
         setRange(7);
+        setRangeFactor(.50);
         base=new Polygon();
         base.getPoints().addAll(
                 0.0, 0.0,

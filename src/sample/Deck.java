@@ -172,6 +172,7 @@ public class Deck {
         ArrayList<Box> boxes=playField.getBoxes();
         double boxSize=playField.getBoxSize();
         HexPiece p=new HexPiece(num-1,1,boxSize*0.35,100,"Hex1",mainGame,playField,teamNum,new double[]{0,0},this);
+
         pieces.add(p);
         if(!p.getOnField()){
             piecesInDock.add(p);
@@ -254,19 +255,19 @@ public class Deck {
                                 pieces.remove(similarIndex.get(i));
                             }
                             if(nameIndex==0){
-                                pieces.add(new RectPiece(p.getRarity(),j+1, boxSize * 0.5, 100, "Rect2", mainGame, playField, teamNum, new double[]{0, 0}, this));
+                                pieces.add(new RectPiece(p.getRarity(),j+1, boxSize * 0.5, 100, "Rect1", mainGame, playField, teamNum, new double[]{0, 0}, this));
                             }
                             else if(nameIndex==1){
-                                pieces.add(new CirPiece(p.getRarity(),j+1, boxSize * 0.35, 100, "Rect2", mainGame, playField, teamNum, new double[]{0, 0}, this));
+                                pieces.add(new CirPiece(p.getRarity(),j+1, boxSize * 0.35, 100, "Cir1", mainGame, playField, teamNum, new double[]{0, 0}, this));
                             }
                             else if(nameIndex==2){
-                                pieces.add(new TriPiece(p.getRarity(),j+1, boxSize * 0.5, 100, "Rect2", mainGame, playField, teamNum, new double[]{0, 0}, this));
+                                pieces.add(new TriPiece(p.getRarity(),j+1, boxSize * 0.5, 100, "Tri1", mainGame, playField, teamNum, new double[]{0, 0}, this));
                             }
                             else if(nameIndex==3){
-                                pieces.add(new HexPiece(p.getRarity(),j+1, boxSize * 0.35, 100, "Rect2", mainGame, playField, teamNum, new double[]{0, 0}, this));
+                                pieces.add(new HexPiece(p.getRarity(),j+1, boxSize * 0.35, 100, "Hex1", mainGame, playField, teamNum, new double[]{0, 0}, this));
                             }
                             else if(nameIndex==4){
-                                pieces.add(new PentPiece(p.getRarity(),j+1, boxSize * 0.4, 100, "Rect2", mainGame, playField, teamNum, new double[]{0, 0}, this));
+                                pieces.add(new PentPiece(p.getRarity(),j+1, boxSize * 0.4, 100, "Pent1", mainGame, playField, teamNum, new double[]{0, 0}, this));
                             }
                         }
                     }
