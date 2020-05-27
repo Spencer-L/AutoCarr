@@ -48,6 +48,7 @@ public class HexPiece extends Piece{
         setAtkSpd(1.5);
         setDamage(getDamage()+10);
         setRange(1.75);
+        setRangeFactor(0.00001);
         base=new Polygon();
         base.getPoints().addAll(
                 0.0, 0.0,
