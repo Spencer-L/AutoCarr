@@ -55,6 +55,23 @@ public class Player {
     public void appendDeck(){
         mainGame.getWrapper().getChildren().add(deck.getBody());
     }
+    public void generateInterest(){
+        if(money>10){
+            money++;
+        }
+        if(money>20){
+            money++;
+        }
+        if(money>30){
+            money++;
+        }
+        if(money>40){
+            money++;
+        }
+        if(money>50){
+            money++;
+        }
+    }
     //private methods
     private void createDeck(){
         //ArrayList<Box> boxes=playField.getBoxes();

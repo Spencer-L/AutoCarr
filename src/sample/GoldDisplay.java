@@ -104,4 +104,11 @@ public class GoldDisplay {
             num1.setText(Integer.toString(player2.getMoney()));
         }
     }
+    public void updateHP(int n){
+        if(n==1){
+            hp.setText("HP: "+Integer.toString(player1.getHP()));
+        }else{
+            hp1.setText("HP: "+Integer.toString(player2.getHP()));
+        }
+    }
 }

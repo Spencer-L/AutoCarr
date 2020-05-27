@@ -66,10 +66,40 @@ public class WinRound {
             return false;
         }else if(dead1&&dead2){
             displayWinner("There is a tie");
+            mainGame.getPlayers().get(0).setMoney(mainGame.getPlayers().get(0).getMoney()+5);
+            mainGame.getPlayers().get(1).setMoney(mainGame.getPlayers().get(1).getMoney()+5);
+            mainGame.getPlayers().get(0).generateInterest();
+            mainGame.getPlayers().get(1).generateInterest();
+            mainGame.getGoldDisplay().updateMoney(1);
+            mainGame.getGoldDisplay().updateMoney(2);
         }else if(dead1){
             displayWinner("Player 2 Wins The Round!");
+            mainGame.getPlayers().get(0).setMoney(mainGame.getPlayers().get(0).getMoney()+3);
+            mainGame.getPlayers().get(1).setMoney(mainGame.getPlayers().get(1).getMoney()+5);
+            int num=0;
+            for(Piece p:pieces2){
+                num+=p.getRarity();
+            }
+            mainGame.getPlayers().get(0).setHP(mainGame.getPlayers().get(0).getHP()-((mainGame.getTurn()+1)/3+(num/2)));
+            mainGame.getPlayers().get(0).generateInterest();
+            mainGame.getPlayers().get(1).generateInterest();
+            mainGame.getGoldDisplay().updateMoney(1);
+            mainGame.getGoldDisplay().updateMoney(2);
+            mainGame.getGoldDisplay().updateHP(1);
         }else if(dead2){
             displayWinner("Player 1 Wins The Round!");
+            mainGame.getPlayers().get(0).setMoney(mainGame.getPlayers().get(0).getMoney()+5);
+            mainGame.getPlayers().get(1).setMoney(mainGame.getPlayers().get(1).getMoney()+3);
+            int num=0;
+            for(Piece p:pieces1){
+                num+=(p.getRarity()+1);
+            }
+            mainGame.getPlayers().get(1).setHP(mainGame.getPlayers().get(1).getHP()-((mainGame.getTurn()+1)/3+(num/2)));
+            mainGame.getPlayers().get(0).generateInterest();
+            mainGame.getPlayers().get(1).generateInterest();
+            mainGame.getGoldDisplay().updateMoney(1);
+            mainGame.getGoldDisplay().updateMoney(2);
+            mainGame.getGoldDisplay().updateHP(2);
         }
         return true;
     }

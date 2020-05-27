@@ -34,6 +34,9 @@ public class MainGame {
     public Pane getWrapper(){return wrapper;}
     public WinRound getWinRound(){return windRound;}
     public GoldDisplay getGoldDisplay(){return gDisplay;}
+    public ArrayList<Player> getPlayers() { return players; }
+    public int getTurn() { return turn; }
+
     //public methods
     public void adjustGDBody(double[] dimensions){
         gDisplay.getBody().setLayoutX(dimensions[0]);
@@ -89,8 +92,8 @@ public class MainGame {
 
     //private methods
     public void createPlayers(){
-        players.add(new Player("Player 1",1,20,100,pField,this));
-        players.add(new Player("Player 2",2,20,100,pField,this));
+        players.add(new Player("Player 1",1,5,100,pField,this));
+        players.add(new Player("Player 2",2,5,100,pField,this));
         shop.setPlayers(players.get(0),players.get(1));
         gDisplay.setPlayers(players.get(0),players.get(1));
         //players.get(0).getDeck().showDeck();
