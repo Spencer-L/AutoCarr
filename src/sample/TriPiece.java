@@ -9,6 +9,7 @@ public class TriPiece extends Piece{
     private Polygon base;
     TriPiece(double s,double h, String id,MainGame mG,PlayField pF,int tN,double[] pos,Deck pD){
         super(s,h,id,mG,pF,tN,pos,pD);
+        setName("Archer");
         setHealth(getHealth()+80);
         setMaxHealth((int)getHealth());
         setAtkSpd(1.2);
@@ -41,6 +42,7 @@ public class TriPiece extends Piece{
     //polymorphic constructor for level ups
     TriPiece(int r, int l, double s,double h, String id,MainGame mG,PlayField pF,int tN,double[] pos,Deck pD){
         super(r,l,s,h,id,mG,pF,tN,pos,pD);
+        setName("Archer");
         setHealth(getHealth()+80);
         setMaxHealth((int)getHealth());
         setAtkSpd(1.2);
