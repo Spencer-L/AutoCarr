@@ -62,7 +62,7 @@ public class Deck {
     }
     //public methods
     public void movePieces(){
-        for(int i=0;i<=5;i++){
+        for(int i=0;i<=16;i++){
             double pieceSize=getPieces().get(0).getSize();
             slots.add(new double[]{getBody().getLayoutX()+pieceSize/2*(3*i)+pieceSize/2,
                     getBody().getLayoutY()+getPieces().get(0).getSize()/2,0});
@@ -72,6 +72,11 @@ public class Deck {
             getPieces().get(i).getBody().setLayoutY(slots.get(i)[1]);
             slots.get(i)[2]=1;
         }
+    }
+    public void movePieces2(Piece p,int num){
+        p.getBody().setLayoutX(slots.get(num)[0]);
+        p.getBody().setLayoutY(slots.get(num)[1]);
+        slots.get(slots.size()-1)[2]=1;
     }
     public void glow(){
         base.setFill(Color.DARKORANGE);
@@ -126,7 +131,7 @@ public class Deck {
             piecesInDock.add(p);
         }
         mainGame.updateDeck(p);
-        fieldToDeck(p);
+        movePieces2(p,piecesInDock.size()-1);
     }
     public void createArcher(int num){
         ArrayList<Box> boxes=playField.getBoxes();
@@ -137,7 +142,7 @@ public class Deck {
             piecesInDock.add(p);
         }
         mainGame.updateDeck(p);
-        fieldToDeck(p);
+        movePieces2(p,piecesInDock.size()-1);
     }
     public void createPaladin(int num){
         ArrayList<Box> boxes=playField.getBoxes();
@@ -148,7 +153,7 @@ public class Deck {
             piecesInDock.add(p);
         }
         mainGame.updateDeck(p);
-        fieldToDeck(p);
+        movePieces2(p,piecesInDock.size()-1);
     }
     public void createPriest(int num){
         ArrayList<Box> boxes=playField.getBoxes();
@@ -159,7 +164,7 @@ public class Deck {
         if(!p.getOnField()){
             piecesInDock.add(p);
         }
-        fieldToDeck(p);
+        movePieces2(p,piecesInDock.size()-1);
     }
     public void createBerserker(int num){
         ArrayList<Box> boxes=playField.getBoxes();
@@ -170,7 +175,7 @@ public class Deck {
             piecesInDock.add(p);
         }
         mainGame.updateDeck(p);
-        fieldToDeck(p);
+        movePieces2(p,piecesInDock.size()-1);
     }
 
     //private methods
@@ -186,9 +191,9 @@ public class Deck {
         pieces.add(tempPiece);
         pieces.add(tempPiece2);
         pieces.add(tempPiece3);
-        pieces.add(tempPiece4);
-        pieces.add(tempPiece5);
-        pieces.add(tempPiece6);
+        //pieces.add(tempPiece4);
+       // pieces.add(tempPiece5);
+       // pieces.add(tempPiece6);
         for(Piece p:pieces){
             if(!p.getOnField()){
                 piecesInDock.add(p);

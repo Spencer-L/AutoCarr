@@ -80,6 +80,7 @@ public class MainGame {
         }
     }
     public void updateDeck(Piece p){
+        wrapper.getChildren().add(0,p.getRangeBox());
         wrapper.getChildren().add(p.getBody());
     }
 
