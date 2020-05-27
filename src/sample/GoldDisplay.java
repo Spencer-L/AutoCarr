@@ -15,8 +15,9 @@ public class GoldDisplay {
     private Pane body = new Pane();
     private double [] screenDimensions;
     private double [] bodyDimensions;
-    Rectangle base;
-    int goldCount;
+    private Rectangle base;
+    private Player player1,player2;
+    private Text num,num1;
     //constructor
     public GoldDisplay(){
         screenDimensions=GlobalVariable.screenDimensions;
@@ -44,7 +45,7 @@ public class GoldDisplay {
         g.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/13));
         g.setFill(Color.BLACK);
         gold.getChildren().addAll(c,g);
-        Text num=new Text(bodyDimensions[0]/12+bodyDimensions[0]/4,bodyDimensions[1]/5.60,"1000");
+        num=new Text(bodyDimensions[0]/12+bodyDimensions[0]/4,bodyDimensions[1]/5.60,"100");
         num.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/6.5));
         num.setFill(Color.BLACK);
         //p2
@@ -68,7 +69,7 @@ public class GoldDisplay {
         g1.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/13));
         g1.setFill(Color.BLACK);
         gold1.getChildren().addAll(c1,g1);
-        Text num1=new Text(bodyDimensions[0]/12+bodyDimensions[0]/4,bodyDimensions[1]/2.60,"1000");
+        num1=new Text(bodyDimensions[0]/12+bodyDimensions[0]/4,bodyDimensions[1]/2.60,"100");
         num1.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/6.5));
         num1.setFill(Color.BLACK);
         body.getChildren().addAll(p1,hp,lvl,gold,num,p2,hp1,lvl1,gold1,num1);
@@ -81,6 +82,17 @@ public class GoldDisplay {
         base.setWidth(bD[0]);
         base.setHeight(bD[1]);
     }
+    public void setPlayers(Player pl1,Player pl2){
+        player1=pl1;
+        player2=pl2;
+        createPlayerInfo();
+    }
     //methods
+
+    public void createPlayerInfo(){
+        num.setText(Double.toString(player1.getMoney()));
+        num1.setText(Double.toString(player2.getMoney()));
+        //body.getChildren().add(num,num1);
+    }
 
 }

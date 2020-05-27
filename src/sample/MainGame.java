@@ -86,9 +86,10 @@ public class MainGame {
 
     //private methods
     public void createPlayers(){
-        players.add(new Player("Player 1",1,500d,pField,this));
-        players.add(new Player("Player 2",2,500d,pField,this));
+        players.add(new Player("Player 1",1,500,100,pField,this));
+        players.add(new Player("Player 2",2,500,100,pField,this));
         shop.setPlayers(players.get(0),players.get(1));
+        gDisplay.setPlayers(players.get(0),players.get(1));
         //players.get(0).getDeck().showDeck();
         //players.get(1).getDeck().hideDeck();
     }

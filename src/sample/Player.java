@@ -10,15 +10,17 @@ public class Player {
     Deck deck;
     String name;
     int teamNum;
-    double money;
+    int money;
+    int HP;
 
     //constructor
-    Player(String n, int tN, double m, PlayField pF, MainGame mG){
+    Player(String n, int tN, int m,int hp, PlayField pF, MainGame mG){
         playField=pF;
         mainGame=mG;
         name=n;
         teamNum=tN;
         money=m;
+        HP=hp;
         createDeck();
     }
     //setter/getter
@@ -31,9 +33,7 @@ public class Player {
         return playField;
     }
 
-    public double getMoney() {
-        return money;
-    }
+    public int getMoney() { return money; }
 
     public MainGame getMainGame() {
         return mainGame;
@@ -44,6 +44,9 @@ public class Player {
     }
 
     public String getName(){return name;}
+
+    public int getHP() { return HP; }
+
     //public methods
     public void appendDeck(){
         mainGame.getWrapper().getChildren().add(deck.getBody());
