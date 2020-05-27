@@ -11,9 +11,10 @@ public class PentPiece extends Piece {
         super(s,h,id,mG,pF,tN,pos,pD);
         setHealth(getHealth()+120);
         setMaxHealth((int)getHealth());
-        setAtkSpd(.9);
+        setAtkSpd(1.5);
         setDamage(getDamage()+5);
-        setRange(2);
+        setRange(5);
+        setRangeFactor(0.43);
         base=new Polygon();
         base.getPoints().addAll(
                 0.0, 0.0,
@@ -43,9 +44,10 @@ public class PentPiece extends Piece {
         super(r,l,s,h,id,mG,pF,tN,pos,pD);
         setHealth(getHealth()+120);
         setMaxHealth((int)getHealth());
-        setAtkSpd(.9);
+        setAtkSpd(1.5);
         setDamage(getDamage()+5);
-        setRange(2);
+        setRange(5);
+        setRangeFactor(0.43);
         base=new Polygon();
         base.getPoints().addAll(
                 0.0, 0.0,
