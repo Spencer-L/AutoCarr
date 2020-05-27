@@ -89,7 +89,7 @@ public class MainGame {
     private void appendBodies(){
         for(Player player:players){
             for(Piece p:player.getDeck().getPieces()){
-                //wrapper.getChildren().add(p.getRangeBox());
+                wrapper.getChildren().add(p.getRangeBox());
             }
         }
         Pane shopBody=(Pane)shop.getBody();
@@ -103,7 +103,7 @@ public class MainGame {
         for(Player player:players){
             player.appendDeck();
             for(Piece p:player.getDeck().getPieces()){
-                wrapper.getChildren().add(p.getRangeBox());
+
                 wrapper.getChildren().add(p.getBody());
 
             }
