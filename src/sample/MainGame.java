@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.animation.Timeline;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -62,7 +63,6 @@ public class MainGame {
         if(turn%3==0){
             players.get(0).getDeck().showDeck();
             players.get(1).getDeck().hideDeck();
-            System.out.println(deck);
             deck.hideDeck();
         }else if(turn%3==1){
             players.get(0).getDeck().hideDeck();

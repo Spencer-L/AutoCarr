@@ -16,7 +16,6 @@ public class WinRound {
     //constructor
     WinRound(MainGame mG){
         mainGame=mG;
-        System.out.println(mG.dimensions);
         //System.out.println(mG.dimensions[1]);
         body.setPrefSize(mG.dimensions[0],mG.dimensions[1]);
         Text msg=new Text();
