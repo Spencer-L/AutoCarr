@@ -64,11 +64,13 @@ public class MainGame {
         pField.repositionPieces();
         if(turn%3==0){
             players.get(0).getDeck().showDeck();
+            players.get(0).getDeck().levelUp();
             players.get(1).getDeck().hideDeck();
             deck.hideDeck();
         }else if(turn%3==1){
             players.get(0).getDeck().hideDeck();
             players.get(1).getDeck().showDeck();
+            players.get(1).getDeck().levelUp();
         }else if(turn%3==2){
             startFight();
             players.get(0).getDeck().hideDeck();
@@ -77,7 +79,7 @@ public class MainGame {
         }
         turn++;
         if(turn>1){
-         shop.nextPhase();
+            shop.nextPhase();
         }
     }
     public void updateDeck(Piece p){

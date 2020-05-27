@@ -228,7 +228,7 @@ public class Deck {
         nameTag.setLayoutY(-30);
         body.getChildren().add(nameTag);
     }
-    private void levelUp(){
+    public void levelUp(){
         double boxSize=playField.getBoxSize();
         String[] names = new String[5];
         names[0]="Paladin";
