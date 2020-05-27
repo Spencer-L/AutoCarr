@@ -26,15 +26,12 @@ public class WinRound {
         mainGame=mG;
         timerCounter=0;
         seconds=0;
-        //System.out.println(mG.dimensions[1]);
         body.setPrefSize(mG.dimensions[0],mG.dimensions[1]);
         msg=new Text();
         msg.setText("Hello");
         msg.setFont(new Font(mG.dimensions[0]*0.0732));
         msg.setFill(Color.RED);
         body.getChildren().add(msg);
-        //nameTag.setLayoutY(-30);
-        //body.getChildren().add(nameTag);
         body.setVisible(false);
     }
     //setter/getter
@@ -69,49 +66,43 @@ public class WinRound {
             return false;
         }else if(dead1&&dead2){
             displayWinner("There is a tie");
-            //try {
-            //    displayWinner("There is a tie");
-            //} catch (InterruptedException e) {
-            //    e.printStackTrace();
-            //}
         }else if(dead1){
             displayWinner("Player 2 Wins The Round!");
-            //try {
-            //    displayWinner("Player 2 Wins The Round!");
-            //} catch (InterruptedException e) {
-            //    e.printStackTrace();
-            //}
         }else if(dead2){
-            //try {
-                displayWinner("Player 1 Wins The Round!");
-            //} catch (InterruptedException e) {
-             //   e.printStackTrace();
-            //}
+            displayWinner("Player 1 Wins The Round!");
         }
         return true;
     }
-    public void displayWinner(String msg){// throws InterruptedException {
+    //private methods
+    private void displayWinner(String msg){// throws InterruptedException {
         setToWrite(msg);
         body.setVisible(true);
-        timer = new Timeline(new KeyFrame(Duration.millis(40), ae -> doCount()));
+        timer = new Timeline(new KeyFrame(Duration.millis(40), ae -> doCount(3)));
         timer.setCycleCount(Animation.INDEFINITE);
         timer.play();
-        //TimeUnit.SECONDS.sleep(3);
-        //body.setVisible(false);
     }
-    //private methods
-    public void doCount(){
-
+    private void doCount(int numSec){
         if (timerCounter < 30) timerCounter++;
         else{
             seconds++;
             timerCounter=0;
-            System.out.println(seconds);
-            if(seconds==3){
+            if(seconds==numSec){
                 body.setVisible(false);
                 seconds=0;
                 timer.stop();
+                checkIfEndGame();
             }
+        }
+    }
+    private void checkIfEndGame(){
+        boolean loose1=mainGame.players.get(0).getHP()<=0;
+        boolean loose2=mainGame.players.get(1).getHP()<=0;
+        if(loose1&&loose2){
+            displayWinner("There Is A Tie");
+        }else if(loose1){
+            displayWinner("Player 2 Have Won the Game");
+        }else if(loose2){
+            displayWinner("Player 1 Have Won the Game");
         }
     }
 }
