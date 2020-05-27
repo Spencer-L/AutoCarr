@@ -11,9 +11,10 @@ public class TriPiece extends Piece{
         super(s,h,id,mG,pF,tN,pos,pD);
         setHealth(getHealth()+80);
         setMaxHealth((int)getHealth());
-        setAtkSpd(.9);
+        setAtkSpd(1.2);
         setDamage(getDamage()+20);
-        setRange(3);
+        setRange(7);
+        setRangeFactor(.5);
         base=new Polygon();
         base.getPoints().addAll(
                 0.0, 0.0,
@@ -42,9 +43,9 @@ public class TriPiece extends Piece{
         super(r,l,s,h,id,mG,pF,tN,pos,pD);
         setHealth(getHealth()+80);
         setMaxHealth((int)getHealth());
-        setAtkSpd(.9);
+        setAtkSpd(1.2);
         setDamage(getDamage()+20);
-        setRange(3);
+        setRange(7);
         base=new Polygon();
         base.getPoints().addAll(
                 0.0, 0.0,
