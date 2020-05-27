@@ -93,6 +93,49 @@ public abstract class Piece {
         healthBarRed.setAlignment(healthBarGreen, Pos.CENTER_LEFT);
         healthBarRed.getChildren().add(healthBarGreen);
 
+        experienceBoost();
+
+    }
+    Piece(int r, int l, double s,double h, String id,MainGame mG,PlayField pF,int tN,double[] pos,Deck pD){
+        mainGame=mG;
+        playField=pF;
+        parentDeck=pD;
+        size=s;
+        teamNum=tN;
+        body=new StackPane();
+        body.setPrefSize(s,s);
+        parentBox=null;
+        body.addEventHandler(MouseEvent.MOUSE_DRAGGED,event -> dragPiece(event));
+        body.addEventHandler(MouseEvent.MOUSE_RELEASED,event -> releasePiece(event));
+        health=h;
+        ID=id;
+        level = l;
+        body.setLayoutX(pos[0]);
+        body.setLayoutY(pos[1]);
+        overallPosition=findPosition();
+        this.rarity=r;
+        atkSpd=.9;
+        damage=10;
+        maxHealth = h;
+        range = 1;
+        isDead = false;
+        levels = new Text(Integer.toString(level));
+
+        rarityBand = new Rectangle(s/2,10);
+        createRarityBand();
+
+
+        healthBarGreen = new Rectangle();
+        healthBarGreen.setWidth(s);
+        healthBarGreen.setHeight(15);
+        healthBarGreen.setFill(Color.GREEN);
+
+        healthBarRed = new StackPane();
+        healthBarRed.setMaxSize(s,15);
+        healthBarRed.setStyle("-fx-background-color:RED");
+        healthBarRed.setAlignment(healthBarGreen, Pos.CENTER_LEFT);
+        healthBarRed.getChildren().add(healthBarGreen);
+
 
     }
     //setter/getter
@@ -349,7 +392,7 @@ public abstract class Piece {
             else {
                 timerCounter = 0;
                 if (target.getHealth() == 0) attackPacing.stop();
-                if (inRange(target)) {
+                //if (inRange(target)) {
                     boolean dead = dealDamage(target);
                     calculateHealthBar();
                     if(dead) {
@@ -361,19 +404,20 @@ public abstract class Piece {
                     }
                     //System.out.println("I have " + health + " and I did " + damage + " to my target, " + teamNum );
 
-                }
+                //}
             }
         }
     }
 
-    protected boolean inRange(Piece enemy){
+
+    /*protected boolean inRange(Piece enemy){
        // while(target!=null) {
             if (getRangeBox().getBoundsInParent().intersects(target.getBody().getBoundsInParent())) {
                 return true;
             }
        // }
         return false;
-    }
+    }*/
 
     protected boolean dealDamage(Piece enemy){
         enemy.setHealth(enemy.getHealth()-damage);
@@ -420,10 +464,13 @@ public abstract class Piece {
     }
 
     public void setDead(){
-        isDead = true;
-        mainGame.getWrapper().getChildren().remove(this.getBody());
-        playField.getPieces().remove(this);
-        playField.getDeadPieces().add(this);
+        if(isDead==false) {
+            System.out.println(this + "is dead");
+            isDead = true;
+            mainGame.getWrapper().getChildren().remove(this.getBody());
+            playField.getPieces().remove(this);
+            playField.getDeadPieces().add(this);
+        }
 //        playField.getBody().getChildren().remove(this);
     }
 
@@ -436,10 +483,17 @@ public abstract class Piece {
     }
 
     public Rectangle makeRangeBox(){
+            System.out.println("Hi i'm team " + teamNum+ " with "+ range + " " + size + "and a " + this);
             Rectangle rB = new Rectangle (0,0,size*getRange(),size*getRange());
             //System.out.println("Rectangle with range " + getRange()+ " created");
             rB.setFill(Color.RED);
             return rB;
+    }
+    protected void experienceBoost(){
+        maxHealth+=Math.pow(5,level);
+        health=maxHealth;
+        damage+=Math.pow(3,level);
+        atkSpd+=level*0.05;
     }
     //private methods
 

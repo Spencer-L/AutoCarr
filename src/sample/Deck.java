@@ -125,8 +125,18 @@ public class Deck {
         double boxSize=playField.getBoxSize();
         RectPiece tempPiece=new RectPiece(boxSize*0.5,100,"Rect1",mainGame,playField,teamNum,new double[]{0,0},this);
         RectPiece tempPiece2=new RectPiece(boxSize*0.5,100,"Rect2",mainGame,playField,teamNum,new double[]{0,0},this);
+       // RectPiece tempPiece7=new RectPiece(boxSize*0.5,100,"Rect3",mainGame,playField,teamNum,new double[]{0,0},this);
+     //  PentPiece tempPiece3=new PentPiece(boxSize*0.5,100,"Pent1",mainGame,playField,teamNum,new double[]{0,0},this);
+      //  CirPiece tempPiece4=new CirPiece(boxSize*0.5,100,"Cir1",mainGame,playField,teamNum,new double[]{0,0},this);
+      //  TriPiece tempPiece5=new TriPiece(boxSize*0.4,100,"Tri1",mainGame,playField,teamNum,new double[]{0,0},this);
+      //  HexPiece tempPiece6=new HexPiece(boxSize*0.4,100,"Hex1",mainGame,playField,teamNum,new double[]{0,0},this);
         pieces.add(tempPiece);
         pieces.add(tempPiece2);
+      //  pieces.add(tempPiece7);
+       // pieces.add(tempPiece3);
+       // pieces.add(tempPiece4);
+       // pieces.add(tempPiece5);
+      //  pieces.add(tempPiece6);
         for(Piece p:pieces){
             if(!p.getOnField()){
                 piecesInDock.add(p);
@@ -157,5 +167,53 @@ public class Deck {
         nameTag.getChildren().add(name);
         nameTag.setLayoutY(-30);
         body.getChildren().add(nameTag);
+    }
+    private void levelUp(){
+        double boxSize=playField.getBoxSize();
+        String[] names = new String[5];
+        names[0]="Paladin";
+        names[1]="Wizard";
+        names[2]="Archer";
+        names[3]="Berserker";
+        names[4]="Priest";
+        int pieceIndex = 0;
+        ArrayList<Integer> similarIndex = new ArrayList<Integer>();
+        for(Piece p:piecesInDock){
+            int nameIndex = 0;
+            for(String name:names) {
+                for(int j = 1; j<=3;j++) {
+                    for(int k = 0; k < 4; k++) {
+                        int counter = 0;
+                        if (p.getName().equals(name) && p.getLevel() == j && p.getRarity() == k) {
+                            similarIndex.add(pieceIndex);
+                            counter++;
+                        }
+                        if (counter >= 3) {
+                            for (int i = 0; i < similarIndex.size(); i++) {
+                                piecesInDock.remove(similarIndex.get(i));
+                                pieces.remove(similarIndex.get(i));
+                            }
+                            if(nameIndex==0){
+                                pieces.add(new RectPiece(p.getRarity(),j+1, boxSize * 0.5, 100, "Rect2", mainGame, playField, teamNum, new double[]{0, 0}, this));
+                            }
+                            else if(nameIndex==1){
+                                pieces.add(new CirPiece(p.getRarity(),j+1, boxSize * 0.5, 100, "Rect2", mainGame, playField, teamNum, new double[]{0, 0}, this));
+                            }
+                            else if(nameIndex==2){
+                                pieces.add(new TriPiece(p.getRarity(),j+1, boxSize * 0.5, 100, "Rect2", mainGame, playField, teamNum, new double[]{0, 0}, this));
+                            }
+                            else if(nameIndex==3){
+                                pieces.add(new HexPiece(p.getRarity(),j+1, boxSize * 0.5, 100, "Rect2", mainGame, playField, teamNum, new double[]{0, 0}, this));
+                            }
+                            else if(nameIndex==4){
+                                pieces.add(new PentPiece(p.getRarity(),j+1, boxSize * 0.5, 100, "Rect2", mainGame, playField, teamNum, new double[]{0, 0}, this));
+                            }
+                        }
+                    }
+                }
+                nameIndex++;
+            }
+            pieceIndex++;
+        }
     }
 }

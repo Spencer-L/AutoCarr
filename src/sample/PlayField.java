@@ -163,6 +163,7 @@ public class PlayField {
             p.restoreHealth();
         }
         for(Piece p:deadPieces){
+            System.out.println(p + " hihihihihii " + p.getTeamNum() );
             p.revive();
         }
         while(deadPieces.size()>0){

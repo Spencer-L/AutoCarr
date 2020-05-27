@@ -32,6 +32,7 @@ public class TriPiece extends Piece{
         getBody().getChildren().add((getLevels()));
         getBody().setAlignment(getHealthBarRed(), Pos.BOTTOM_CENTER);
         getBody().getChildren().add(getHealthBarRed());
+
         setRangeBox(makeRangeBox());
 
     }
