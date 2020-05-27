@@ -13,15 +13,15 @@ public class WinRound {
     //field
     StackPane body=new StackPane();
     MainGame mainGame;
-    String toWrite="Hello";
+    Text msg;
     //constructor
     WinRound(MainGame mG){
         mainGame=mG;
         //System.out.println(mG.dimensions[1]);
         body.setPrefSize(mG.dimensions[0],mG.dimensions[1]);
-        Text msg=new Text();
-        msg.setText(toWrite);
-        msg.setFont(new Font(200));
+        msg=new Text();
+        msg.setText("Hello");
+        msg.setFont(new Font(mG.dimensions[0]*0.0732));
         msg.setFill(Color.RED);
         body.getChildren().add(msg);
         //nameTag.setLayoutY(-30);
@@ -34,11 +34,10 @@ public class WinRound {
     }
 
     public void setToWrite(String toWrite) {
-        this.toWrite = toWrite;
+        msg.setText(toWrite);
     }
     //public methods
     public boolean checkIfWinner(){
-        System.out.println("lol");
         PlayField pF=mainGame.pField;
         ArrayList<Piece> pieces1=new ArrayList<Piece>();
         ArrayList<Piece> pieces2=new ArrayList<Piece>();
@@ -51,44 +50,42 @@ public class WinRound {
                 pieces2.add(p);
             }
         }
-        for(Piece p:pieces1){
-            if(p.getHealth()<=0){
-                dead1=true;
-            }
+        if(pieces1.size()==0){
+            dead1=true;
         }
-        for(Piece p:pieces2){
-            if(p.getHealth()<=0){
-                dead2=true;
-            }
+        if(pieces2.size()==0){
+            dead2=true;
         }
         if(!dead1&&!dead2){
             return false;
         }else if(dead1&&dead2){
-            try {
-                displayWinner("There is a tie");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            displayWinner("There is a tie");
+            //try {
+            //    displayWinner("There is a tie");
+            //} catch (InterruptedException e) {
+            //    e.printStackTrace();
+            //}
         }else if(dead1){
-            try {
-                displayWinner("Player 2 Wins The Round!");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            displayWinner("Player 2 Wins The Round!");
+            //try {
+            //    displayWinner("Player 2 Wins The Round!");
+            //} catch (InterruptedException e) {
+            //    e.printStackTrace();
+            //}
         }else if(dead2){
-            try {
+            //try {
                 displayWinner("Player 1 Wins The Round!");
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            //} catch (InterruptedException e) {
+             //   e.printStackTrace();
+            //}
         }
         return true;
     }
-    public void displayWinner(String msg) throws InterruptedException {
-        toWrite=msg;
+    public void displayWinner(String msg){// throws InterruptedException {
+        setToWrite(msg);
         body.setVisible(true);
-        TimeUnit.SECONDS.sleep(3);
-        body.setVisible(false);
+        //TimeUnit.SECONDS.sleep(3);
+        //body.setVisible(false);
     }
     //private methods
 
