@@ -91,12 +91,10 @@ public class Deck {
     }
     public void deckToField(Piece p){
         int index=0;
-        for(int i=0;i<piecesInDock.size();i++){
-            index=piecesInDock.indexOf(p);
-            System.out.println(index);
-            slots.get(index)[2]=0;
-            piecesInDock.remove(p);
-        }
+        index=piecesInDock.indexOf(p);
+        System.out.println(index);
+        slots.get(index)[2]=0;
+        piecesInDock.remove(p);
         movePiecesLeft(index);
     }
     public void deckToDeck(Piece p){
@@ -125,14 +123,14 @@ public class Deck {
         double boxSize=playField.getBoxSize();
         RectPiece tempPiece=new RectPiece(boxSize*0.5,100,"Rect1",mainGame,playField,teamNum,new double[]{0,0},this);
         RectPiece tempPiece2=new RectPiece(boxSize*0.5,100,"Rect2",mainGame,playField,teamNum,new double[]{0,0},this);
-       // RectPiece tempPiece7=new RectPiece(boxSize*0.5,100,"Rect3",mainGame,playField,teamNum,new double[]{0,0},this);
+        RectPiece tempPiece7=new RectPiece(boxSize*0.5,100,"Rect3",mainGame,playField,teamNum,new double[]{0,0},this);
      //  PentPiece tempPiece3=new PentPiece(boxSize*0.5,100,"Pent1",mainGame,playField,teamNum,new double[]{0,0},this);
       //  CirPiece tempPiece4=new CirPiece(boxSize*0.5,100,"Cir1",mainGame,playField,teamNum,new double[]{0,0},this);
       //  TriPiece tempPiece5=new TriPiece(boxSize*0.4,100,"Tri1",mainGame,playField,teamNum,new double[]{0,0},this);
       //  HexPiece tempPiece6=new HexPiece(boxSize*0.4,100,"Hex1",mainGame,playField,teamNum,new double[]{0,0},this);
         pieces.add(tempPiece);
         pieces.add(tempPiece2);
-      //  pieces.add(tempPiece7);
+        pieces.add(tempPiece7);
        // pieces.add(tempPiece3);
        // pieces.add(tempPiece4);
        // pieces.add(tempPiece5);
@@ -145,6 +143,7 @@ public class Deck {
     }
     private void movePiecesLeft(int index){
         double diff=slots.get(1)[0]-slots.get(0)[0];
+
         for(int i=index;i<piecesInDock.size();i++){
             double cycleCount=10;
             int tempI=i;
