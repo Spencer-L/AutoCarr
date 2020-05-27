@@ -1,9 +1,13 @@
 package sample;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -14,9 +18,14 @@ public class WinRound {
     StackPane body=new StackPane();
     MainGame mainGame;
     Text msg;
+    Timeline timer;
+    int timerCounter;
+    int seconds;
     //constructor
     WinRound(MainGame mG){
         mainGame=mG;
+        timerCounter=0;
+        seconds=0;
         //System.out.println(mG.dimensions[1]);
         body.setPrefSize(mG.dimensions[0],mG.dimensions[1]);
         msg=new Text();
@@ -84,9 +93,24 @@ public class WinRound {
     public void displayWinner(String msg){// throws InterruptedException {
         setToWrite(msg);
         body.setVisible(true);
+        timer = new Timeline(new KeyFrame(Duration.millis(40), ae -> doCount()));
+        timer.setCycleCount(Animation.INDEFINITE);
+        timer.play();
         //TimeUnit.SECONDS.sleep(3);
         //body.setVisible(false);
     }
     //private methods
+    public void doCount(){
 
+        if (timerCounter < 27) timerCounter++;
+        else{
+            seconds++;
+            timerCounter=0;
+            System.out.println(seconds);
+            if(seconds==3){
+                body.setVisible(false);
+                timer.stop();
+            }
+        }
+    }
 }

@@ -104,7 +104,7 @@ public class MainGame {
         for(Player player:players){
             player.appendDeck();
             for(Piece p:player.getDeck().getPieces()){
-
+                //wrapper.getChildren().add(p.getRangeBox());
                 wrapper.getChildren().add(p.getBody());
 
             }

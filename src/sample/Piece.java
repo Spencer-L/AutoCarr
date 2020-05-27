@@ -483,7 +483,7 @@ public abstract class Piece {
     }
 
     public Rectangle makeRangeBox(){
-            System.out.println("Hi i'm team " + teamNum+ " with "+ range + " " + size + "and a " + this);
+           // System.out.println("Hi i'm team " + teamNum+ " with "+ range + " " + size + "and a " + this);
             Rectangle rB = new Rectangle (0,0,size*getRange(),size*getRange());
             //System.out.println("Rectangle with range " + getRange()+ " created");
             rB.setFill(Color.RED);
