@@ -32,6 +32,7 @@ public class MainGame {
     }
     //setter/getter
     public Pane getWrapper(){return wrapper;}
+    public WinRound getWinRound(){return windRound;}
     //public methods
     public void adjustGDBody(double[] dimensions){
         gDisplay.getBody().setLayoutX(dimensions[0]);

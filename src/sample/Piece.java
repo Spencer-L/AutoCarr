@@ -379,6 +379,7 @@ public abstract class Piece {
     }
 
     protected void doAttack(){
+        mainGame.getWinRound().checkIfWinner();
         boolean alive=true;
         if(health<=0) {
             alive = false;

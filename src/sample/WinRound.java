@@ -29,7 +29,6 @@ public class WinRound {
         body.setVisible(false);
     }
     //setter/getter
-
     public StackPane getBody() {
         return body;
     }
@@ -39,6 +38,7 @@ public class WinRound {
     }
     //public methods
     public boolean checkIfWinner(){
+        System.out.println("lol");
         PlayField pF=mainGame.pField;
         ArrayList<Piece> pieces1=new ArrayList<Piece>();
         ArrayList<Piece> pieces2=new ArrayList<Piece>();
