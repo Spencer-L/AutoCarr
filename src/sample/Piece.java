@@ -378,7 +378,7 @@ public abstract class Piece {
     }
 
     protected void doAttack(){
-        mainGame.getWinRound().checkIfWinner();
+
         boolean alive=true;
         if(health<=0) {
             alive = false;
@@ -396,8 +396,10 @@ public abstract class Piece {
                     boolean dead = dealDamage(target);
                     calculateHealthBar();
                     if(dead) {
+
                         target.setDead();
                        // System.out.println(target);
+
                         attackPacing.stop();
                         playField.findNewFight(this);
                       //  System.out.println(target);
@@ -466,10 +468,12 @@ public abstract class Piece {
     public void setDead(){
         if(isDead==false) {
             System.out.println(this + "is dead");
+
             isDead = true;
             mainGame.getWrapper().getChildren().remove(this.getBody());
             playField.getPieces().remove(this);
             playField.getDeadPieces().add(this);
+            mainGame.getWinRound().checkIfWinner();
         }
 //        playField.getBody().getChildren().remove(this);
     }

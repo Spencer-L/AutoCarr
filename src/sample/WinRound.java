@@ -92,6 +92,7 @@ public class WinRound {
     }
     public void displayWinner(String msg){// throws InterruptedException {
         setToWrite(msg);
+        System.out.println("why am i doing this");
         body.setVisible(true);
         timer = new Timeline(new KeyFrame(Duration.millis(40), ae -> doCount()));
         timer.setCycleCount(Animation.INDEFINITE);
@@ -102,15 +103,15 @@ public class WinRound {
     //private methods
     public void doCount(){
 
-        if (timerCounter < 27) timerCounter++;
+        if (timerCounter < 30) timerCounter++;
         else{
             seconds++;
             timerCounter=0;
             System.out.println(seconds);
             if(seconds==3){
                 body.setVisible(false);
-                timer.stop();
                 seconds=0;
+                timer.stop();
             }
         }
     }
