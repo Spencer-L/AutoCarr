@@ -13,7 +13,7 @@ public class HexPiece extends Piece{
         setHealth(getHealth()+50);
         setMaxHealth((int)getHealth());
         setAtkSpd(1.75);
-        setDamage(getDamage()+20);
+        setDamage(getDamage()+15);
         setRange(1.75);
         setRangeFactor(0.00001);
         base=new Polygon();
@@ -48,7 +48,7 @@ public class HexPiece extends Piece{
         setHealth(getHealth()+50);
         setMaxHealth((int)getHealth());
         setAtkSpd(1.75);
-        setDamage(getDamage()+20);
+        setDamage(getDamage()+15);
         setRange(1.75);
         setRangeFactor(0.00001);
         base=new Polygon();

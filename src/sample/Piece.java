@@ -30,7 +30,7 @@ public abstract class Piece {
     private double[] overallPosition;
     boolean isDragging=false;
     private MainGame mainGame;
-    private     PlayField playField;
+    private PlayField playField;
     private int teamNum;
     private int cost;
     private int level = 1;
@@ -342,11 +342,11 @@ public abstract class Piece {
         }else{
             moveUpClose(target);
 
-              //   if(inRange(target)) {
+            //   if(inRange(target)) {
             attackPacing = new Timeline(new KeyFrame(Duration.millis(40), ae -> doAttack()));
             attackPacing.setCycleCount(Animation.INDEFINITE);
-                 //      attackPacing.play();
-              //  }
+            //      attackPacing.play();
+            //  }
 
         }
     }
@@ -380,18 +380,18 @@ public abstract class Piece {
         if(diffY<3 && diffY>-3) movement[1]=0;
 
         if(!getRangeBox().getBoundsInParent().intersects(target.getBody().getBoundsInParent())) {
-           // System.out.println(this);
+            // System.out.println(this);
             getBody().setLayoutX(getBody().getLayoutX() + movement[0]);
             getBody().setLayoutY(getBody().getLayoutY() + movement[1]);
             getRangeBox().setLayoutX(getBody().getLayoutX()-(size * (rangeFactor*(range-1))));
             getRangeBox().setLayoutY(getBody().getLayoutY()-(size * (rangeFactor*(range-1))));
-         }
+        }
 
-         if (getRangeBox().getBoundsInParent().intersects(target.getBody().getBoundsInParent())) {
-             tL.stop();
-           //  System.out.print(this);
-             attackPacing.play();
-         }
+        if (getRangeBox().getBoundsInParent().intersects(target.getBody().getBoundsInParent())) {
+            tL.stop();
+            //  System.out.print(this);
+            attackPacing.play();
+        }
     }
 
     protected void reposition(){
@@ -420,18 +420,18 @@ public abstract class Piece {
                 timerCounter = 0;
                 if (target.getHealth() == 0) attackPacing.stop();
                 //if (inRange(target)) {
-                    boolean dead = dealDamage(target);
-                    calculateHealthBar();
-                    if(dead) {
+                boolean dead = dealDamage(target);
+                calculateHealthBar();
+                if(dead) {
 
-                        target.setDead();
-                       // System.out.println(target);
+                    target.setDead();
+                    // System.out.println(target);
 
-                        attackPacing.stop();
-                        playField.findNewFight(this);
-                      //  System.out.println(target);
-                    }
-                    //System.out.println("I have " + health + " and I did " + damage + " to my target, " + teamNum );
+                    attackPacing.stop();
+                    playField.findNewFight(this);
+                    //  System.out.println(target);
+                }
+                //System.out.println("I have " + health + " and I did " + damage + " to my target, " + teamNum );
 
                 //}
             }
@@ -514,11 +514,11 @@ public abstract class Piece {
     }
 
     public Rectangle makeRangeBox(){
-           // System.out.println("Hi i'm team " + teamNum+ " with "+ range + " " + size + "and a " + this);
-            Rectangle rB = new Rectangle (0,0,size*getRange(),size*getRange());
-            //System.out.println("Rectangle with range " + getRange()+ " created");
-            rB.setFill(Color.RED);
-            return rB;
+        // System.out.println("Hi i'm team " + teamNum+ " with "+ range + " " + size + "and a " + this);
+        Rectangle rB = new Rectangle (0,0,size*getRange(),size*getRange());
+        //System.out.println("Rectangle with range " + getRange()+ " created");
+        rB.setFill(Color.RED);
+        return rB;
     }
     protected void experienceBoost(){
         maxHealth+=Math.pow(5,level);

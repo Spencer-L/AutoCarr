@@ -13,8 +13,8 @@ public class RectPiece extends Piece{
         setName("Paladin");
         setHealth(getHealth()+250);
         setMaxHealth((int)getHealth());
-        setAtkSpd(1);
-        setDamage(getDamage()+20);
+        setAtkSpd(0.70);
+        setDamage(getDamage()+30);
         setRange(1);
         setRangeFactor(0.5);
         base=new Rectangle(0,0,getSize(),getSize());
@@ -39,8 +39,8 @@ public class RectPiece extends Piece{
         setName("Paladin");
         setHealth(getHealth()+250);
         setMaxHealth((int)getHealth());
-        setAtkSpd(1);
-        setDamage(getDamage()+20);
+        setAtkSpd(0.70);
+        setDamage(getDamage()+30);
         setRange(1);
         setRangeFactor(0.5);
         base=new Rectangle(0,0,getSize(),getSize());

@@ -26,6 +26,7 @@ public class Deck {
     private PlayField playField;
     private StackPane nameTag=new StackPane();
     private int teamNum;
+
     //constructor
     public Deck(Player p){
         screenDimensions= GlobalVariable.screenDimensions;

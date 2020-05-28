@@ -33,9 +33,9 @@ public class GoldDisplay {
         hp=new Text(bodyDimensions[0]/12,bodyDimensions[1]/11.5,"HP: 100");
         hp.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/6.5));
         hp.setFill(Color.RED);
-        Text lvl=new Text(bodyDimensions[0]/12,bodyDimensions[1]/8,"LVL: 1 (XP ?/?)");
-        lvl.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/6.5));
-        lvl.setFill(Color.BLUE);
+        //lvl=new Text(bodyDimensions[0]/12,bodyDimensions[1]/8,"LVL: 1 (XP ?/?)");
+        //lvl.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/6.5));
+        //lvl.setFill(Color.BLUE);
         StackPane gold=new StackPane();
         gold.setLayoutX(bodyDimensions[0]/12);
         gold.setLayoutY(bodyDimensions[1]/7);
@@ -57,9 +57,9 @@ public class GoldDisplay {
         hp1=new Text(bodyDimensions[0]/12,bodyDimensions[1]/3.4,"HP: 100");
         hp1.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/6.5));
         hp1.setFill(Color.RED);
-        Text lvl1=new Text(bodyDimensions[0]/12,bodyDimensions[1]/3,"LVL: 1 (XP ?/?)");
-        lvl1.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/6.5));
-        lvl1.setFill(Color.BLUE);
+        //Text lvl1=new Text(bodyDimensions[0]/12,bodyDimensions[1]/3,"LVL: 1 (XP ?/?)");
+        //lvl1.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/6.5));
+        //lvl1.setFill(Color.BLUE);
         StackPane gold1=new StackPane();
         gold1.setLayoutX(bodyDimensions[0]/12);
         gold1.setLayoutY(bodyDimensions[1]/2.85);
@@ -72,7 +72,7 @@ public class GoldDisplay {
         num1=new Text(bodyDimensions[0]/12+bodyDimensions[0]/4,bodyDimensions[1]/2.60,"100");
         num1.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/6.5));
         num1.setFill(Color.BLACK);
-        body.getChildren().addAll(p1,hp,lvl,gold,num,p2,hp1,lvl1,gold1,num1);
+        body.getChildren().addAll(p1,hp,gold,num,p2,hp1,gold1,num1);
     }
     //setter/getter
     public Pane getBody(){return body;}

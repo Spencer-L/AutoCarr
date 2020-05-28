@@ -12,8 +12,8 @@ public class TriPiece extends Piece{
         setName("Archer");
         setHealth(getHealth()+60);
         setMaxHealth((int)getHealth());
-        setAtkSpd(1.3);
-        setDamage(getDamage()+20);
+        setAtkSpd(1);
+        setDamage(getDamage()+15);
         setRange(7);
         setRangeFactor(.5);
         base=new Polygon();
@@ -45,8 +45,8 @@ public class TriPiece extends Piece{
         setName("Archer");
         setHealth(getHealth()+60);
         setMaxHealth((int)getHealth());
-        setAtkSpd(1.3);
-        setDamage(getDamage()+20);
+        setAtkSpd(1);
+        setDamage(getDamage()+15);
         setRange(7);
         setRangeFactor(.50);
         base=new Polygon();

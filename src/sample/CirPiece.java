@@ -13,8 +13,8 @@ public class CirPiece extends Piece {
         setName("Wizard");
         setHealth(getHealth() + 50);
         setMaxHealth((int) getHealth());
-        setAtkSpd(0.25);
-        setDamage(getDamage() + 50);
+        setAtkSpd(0.5);
+        setDamage(getDamage() + 30);
         setRange(5);
         setRangeFactor(0.4);
 
@@ -41,8 +41,8 @@ public class CirPiece extends Piece {
         setName("Wizard");
         setHealth(getHealth() + 50);
         setMaxHealth((int) getHealth());
-        setAtkSpd(0.25);
-        setDamage(getDamage() + 50);
+        setAtkSpd(0.5);
+        setDamage(getDamage() + 30);
         setRange(5);
         setRangeFactor(0.4);
 
