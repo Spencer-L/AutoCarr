@@ -69,13 +69,19 @@ public class MainGame {
             players.get(0).getDeck().showDeck();
             players.get(0).getDeck().levelUp();
             players.get(1).getDeck().hideDeck();
+            showPieceOnField(players.get(0));
+            hidePieceOnField(players.get(1));
             deck.hideDeck();
         }else if(turn%3==1){
             players.get(0).getDeck().hideDeck();
             players.get(1).getDeck().showDeck();
             players.get(1).getDeck().levelUp();
+            showPieceOnField(players.get(1));
+            hidePieceOnField(players.get(0));
         }else if(turn%3==2){
             startFight();
+            showPieceOnField(players.get(1));
+            showPieceOnField(players.get(0));
             players.get(0).getDeck().hideDeck();
             players.get(1).getDeck().hideDeck();
             deck.showDeck();
@@ -83,6 +89,20 @@ public class MainGame {
         turn++;
         if(turn>1){
             shop.nextPhase();
+        }
+    }
+    private void hidePieceOnField(Player player){
+        for(Piece p:pField.getPieces()){
+            if(p.getTeamNum()==player.teamNum){
+                p.getBody().setVisible(false);
+            }
+        }
+    }
+    private void showPieceOnField(Player player){
+        for(Piece p:pField.getPieces()){
+            if(p.getTeamNum()==player.teamNum){
+                p.getBody().setVisible(true);
+            }
         }
     }
     public void updateDeck(Piece p){
