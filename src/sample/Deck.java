@@ -33,7 +33,6 @@ public class Deck {
         bodyDimensions=new double[]{screenDimensions[0]*1,screenDimensions[1]*0.14};
         base = new Rectangle(bodyDimensions[0],bodyDimensions[1]);
         base.setFill(Color.ORANGE);
-        //base.setFill(Color.TRANSPARENT);
         body.getChildren().add(0,base);
         player=p;
         mainGame=player.getMainGame();
@@ -105,7 +104,6 @@ public class Deck {
     public void deckToField(Piece p){
         int index=0;
         index=piecesInDock.indexOf(p);
-        //System.out.println(index);
         slots.get(index)[2]=0;
         piecesInDock.remove(p);
         movePiecesLeft(index);
@@ -191,17 +189,7 @@ public class Deck {
         ArrayList<Box> boxes=playField.getBoxes();
         double boxSize=playField.getBoxSize();
         RectPiece tempPiece=new RectPiece(boxSize*0.5,100,"Rect1",mainGame,playField,teamNum,new double[]{0,0},this);
-        RectPiece tempPiece2=new RectPiece(boxSize*0.5,100,"Rect2",mainGame,playField,teamNum,new double[]{0,0},this);
-        PentPiece tempPiece3=new PentPiece(boxSize*0.4,100,"Pent1",mainGame,playField,teamNum,new double[]{0,0},this);
-        CirPiece tempPiece4=new CirPiece(boxSize*0.35,100,"Cir1",mainGame,playField,teamNum,new double[]{0,0},this);
-        TriPiece tempPiece5=new TriPiece(boxSize*0.5,100,"Tri1",mainGame,playField,teamNum,new double[]{0,0},this);
-        HexPiece tempPiece6=new HexPiece(boxSize*0.35,100,"Hex1",mainGame,playField,teamNum,new double[]{0,0},this);
         pieces.add(tempPiece);
-        //pieces.add(tempPiece2);
-      //  pieces.add(tempPiece3);
-        //pieces.add(tempPiece4);
-       // pieces.add(tempPiece5);
-       // pieces.add(tempPiece6);
         for(Piece p:pieces){
             if(!p.getOnField()){
                 piecesInDock.add(p);
@@ -220,25 +208,21 @@ public class Deck {
         }
     }
     private void shuffleLeft(int index,double distance){
-        //System.out.println("shuffleLeftIsCalled");
         if(index<piecesInDock.size()){
             Piece p=piecesInDock.get(index);
             p.getBody().setLayoutX(p.getBody().getLayoutX()-distance);
         }
-        //System.out.println("shuffling left");
     }
     private void createNameTag(){
         Text name=new Text();
         name.setText(player.getName());
         name.setFont(new Font(50));
         name.setFill(Color.RED);
-        //name.setFill(Color.web("ECA310"));
         nameTag.getChildren().add(name);
         nameTag.setLayoutY(-30);
         body.getChildren().add(nameTag);
     }
     public void levelUp(){
-        //System.out.println("HABCDE");
         boolean didMerge=false;
         for(int i=0;i<piecesInDock.size();i++){
             ArrayList<Integer> theThreePieceIndices=new ArrayList<Integer>();
@@ -253,7 +237,6 @@ public class Deck {
                     theThreePieceIndices.add(j);
                 }
             }
-            //System.out.println("i: "+i);
             if(theThreePieceIndices.size()>=3){
                 dealWithDuplicate(theThreePieceIndices);
                 didMerge=true;
@@ -268,7 +251,6 @@ public class Deck {
         for(int i=0;i<3;i++){
             theThreePieces.add(piecesInDock.get(theThreePieceIndices.get(i)));
         }
-        //System.out.println("called");
         Piece firstPiece=theThreePieces.get(0);
         Piece newPiece=createNewPiece(firstPiece.getName(),firstPiece.getLevel(),firstPiece.getRarity());
         for(int i=0;i<theThreePieces.size();i++){
@@ -279,12 +261,9 @@ public class Deck {
             mainGame.getWrapper().getChildren().remove(p.getBody());
             piecesInDock.remove(p);
             pieces.remove(p);
-            //System.out.println("movePiecesLeft is Called with: "+index);
             movePiecesLeft(index);
         }
         mainGame.getWrapper().getChildren().add(newPiece.getBody());
-       // System.out.println("picesInDoce.size(): "+piecesInDock.size());
-        //System.out.println("Look FOR THIS");
         piecesInDock.add(newPiece);
         pieces.add(newPiece);
         movePieces2(newPiece,piecesInDock.size()+1);

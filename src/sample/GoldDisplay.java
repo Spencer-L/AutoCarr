@@ -33,9 +33,6 @@ public class GoldDisplay {
         hp=new Text(bodyDimensions[0]/12,bodyDimensions[1]/10,"HP: 100");
         hp.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/6.5));
         hp.setFill(Color.RED);
-        //lvl=new Text(bodyDimensions[0]/12,bodyDimensions[1]/8,"LVL: 1 (XP ?/?)");
-        //lvl.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/6.5));
-        //lvl.setFill(Color.BLUE);
         StackPane gold=new StackPane();
         gold.setLayoutX(bodyDimensions[0]/12);
         gold.setLayoutY(bodyDimensions[1]/8);
@@ -57,9 +54,6 @@ public class GoldDisplay {
         hp1=new Text(bodyDimensions[0]/12,bodyDimensions[1]/3.2,"HP: 100");
         hp1.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/6.5));
         hp1.setFill(Color.RED);
-        //Text lvl1=new Text(bodyDimensions[0]/12,bodyDimensions[1]/3,"LVL: 1 (XP ?/?)");
-        //lvl1.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/6.5));
-        //lvl1.setFill(Color.BLUE);
         StackPane gold1=new StackPane();
         gold1.setLayoutX(bodyDimensions[0]/12);
         gold1.setLayoutY(bodyDimensions[1]/3);
@@ -94,7 +88,6 @@ public class GoldDisplay {
         num1.setText(Integer.toString(player2.getMoney()));
         hp.setText("HP: "+Integer.toString(player1.getHP()));
         hp1.setText("HP: "+Integer.toString(player1.getHP()));
-        //body.getChildren().add(num,num1);
     }
 
     public void updateMoney(int n){

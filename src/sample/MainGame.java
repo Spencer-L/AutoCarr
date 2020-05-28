@@ -25,7 +25,6 @@ public class MainGame {
     public MainGame(double[] wSize,Main main){
         dimensions=wSize;
         wrapper.setPrefSize(wSize[0],wSize[1]);
-        //wrapper.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> console(event));
         initAllVars();
         createPlayers();
         appendBodies();
@@ -71,7 +70,6 @@ public class MainGame {
                 shop.getBodyDimensions()[1]+(additionalVerticalSpace/2)});
     }
     public void nextPhase(){
-        //System.out.println("Next Phase Called");
         pField.repositionPieces();
         if(turn%3==0){
             players.get(0).getDeck().showDeck();
@@ -133,8 +131,6 @@ public class MainGame {
         players.add(new Player("Player 2",2,1,100,pField,this));
         shop.setPlayers(players.get(0),players.get(1));
         gDisplay.setPlayers(players.get(0),players.get(1));
-        //players.get(0).getDeck().showDeck();
-        //players.get(1).getDeck().hideDeck();
     }
     private void appendBodies(){
         for(Player player:players){
@@ -153,7 +149,6 @@ public class MainGame {
         for(Player player:players){
             player.appendDeck();
             for(Piece p:player.getDeck().getPieces()){
-                //wrapper.getChildren().add(p.getRangeBox());
                 wrapper.getChildren().add(p.getBody());
 
             }

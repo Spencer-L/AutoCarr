@@ -74,15 +74,6 @@ public class Player {
     }
     //private methods
     private void createDeck(){
-        //ArrayList<Box> boxes=playField.getBoxes();
-        //double boxSize=playField.getBoxSize();
-        //ArrayList<Piece> tempList = new ArrayList<Piece>();
-        //RectPiece tempPiece=new RectPiece(boxSize*0.5,boxes.get(54),100,"Rect1",mainGame,playField,teamNum);
-        //RectPiece tempPiece2=new RectPiece(boxSize*0.5,boxes.get(11),100,"Rect2",mainGame,playField,teamNum);
-        //RectPiece tempPiece=new RectPiece(boxSize*0.5,100,"Rect1",mainGame,playField,teamNum,new double[]{0,0});
-        //RectPiece tempPiece2=new RectPiece(boxSize*0.5,100,"Rect2",mainGame,playField,teamNum,new double[]{0,0});
-        //tempList.add(tempPiece);
-        //tempList.add(tempPiece2);
         deck=new Deck(this);
         deck.getBody().relocate(0,playField.getBodyDimensions()[1]);
         if(deck.getPieces().size()>0)deck.movePieces();

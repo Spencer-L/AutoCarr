@@ -123,7 +123,7 @@ public class WinRound {
         return true;
     }
     //private methods
-    private void displayWinner(String msg){// throws InterruptedException {
+    private void displayWinner(String msg){
         setToWrite(msg);
         mainGame.getWrapper().getChildren().remove(body);
         mainGame.getWrapper().getChildren().add(body);

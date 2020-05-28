@@ -38,7 +38,6 @@ public class Main extends Application {
         Button startGame = new Button();
         startGame.setText("Play!");
         startGame.setOnAction(e -> {
-            //Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
             primaryStage.setTitle("Auto Chess");
             Screen myScreen=Screen.getPrimary();
             Rectangle2D bounds= myScreen.getVisualBounds();
@@ -122,8 +121,6 @@ public class Main extends Application {
 
             root.getChildren().add(menu);
             Scene scene = new Scene(root, 1000,1000);
-//TODO: Implement and Format rules to look nice
-            //primaryStage.setTitle("Menu");
             primaryStage.setScene(scene);
             primaryStage.setMaximized(true);
             primaryStage.show();
@@ -147,7 +144,7 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-//hello this is the edited Main file
+//This is the edited Main file
 
     public static void main(String[] args) { launch(args); }
 }

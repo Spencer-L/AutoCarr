@@ -108,8 +108,6 @@ public class Shop {
     public Pane getBtn() { return btn; }
     //methods
     public void actions(){
-        //p1.getDeck().levelUp();
-        //p2.getDeck().levelUp();
         r.setOnMouseClicked(new EventHandler<MouseEvent>(){
             public void handle(MouseEvent event){
                 if(turn%3!=2) {
