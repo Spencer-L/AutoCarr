@@ -268,7 +268,7 @@ public abstract class Piece {
             mainGame.getWrapper().getChildren().remove(this.body);
             parentDeck.getPiecesInDock().remove(this);
             parentDeck.getPieces().remove(this);
-            parentDeck.refundPlayer(rarity+1,teamNum);
+            parentDeck.refundPlayer((rarity+1)*level,teamNum);
             parentDeck.movePiecesLeft(index);
         }else if (body.getLayoutY() > playField.getBodyDimensions()[1]) {
             if (onField) {
