@@ -16,7 +16,7 @@ public class PentPiece extends Piece {
     PentPiece(double s,double h, String id,MainGame mG,PlayField pF,int tN,double[] pos,Deck pD){
         super(s,h,id,mG,pF,tN,pos,pD);
         setName("Priest");
-        setHealth(getHealth()+120);
+        setHealth(getHealth()+150);
         setMaxHealth((int)getHealth());
         setAtkSpd(1);
         setDamage(getDamage()+20);
@@ -50,10 +50,10 @@ public class PentPiece extends Piece {
     PentPiece(int r,int l,double s,double h, String id,MainGame mG,PlayField pF,int tN,double[] pos,Deck pD){
         super(r,l,s,h,id,mG,pF,tN,pos,pD);
         setName("Priest");
-        setHealth(getHealth()+120);
+        setHealth(getHealth()+150);
         setMaxHealth((int)getHealth());
-        setAtkSpd(1.5);
-        setDamage(getDamage()+5);
+        setAtkSpd(1);
+        setDamage(getDamage()+20);
         setRange(5);
         setRangeFactor(0.43);
         base=new Polygon();
