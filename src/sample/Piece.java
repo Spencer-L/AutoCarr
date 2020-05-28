@@ -135,8 +135,8 @@ public abstract class Piece {
         healthBarRed.setStyle("-fx-background-color:RED");
         healthBarRed.setAlignment(healthBarGreen, Pos.CENTER_LEFT);
         healthBarRed.getChildren().add(healthBarGreen);
-
-
+        
+        experienceBoost();
     }
     //setter/getter
 
