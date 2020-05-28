@@ -238,6 +238,7 @@ public class Deck {
     }
     public void levelUp(){
         System.out.println("HABCDE");
+        boolean didMerge=false;
         for(int i=0;i<piecesInDock.size();i++){
             ArrayList<Integer> theThreePieceIndices=new ArrayList<Integer>();
             theThreePieceIndices.add(i);
@@ -254,7 +255,11 @@ public class Deck {
             System.out.println("i: "+i);
             if(theThreePieceIndices.size()>=3){
                 dealWithDuplicate(theThreePieceIndices);
+                didMerge=true;
             }
+        }
+        if(didMerge){
+            levelUp();
         }
     }
     private void dealWithDuplicate(ArrayList<Integer> theThreePieceIndices){
