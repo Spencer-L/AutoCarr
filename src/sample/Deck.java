@@ -230,52 +230,46 @@ public class Deck {
     }
     public void levelUp(){
         String[] names = new String[5];
+        System.out.println("leveling up");
         names[0]="Paladin";
         names[1]="Wizard";
         names[2]="Archer";
         names[3]="Berserker";
         names[4]="Priest";
-        ArrayList<Piece> similarIndex = new ArrayList<Piece>();
-        for(int i = 0; i < piecesInDock.size(); i++){
-            for(String name:names) {
-                //levels
-                for(int j = 1; j<=3;j++) {
-                    //rarity
-                    for(int k = 0; k < 4; k++) {
-                        if (pieces.get(i).getName().equals(name) && pieces.get(i).getLevel() == j && pieces.get(i).getRarity() == k && similarIndex.indexOf(i)==-1) {
-                            similarIndex.add(piecesInDock.get(i));
-                            System.out.println(i + "     " + similarIndex.size());
-                        }
-                    }
-                }
-            }
-        }
+        ArrayList<Piece> similarPieces = new ArrayList<Piece>();
         for(String name:names) {
-            ArrayList<Integer> nameIndex = new ArrayList<Integer>();
             int counter = 0;
-            for(Piece similar : similarIndex) {
-                if (similar.getName().equals(name)) {
-                    counter++;
-                    nameIndex.add(similarIndex.indexOf(similar));
-                    if(counter >= 3) {
-                        removeDupe(similarIndex,name,nameIndex);
+            for (int j = 1; j <= 3; j++) {
+                //rarity
+                for (int k = 0; k < 4; k++) {
+                    for (Piece aPiece : piecesInDock) {
+                        if (aPiece.getName().equals(name) && aPiece.getLevel() == j && aPiece.getRarity() == k) {
+                            counter++;
+                            similarPieces.add(aPiece);
+                            if (similarPieces.size() >= 3) {
+                                System.out.println(counter);
+                                removeDupe(similarPieces, name);
+                                similarPieces=new ArrayList<Piece>();
+                                break;
+                            }
+                        }
                     }
                 }
             }
         }
     }
 
-    private void removeDupe(ArrayList<Piece> similarIndex, String name, ArrayList<Integer> nameIndex){
+    private void removeDupe(ArrayList<Piece> similarPieces, String name){
         double boxSize=playField.getBoxSize();
-        int level = similarIndex.get(0).getLevel();
-        Piece p = similarIndex.get(0);
-        System.out.println("pieces:" + piecesInDock.size());
+        Piece p = similarPieces.get(0);
+        int level = p.getLevel();
+        System.out.println("pieces:" + similarPieces.size());
         for (int i = 0; i < 3; i++) {
             System.out.println(i);
-            mainGame.wrapper.getChildren().remove(similarIndex.get(nameIndex.get(i)).getBody());
-            piecesInDock.remove(piecesInDock.indexOf(similarIndex.get(nameIndex.get(i))));
+            mainGame.wrapper.getChildren().remove(similarPieces.get(i));
+            piecesInDock.remove(similarPieces.get(i));
             System.out.println("Removing from dock");
-            pieces.remove(pieces.indexOf(similarIndex.get(nameIndex.get(i))));
+            pieces.remove(similarPieces.get(i));
             System.out.println("Removing from array");
         }
         if(name.equals("Paladin")){
