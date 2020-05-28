@@ -29,6 +29,7 @@ public class Box {
             IDDisplay.setFill(Color.BLUE);
             IDDisplay.setFont(new Font(40));
             body.getChildren().add(IDDisplay);
+            IDDisplay.setVisible(false);
         }
     }
     //setter/getter
@@ -44,6 +45,8 @@ public class Box {
     public double getSize() {
         return size;
     }
+
+    public Rectangle getBase(){return base;}
 
     //public methods
     public void glow(){
