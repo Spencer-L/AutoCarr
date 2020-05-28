@@ -204,6 +204,7 @@ public abstract class Piece {
     protected void dragPiece(MouseEvent e){
         body.setLayoutX(e.getSceneX()-(size/2));
         body.setLayoutY(e.getSceneY()-(size/2));
+        mainGame.getShop().sellGlowOn();
         for (Box b:playField.getBoxes()) {
             b.notGlow();
         }
@@ -223,7 +224,6 @@ public abstract class Piece {
     protected Box findClosestBox(){
         double minDiff=Double.MAX_VALUE;
         int boxCount=0;
-        mainGame.getShop().sellGlowOn();
         if(getTeamNum()==1){
             for(int i=0;i<playField.getp2Boxes().size();i++){
                 Box b=playField.getp2Boxes().get(i);
@@ -260,7 +260,6 @@ public abstract class Piece {
     }
 
     protected void releasePiece(MouseEvent e) {
-
         isDragging = false;
         mainGame.getShop().sellGlowOff();
         sell = mainGame.getShop().getBody();

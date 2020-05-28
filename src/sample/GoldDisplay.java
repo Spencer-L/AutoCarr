@@ -30,7 +30,7 @@ public class GoldDisplay {
         p1.setFill(Color.MEDIUMSLATEBLUE);
         p1.setStroke(Color.SEAGREEN);
         p1.setStrokeWidth(2);
-        hp=new Text(bodyDimensions[0]/12,bodyDimensions[1]/11.5,"HP: 100");
+        hp=new Text(bodyDimensions[0]/12,bodyDimensions[1]/10,"HP: 100");
         hp.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/6.5));
         hp.setFill(Color.RED);
         //lvl=new Text(bodyDimensions[0]/12,bodyDimensions[1]/8,"LVL: 1 (XP ?/?)");
@@ -38,14 +38,14 @@ public class GoldDisplay {
         //lvl.setFill(Color.BLUE);
         StackPane gold=new StackPane();
         gold.setLayoutX(bodyDimensions[0]/12);
-        gold.setLayoutY(bodyDimensions[1]/7);
+        gold.setLayoutY(bodyDimensions[1]/8);
         Circle c=new Circle(bodyDimensions[0]/13);
         c.setFill(Color.GOLD);
         Text g=new Text("G");
         g.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/13));
         g.setFill(Color.BLACK);
         gold.getChildren().addAll(c,g);
-        num=new Text(bodyDimensions[0]/12+bodyDimensions[0]/4,bodyDimensions[1]/5.60,"100");
+        num=new Text(bodyDimensions[0]/12+bodyDimensions[0]/4,bodyDimensions[1]/6.1,"100");
         num.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/6.5));
         num.setFill(Color.BLACK);
         //p2
@@ -54,7 +54,7 @@ public class GoldDisplay {
         p2.setFill(Color.MEDIUMSLATEBLUE);
         p2.setStroke(Color.SEAGREEN);
         p2.setStrokeWidth(2);
-        hp1=new Text(bodyDimensions[0]/12,bodyDimensions[1]/3.4,"HP: 100");
+        hp1=new Text(bodyDimensions[0]/12,bodyDimensions[1]/3.2,"HP: 100");
         hp1.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/6.5));
         hp1.setFill(Color.RED);
         //Text lvl1=new Text(bodyDimensions[0]/12,bodyDimensions[1]/3,"LVL: 1 (XP ?/?)");
@@ -62,14 +62,14 @@ public class GoldDisplay {
         //lvl1.setFill(Color.BLUE);
         StackPane gold1=new StackPane();
         gold1.setLayoutX(bodyDimensions[0]/12);
-        gold1.setLayoutY(bodyDimensions[1]/2.85);
+        gold1.setLayoutY(bodyDimensions[1]/3);
         Circle c1=new Circle(bodyDimensions[0]/13);
         c1.setFill(Color.GOLD);
         Text g1=new Text("G");
         g1.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/13));
         g1.setFill(Color.BLACK);
         gold1.getChildren().addAll(c1,g1);
-        num1=new Text(bodyDimensions[0]/12+bodyDimensions[0]/4,bodyDimensions[1]/2.60,"100");
+        num1=new Text(bodyDimensions[0]/12+bodyDimensions[0]/4,bodyDimensions[1]/2.7,"100");
         num1.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/6.5));
         num1.setFill(Color.BLACK);
         body.getChildren().addAll(p1,hp,gold,num,p2,hp1,gold1,num1);

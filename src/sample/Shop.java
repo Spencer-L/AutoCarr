@@ -57,7 +57,7 @@ public class Shop {
         Text txt=new Text(bodyDimensions[0]/100,bodyDimensions[1]/8,"Refresh");
         txt.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/100));
         txt.setFill(Color.WHITE);
-        Text txt1=new Text(bodyDimensions[0]/100,bodyDimensions[1]/8+(bodyDimensions[1]/2),"Sell");
+        Text txt1=new Text(bodyDimensions[0]/100,bodyDimensions[1]/8+(bodyDimensions[1]/2),"Drag here to sell");
         txt1.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/100));
         txt1.setFill(Color.WHITE);
         StackPane gold=new StackPane();
