@@ -137,6 +137,7 @@ public abstract class Piece {
     //setter/getter
 
 
+    public double getMaxHealth() { return maxHealth; }
     public double getRangeFactor() { return rangeFactor; }
     public void setRangeFactor(double rangeFactor) { this.rangeFactor = rangeFactor; }
     public Rectangle getRarityBand() { return rarityBand; }
@@ -186,6 +187,14 @@ public abstract class Piece {
     public void setOnField(boolean onField) { this.onField = onField; }
     public Timeline getTL() { return tL; }
     public void setTL(Timeline tL) { this.tL = tL; }
+    public PlayField getPlayField() { return playField; }
+    public void setPlayField(PlayField playField) { this.playField = playField; }
+    public int getTimerCounter() { return timerCounter; }
+    public void setTimerCounter(int timerCounter) { this.timerCounter = timerCounter; }
+    public Piece getTarget() { return target; }
+    public void setTarget(Piece target) { this.target = target; }
+
+    public void setAttackPacing(Timeline attackPacing) { this.attackPacing = attackPacing; }
 
     //public methods
     protected void dragPiece(MouseEvent e){
@@ -355,6 +364,7 @@ public abstract class Piece {
         if(diffY<3 && diffY>-3) movement[1]=0;
 
         if(!getRangeBox().getBoundsInParent().intersects(target.getBody().getBoundsInParent())) {
+           // System.out.println(this);
             getBody().setLayoutX(getBody().getLayoutX() + movement[0]);
             getBody().setLayoutY(getBody().getLayoutY() + movement[1]);
             getRangeBox().setLayoutX(getBody().getLayoutX()-(size * (rangeFactor*(range-1))));
@@ -363,6 +373,7 @@ public abstract class Piece {
 
          if (getRangeBox().getBoundsInParent().intersects(target.getBody().getBoundsInParent())) {
              tL.stop();
+           //  System.out.print(this);
              attackPacing.play();
          }
     }
