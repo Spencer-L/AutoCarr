@@ -283,26 +283,36 @@ public class Deck {
             Piece a = new RectPiece(p.getRarity(),level+1, boxSize * 0.5, 100, "Paladin", mainGame, playField, teamNum, new double[]{0, 0}, this);
             pieces.add(a);
             mainGame.updateDeck(a);
+            movePieces2(a,piecesInDock.size()-1);
+            System.out.println("dock" + piecesInDock.size());
         }
         else if(name.equals("Wizard")){
             Piece a = new CirPiece(p.getRarity(),level+1, boxSize * 0.5, 100, "Wizard", mainGame, playField, teamNum, new double[]{0, 0}, this);
             pieces.add(a);
             mainGame.updateDeck(a);
+            movePieces2(a,piecesInDock.size()-1);
+            System.out.println("dock" + piecesInDock.size());
         }
         else if(name.equals("Archer")){
             Piece a = new TriPiece(p.getRarity(),level+1, boxSize * 0.5, 100, "Archer", mainGame, playField, teamNum, new double[]{0, 0}, this);
             pieces.add(a);
             mainGame.updateDeck(a);
+            movePieces2(a,piecesInDock.size()-1);
+            System.out.println("dock" + piecesInDock.size());
         }
         else if(name.equals("Berserker")){
             Piece a = new HexPiece(p.getRarity(),level+1, boxSize * 0.35, 100, "Berserker", mainGame, playField, teamNum, new double[]{0, 0}, this);
             pieces.add(a);
             mainGame.updateDeck(a);
+            movePieces2(a,piecesInDock.size()-1);
+            System.out.println("dock" + piecesInDock.size());
         }
         else if(name.equals("Priest")){
             Piece a = new PentPiece(p.getRarity(),level+1, boxSize * 0.4, 100, "Priest", mainGame, playField, teamNum, new double[]{0, 0}, this);
             pieces.add(a);
             mainGame.updateDeck(a);
+            movePieces2(a,piecesInDock.size()-1);
+            System.out.println("dock" + piecesInDock.size());
         }
         for(Piece aPiece:pieces){
             if(!aPiece.getOnField()){
