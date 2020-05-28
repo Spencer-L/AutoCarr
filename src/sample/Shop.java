@@ -108,6 +108,8 @@ public class Shop {
     public Pane getBtn() { return btn; }
     //methods
     public void actions(){
+        //p1.getDeck().levelUp();
+        //p2.getDeck().levelUp();
         r.setOnMouseClicked(new EventHandler<MouseEvent>(){
             public void handle(MouseEvent event){
                 if(turn%3!=2) {
@@ -236,6 +238,7 @@ public class Shop {
                             p1.getDeck().createBerserker(num2);
                         }
                     }
+                    p1.getDeck().levelUp();
                 }else if(turn%3==1){
                     if(p2.getMoney()-num2>=0&&p2.getDeck().getSlots().size()>p2.getDeck().getPieces().size()){
                         body.getChildren().removeAll(u2);
@@ -253,6 +256,7 @@ public class Shop {
                             p2.getDeck().createBerserker(num2);
                         }
                     }
+                    p2.getDeck().levelUp();
                 }
                 actions();
             }
@@ -286,6 +290,7 @@ public class Shop {
                         }else{
                             p1.getDeck().createBerserker(num3);
                         }
+                        p1.getDeck().levelUp();
                     }
                 }else if(turn%3==1){
                     if(p2.getMoney()-num3>=0&&p2.getDeck().getSlots().size()>p2.getDeck().getPieces().size()){
@@ -304,6 +309,7 @@ public class Shop {
                             p2.getDeck().createBerserker(num3);
                         }
                     }
+                    p2.getDeck().levelUp();
                 }
                 actions();
             }
@@ -337,6 +343,7 @@ public class Shop {
                         }else{
                             p1.getDeck().createBerserker(num4);
                         }
+                        p1.getDeck().levelUp();
                     }
                 }else if(turn%3==1){
                     if(p2.getMoney()-num4>=0&&p2.getDeck().getSlots().size()>p2.getDeck().getPieces().size()){
@@ -354,6 +361,7 @@ public class Shop {
                         }else{
                             p2.getDeck().createBerserker(num4);
                         }
+                        p2.getDeck().levelUp();
                     }
                 }
                 actions();
@@ -388,6 +396,7 @@ public class Shop {
                         }else{
                             p1.getDeck().createBerserker(num5);
                         }
+                        p1.getDeck().levelUp();
                     }
                 }else if(turn%3==1){
                     if(p2.getMoney()-num5>=0&&p2.getDeck().getSlots().size()>p2.getDeck().getPieces().size()){
@@ -405,6 +414,7 @@ public class Shop {
                         }else{
                             p2.getDeck().createBerserker(num5);
                         }
+                        p2.getDeck().levelUp();
                     }
                 }
                 actions();
