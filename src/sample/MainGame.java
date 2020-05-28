@@ -71,7 +71,7 @@ public class MainGame {
                 shop.getBodyDimensions()[1]+(additionalVerticalSpace/2)});
     }
     public void nextPhase(){
-        System.out.println("Next Phase Called");
+        //System.out.println("Next Phase Called");
         pField.repositionPieces();
         if(turn%3==0){
             players.get(0).getDeck().showDeck();

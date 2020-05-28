@@ -147,7 +147,7 @@ public class PentPiece extends Piece {
                 if(fullHealth || getTarget().getHealth()<=0) {
                     //getTarget().setDead();
                     //System.out.println(target);
-                    System.out.println("I should be looking for a new opponent!!!!!");
+                    //System.out.println("I should be looking for a new opponent!!!!!");
                     getAttackPacing().stop();
                     getPlayField().findNewFight(this);
                     //  System.out.println(target);

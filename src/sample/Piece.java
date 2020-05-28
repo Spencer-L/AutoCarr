@@ -493,7 +493,7 @@ public abstract class Piece {
 
     public void setDead(){
         if(isDead==false) {
-            System.out.println(this + "is dead");
+            //System.out.println(this + "is dead");
 
             isDead = true;
             mainGame.getWrapper().getChildren().remove(this.getBody());
@@ -505,7 +505,7 @@ public abstract class Piece {
     }
 
     public void revive(){
-        System.out.println("reviving " + this);
+        //System.out.println("reviving " + this);
         playField.getPieces().add(this);
         restoreHealth();
         mainGame.getWrapper().getChildren().add(this.getBody());

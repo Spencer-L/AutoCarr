@@ -225,7 +225,7 @@ public class Deck {
             Piece p=piecesInDock.get(index);
             p.getBody().setLayoutX(p.getBody().getLayoutX()-distance);
         }
-        System.out.println("shuffling left");
+        //System.out.println("shuffling left");
     }
     private void createNameTag(){
         Text name=new Text();
@@ -238,7 +238,7 @@ public class Deck {
         body.getChildren().add(nameTag);
     }
     public void levelUp(){
-        System.out.println("HABCDE");
+        //System.out.println("HABCDE");
         boolean didMerge=false;
         for(int i=0;i<piecesInDock.size();i++){
             ArrayList<Integer> theThreePieceIndices=new ArrayList<Integer>();
@@ -253,7 +253,7 @@ public class Deck {
                     theThreePieceIndices.add(j);
                 }
             }
-            System.out.println("i: "+i);
+            //System.out.println("i: "+i);
             if(theThreePieceIndices.size()>=3){
                 dealWithDuplicate(theThreePieceIndices);
                 didMerge=true;
@@ -268,7 +268,7 @@ public class Deck {
         for(int i=0;i<3;i++){
             theThreePieces.add(piecesInDock.get(theThreePieceIndices.get(i)));
         }
-        System.out.println("called");
+        //System.out.println("called");
         Piece firstPiece=theThreePieces.get(0);
         Piece newPiece=createNewPiece(firstPiece.getName(),firstPiece.getLevel(),firstPiece.getRarity());
         for(int i=0;i<theThreePieces.size();i++){
@@ -279,12 +279,12 @@ public class Deck {
             mainGame.getWrapper().getChildren().remove(p.getBody());
             piecesInDock.remove(p);
             pieces.remove(p);
-            System.out.println("movePiecesLeft is Called with: "+index);
+            //System.out.println("movePiecesLeft is Called with: "+index);
             movePiecesLeft(index);
         }
         mainGame.getWrapper().getChildren().add(newPiece.getBody());
-        System.out.println("picesInDoce.size(): "+piecesInDock.size());
-        System.out.println("Look FOR THIS");
+       // System.out.println("picesInDoce.size(): "+piecesInDock.size());
+        //System.out.println("Look FOR THIS");
         piecesInDock.add(newPiece);
         pieces.add(newPiece);
         movePieces2(newPiece,piecesInDock.size()+1);
@@ -294,100 +294,23 @@ public class Deck {
         Piece newPiece = new RectPiece(rarity,oLevel+1, boxSize * 0.5, 100, "Paladin", mainGame, playField, teamNum, new double[]{0, 0}, this);
         if(type.equals("Paladin")){
             newPiece = new RectPiece(rarity,oLevel+1, boxSize * 0.5, 100, "Paladin", mainGame, playField, teamNum, new double[]{0, 0}, this);
-        //    pieces.add(newPiece);
-         //   mainGame.updateDeck(newPiece);
-         //   movePieces2(newPiece,piecesInDock.size()-1);
-         //   System.out.println("dock" + piecesInDock.size());
         }
         else if(type.equals("Wizard")){
-            newPiece = new CirPiece(rarity,oLevel+1, boxSize * 0.3, 100, "Wizard", mainGame, playField, teamNum, new double[]{0, 0}, this);
-        //    pieces.add(newPiece);
-        //    mainGame.updateDeck(newPiece);
-         //   movePieces2(newPiece,piecesInDock.size()-1);
-        //   System.out.println("dock" + piecesInDock.size());
+            newPiece = new CirPiece(rarity,oLevel+1, boxSize * 0.35, 100, "Wizard", mainGame, playField, teamNum, new double[]{0, 0}, this);
         }
         else if(type.equals("Archer")){
             newPiece = new TriPiece(rarity,oLevel+1, boxSize * 0.5, 100, "Archer", mainGame, playField, teamNum, new double[]{0, 0}, this);
-        //    pieces.add(newPiece);
-         //   mainGame.updateDeck(newPiece);
-         //   movePieces2(newPiece,piecesInDock.size()-1);
-        //    System.out.println("dock" + piecesInDock.size());
         }
         else if(type.equals("Berserker")){
             newPiece = new HexPiece(rarity,oLevel+1, boxSize * 0.35, 100, "Berserker", mainGame, playField, teamNum, new double[]{0, 0}, this);
-         //   pieces.add(newPiece);
-          //  mainGame.updateDeck(newPiece);
-         //   movePieces2(newPiece,piecesInDock.size()-1);
-         //   System.out.println("dock" + piecesInDock.size());
         }
         else if(type.equals("Priest")){
             newPiece = new PentPiece(rarity,oLevel+1, boxSize * 0.4, 100, "Priest", mainGame, playField, teamNum, new double[]{0, 0}, this);
-         //   pieces.add(newPiece);
-         //   mainGame.updateDeck(newPiece);
-         //   movePieces2(newPiece,piecesInDock.size()-1);
-         //   System.out.println("dock" + piecesInDock.size());
         }
         return newPiece;
     }
 
-    private void removeDupe(ArrayList<Piece> similarPieces, String name){
-        double boxSize=playField.getBoxSize();
-        Piece p = similarPieces.get(0);
-        int level = p.getLevel();
-        System.out.println("pieces:" + similarPieces.size());
-        for (int i = 0; i < 3; i++) {
-            System.out.println(i);
-            mainGame.wrapper.getChildren().remove(similarPieces.get(i));
-            piecesInDock.remove(similarPieces.get(i));
-            System.out.println("Removing from dock");
-            pieces.remove(similarPieces.get(i));
-            System.out.println("Removing from array");
-        }
-        for(int i=0;i<piecesInDock.size();i++){
-            System.out.println("This is the thing:"+piecesInDock.get(i).getID());
-        }
-        if(name.equals("Paladin")){
-            System.out.println("Spawning");
-            Piece a = new RectPiece(p.getRarity(),level+1, boxSize * 0.5, 100, "Paladin", mainGame, playField, teamNum, new double[]{0, 0}, this);
-            pieces.add(a);
-            mainGame.updateDeck(a);
-            System.out.println("dock" + piecesInDock.size());
-            movePieces2(a,piecesInDock.size());
-        }
-        else if(name.equals("Wizard")){
-            Piece a = new CirPiece(p.getRarity(),level+1, boxSize * 0.5, 100, "Wizard", mainGame, playField, teamNum, new double[]{0, 0}, this);
-            pieces.add(a);
-            mainGame.updateDeck(a);
-            System.out.println("dock" + piecesInDock.size());
-            movePieces2(a,piecesInDock.size());
-        }
-        else if(name.equals("Archer")){
-            Piece a = new TriPiece(p.getRarity(),level+1, boxSize * 0.5, 100, "Archer", mainGame, playField, teamNum, new double[]{0, 0}, this);
-            pieces.add(a);
-            mainGame.updateDeck(a);
-            System.out.println("dock" + piecesInDock.size());
-            movePieces2(a,piecesInDock.size());
-        }
-        else if(name.equals("Berserker")){
-            Piece a = new HexPiece(p.getRarity(),level+1, boxSize * 0.35, 100, "Berserker", mainGame, playField, teamNum, new double[]{0, 0}, this);
-            pieces.add(a);
-            mainGame.updateDeck(a);
-            System.out.println("dock" + piecesInDock.size());
-            movePieces2(a,piecesInDock.size());
-        }
-        else if(name.equals("Priest")){
-            Piece a = new PentPiece(p.getRarity(),level+1, boxSize * 0.4, 100, "Priest", mainGame, playField, teamNum, new double[]{0, 0}, this);
-            pieces.add(a);
-            mainGame.updateDeck(a);
-            System.out.println("dock" + piecesInDock.size());
-            movePieces2(a,piecesInDock.size());
-        }
-        for(Piece aPiece:pieces){
-            if(!aPiece.getOnField()){
-                piecesInDock.add(aPiece);
-            }
-        }
-    }
+
     public void refundPlayer(int num,int num1){
         player.setMoney(player.getMoney()+num);
         mainGame.getGoldDisplay().updateMoney(num1);
