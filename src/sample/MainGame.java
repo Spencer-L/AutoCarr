@@ -78,18 +78,12 @@ public class MainGame {
             showPieceOnField(players.get(0));
             hidePieceOnField(players.get(1));
             deck.hideDeck();
-            for(Box b:pField.getBoxes()){
-                b.getBase().setStroke(Color.BLACK);
-            }
         }else if(turn%3==1){
             players.get(0).getDeck().hideDeck();
             players.get(1).getDeck().showDeck();
             players.get(1).getDeck().levelUp();
             showPieceOnField(players.get(1));
             hidePieceOnField(players.get(0));
-            for(Box b:pField.getBoxes()){
-                b.getBase().setStroke(Color.BLACK);
-            }
         }else if(turn%3==2){
             startFight();
             showPieceOnField(players.get(1));
@@ -97,9 +91,6 @@ public class MainGame {
             players.get(0).getDeck().hideDeck();
             players.get(1).getDeck().hideDeck();
             deck.showDeck();
-            for(Box b:pField.getBoxes()){
-                b.getBase().setStroke(Color.TRANSPARENT);
-            }
         }
         turn++;
         if(turn>1){
