@@ -260,6 +260,7 @@ public abstract class Piece {
     }
 
     protected void releasePiece(MouseEvent e) {
+
         isDragging = false;
         mainGame.getShop().sellGlowOff();
         sell = mainGame.getShop().getBody();
@@ -270,10 +271,12 @@ public abstract class Piece {
             parentDeck.getPieces().remove(this);
             parentDeck.refundPlayer((rarity+1)*level,teamNum);
             parentDeck.movePiecesLeft(index);
+            parentDeck.notGlow();
         }else if (body.getLayoutY() > playField.getBodyDimensions()[1]) {
             if (onField) {
                 parentDeck.fieldToDeck(this);
                 playField.getPieces().remove(this);
+                parentDeck.levelUp();
             } else {
                 parentDeck.deckToDeck(this);
             }
