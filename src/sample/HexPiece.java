@@ -12,8 +12,8 @@ public class HexPiece extends Piece{
         setName("Berserker");
         setHealth(getHealth()+100);
         setMaxHealth((int)getHealth());
-        setAtkSpd(1.5);
-        setDamage(getDamage()+10);
+        setAtkSpd(1.75);
+        setDamage(getDamage()+15);
         setRange(1.75);
         setRangeFactor(0.00001);
         base=new Polygon();

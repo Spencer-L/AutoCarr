@@ -19,7 +19,7 @@ public class PentPiece extends Piece {
         setHealth(getHealth()+120);
         setMaxHealth((int)getHealth());
         setAtkSpd(1);
-        setDamage(getDamage());
+        setDamage(getDamage()+20);
         setRange(5);
         setRangeFactor(0.43);
         base=new Polygon();
@@ -135,7 +135,7 @@ public class PentPiece extends Piece {
                 if(fullHealth || getTarget().getHealth()<=0) {
                     //getTarget().setDead();
                     //System.out.println(target);
-                    //System.out.println("I should be looking for a new opponent!!!!!");
+                    System.out.println("I should be looking for a new opponent!!!!!");
                     getAttackPacing().stop();
                     getPlayField().findNewFight(this);
                     //  System.out.println(target);
@@ -179,7 +179,6 @@ public class PentPiece extends Piece {
             getTarget().setHealth(getTarget().getMaxHealth());
             //System.out.println("I am getting run");
         }
-
         getTarget().calculateHealthBar();
         if(getTarget().getHealth()>=getTarget().getMaxHealth()) {
            // System.out.println("I should be looking for a new opponent");

@@ -85,6 +85,6 @@ public class Player {
         //tempList.add(tempPiece2);
         deck=new Deck(this);
         deck.getBody().relocate(0,playField.getBodyDimensions()[1]);
-        deck.movePieces();
+        if(deck.getPieces().size()>0)deck.movePieces();
     }
 }

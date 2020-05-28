@@ -94,7 +94,7 @@ public class WinRound {
             for(Piece p:pieces1){
                 num+=(p.getRarity()+1);
             }
-            mainGame.getPlayers().get(1).setHP(mainGame.getPlayers().get(1).getHP()-((mainGame.getTurn()+1)/3+(num/2)));
+            mainGame.getPlayers().get(1).setHP(mainGame.getPlayers().get(1).getHP()-((mainGame.getTurn()+1)/3+(num*2)));
             mainGame.getPlayers().get(0).generateInterest();
             mainGame.getPlayers().get(1).generateInterest();
             mainGame.getGoldDisplay().updateMoney(1);

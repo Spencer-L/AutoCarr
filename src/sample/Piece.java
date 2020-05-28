@@ -460,19 +460,19 @@ public abstract class Piece {
             rarityBand.setFill(Color.BLUE);
             health+=20;
             maxHealth+=20;
-            damage+=1;
+            damage+=5;
         }
         else if(rarity == 2){
             rarityBand.setFill(Color.PURPLE);
             health+=40;
             maxHealth+=40;
-            damage+=2;
+            damage+=10;
         }
         else if(rarity == 3){
             rarityBand.setFill(Color.GOLD);
             health+=60;
-            maxHealth+=40;
-            damage+=3;
+            maxHealth+=60;
+            damage+=20;
         }
     }
 
