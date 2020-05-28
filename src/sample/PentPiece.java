@@ -19,7 +19,7 @@ public class PentPiece extends Piece {
         setHealth(getHealth()+150);
         setMaxHealth((int)getHealth());
         setAtkSpd(1.25);
-        setDamage(getDamage()+15);
+        setDamage(getDamage()+7);
         setRange(5);
         setRangeFactor(0.43);
         base=new Polygon();
@@ -53,7 +53,7 @@ public class PentPiece extends Piece {
         setHealth(getHealth()+150);
         setMaxHealth((int)getHealth());
         setAtkSpd(1.25);
-        setDamage(getDamage()+15);
+        setDamage(getDamage()+7);
         setRange(5);
         setRangeFactor(0.43);
         base=new Polygon();
@@ -83,17 +83,10 @@ public class PentPiece extends Piece {
     protected Piece findClosestEnemy(ArrayList<Piece> allPieces){
         double minDiff=Double.MAX_VALUE;
         double lowestHP = Double.MAX_VALUE;
-
         int boxCount=-1;
         for(int i=0;i<allPieces.size();i++){
             Piece p=allPieces.get(i);
             if(p!=this&&p.getTeamNum()==getTeamNum()) {
-
-                /*if (diff < minDiff) {
-                    minDiff = diff;
-                    boxCount = i;
-                }*/
-
                 if((p.getHealth() / p.getMaxHealth()) < lowestHP){
                     lowestHP=(p.getHealth()/p.getMaxHealth());
                     if(lowestHP!=1)boxCount = i;
@@ -111,7 +104,6 @@ public class PentPiece extends Piece {
                     double diffX = centerX - centerBoxX;
                     double diffY = centerY - centerBoxY;
                     double diff = Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2));
-
                     if (diff < minDiff) {
                         minDiff = diff;
                         boxCount = i;
@@ -126,35 +118,22 @@ public class PentPiece extends Piece {
     }
     @Override
     protected void doAttack(){
-
-       // System.out.println(getTarget() + "and is part of team " + getTeamNum());
         boolean alive=true;
         if(getHealth()<=0) {
             alive = false;
-            //System.out.println("I have " + health + " and am part of " + teamNum + ", my opponent has " + target.getHealth());
             calculateHealthBar();
-            getAttackPacing().stop();
-            //target.getAttackPacing().stop();
-        }
+            getAttackPacing().stop();        }
         if(alive) {
             if (getTimerCounter() < (int) (60 - (30 * getAtkSpd()))) setTimerCounter(getTimerCounter()+1);
             else {
                 setTimerCounter(0);
                 if (getTarget().getHealth() == 0) getAttackPacing().stop();
-                //if (inRange(target)) {
                 boolean fullHealth = healAlly();
                 calculateHealthBar();
                 if(fullHealth || getTarget().getHealth()<=0) {
-                    //getTarget().setDead();
-                    //System.out.println(target);
-                    //System.out.println("I should be looking for a new opponent!!!!!");
                     getAttackPacing().stop();
                     getPlayField().findNewFight(this);
-                    //  System.out.println(target);
                 }
-                //System.out.println("I have " + health + " and I did " + damage + " to my target, " + teamNum );
-
-                //}
             }
         }
     }
@@ -163,7 +142,6 @@ public class PentPiece extends Piece {
         setTarget(findClosestEnemy(allPieces));
         if(getTarget()==null){
             if(allPieces.indexOf(this)!=-1){
-                //System.out.println("this happened");
                 setTarget(this);
                 setAttackPacing(new Timeline(new KeyFrame(Duration.millis(40), ae -> doAttack())));
                 getAttackPacing().setCycleCount(Animation.INDEFINITE);
@@ -174,27 +152,20 @@ public class PentPiece extends Piece {
             }
         }else{
             if(getTarget()!=this){ moveUpClose(getTarget());}
-
-            //   if(inRange(target)) {
             setAttackPacing(new Timeline(new KeyFrame(Duration.millis(40), ae -> doAttack())));
             getAttackPacing().setCycleCount(Animation.INDEFINITE);
             if(getTarget()==this)getAttackPacing().play();
-            //  }
-
         }
     }
 
     private boolean healAlly(){
         if(getTarget().getHealth()<=0)return true;
         getTarget().setHealth(getTarget().getHealth()+getDamage());
-        //System.out.println(getTarget() + " has " +getTarget().getHealth() + "out of " + getTarget().getMaxHealth() );
         if(getTarget().getHealth()>getTarget().getMaxHealth()) {
             getTarget().setHealth(getTarget().getMaxHealth());
-            //System.out.println("I am getting run");
         }
         getTarget().calculateHealthBar();
         if(getTarget().getHealth()>=getTarget().getMaxHealth()) {
-           // System.out.println("I should be looking for a new opponent");
             return true;
         }
         else return false;
