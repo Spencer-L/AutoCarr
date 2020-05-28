@@ -188,6 +188,7 @@ public class Shop {
                         }else{
                             p1.getDeck().createBerserker(num1);
                         }
+                        p1.getDeck().levelUp();
                     }
                 }else if(turn%3==1){
                     if(p2.getMoney()-num1>=0&&p2.getDeck().getSlots().size()>p2.getDeck().getPieces().size()){
@@ -206,6 +207,7 @@ public class Shop {
                             p2.getDeck().createBerserker(num1);
                         }
                     }
+                    p2.getDeck().levelUp();
                 }
                 actions();
             }
