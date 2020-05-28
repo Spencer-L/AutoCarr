@@ -56,19 +56,19 @@ public class Player {
         mainGame.getWrapper().getChildren().add(deck.getBody());
     }
     public void generateInterest(){
+        if(money>5){
+            money++;
+        }
         if(money>10){
+            money++;
+        }
+        if(money>15){
             money++;
         }
         if(money>20){
             money++;
         }
-        if(money>30){
-            money++;
-        }
-        if(money>40){
-            money++;
-        }
-        if(money>50){
+        if(money>25){
             money++;
         }
     }
