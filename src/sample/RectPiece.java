@@ -23,7 +23,6 @@ public class RectPiece extends Piece{
         }else if(getTeamNum()==2){
             base.setFill(Color.BROWN);
         }
-
         getBody().getChildren().add(base);
         getBody().setAlignment(getRarityBand(), Pos.TOP_CENTER);
         getBody().getChildren().add(getRarityBand());

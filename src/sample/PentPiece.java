@@ -15,6 +15,7 @@ public class PentPiece extends Piece {
     private Polygon base;
     PentPiece(double s,double h, String id,MainGame mG,PlayField pF,int tN,double[] pos,Deck pD){
         super(s,h,id,mG,pF,tN,pos,pD);
+        setName("Priest")
         setHealth(getHealth()+120);
         setMaxHealth((int)getHealth());
         setAtkSpd(1);
@@ -48,6 +49,7 @@ public class PentPiece extends Piece {
     //polymorphic constructor for level ups
     PentPiece(int r,int l,double s,double h, String id,MainGame mG,PlayField pF,int tN,double[] pos,Deck pD){
         super(r,l,s,h,id,mG,pF,tN,pos,pD);
+        setName("Priest")
         setHealth(getHealth()+120);
         setMaxHealth((int)getHealth());
         setAtkSpd(1.5);
