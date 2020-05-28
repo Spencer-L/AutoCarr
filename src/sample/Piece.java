@@ -269,7 +269,7 @@ public abstract class Piece {
             parentDeck.getPiecesInDock().remove(this);
             parentDeck.getPieces().remove(this);
             parentDeck.refundPlayer((rarity+1)*level,teamNum);
-            parentDeck.movePiecesLeft(index);
+            if(parentDeck.getPiecesInDock().indexOf(this)!=-1) parentDeck.movePiecesLeft(index);
             parentDeck.notGlow();
         }else if (body.getLayoutY() > playField.getBodyDimensions()[1]) {
             if (onField) {
@@ -475,19 +475,19 @@ public abstract class Piece {
             rarityBand.setFill(Color.BLUE);
             health+=20;
             maxHealth+=20;
-            damage+=5;
+            damage+=10;
         }
         else if(rarity == 2){
             rarityBand.setFill(Color.PURPLE);
             health+=40;
             maxHealth+=40;
-            damage+=10;
+            damage+=20;
         }
         else if(rarity == 3){
             rarityBand.setFill(Color.GOLD);
-            health+=60;
-            maxHealth+=60;
-            damage+=20;
+            health+=100;
+            maxHealth+=100;
+            damage+=40;
         }
     }
 

@@ -105,7 +105,7 @@ public class Deck {
     public void deckToField(Piece p){
         int index=0;
         index=piecesInDock.indexOf(p);
-        System.out.println(index);
+        //System.out.println(index);
         slots.get(index)[2]=0;
         piecesInDock.remove(p);
         movePiecesLeft(index);
@@ -220,7 +220,7 @@ public class Deck {
         }
     }
     private void shuffleLeft(int index,double distance){
-        System.out.println("shuffleLeftIsCalled");
+        //System.out.println("shuffleLeftIsCalled");
         if(index<piecesInDock.size()){
             Piece p=piecesInDock.get(index);
             p.getBody().setLayoutX(p.getBody().getLayoutX()-distance);

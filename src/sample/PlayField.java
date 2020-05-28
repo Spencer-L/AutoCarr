@@ -101,7 +101,7 @@ public class PlayField {
         }
     }
     public void endRound(){
-        System.out.println("Called");
+        //System.out.println("Called");
         roundEnd=true;
     }
     //private methods
@@ -163,7 +163,7 @@ public class PlayField {
             p.restoreHealth();
         }
         for(Piece p:deadPieces){
-            System.out.println(p + " hihihihihii " + p.getTeamNum() );
+            //System.out.println(p + " hihihihihii " + p.getTeamNum() );
             p.revive();
         }
         while(deadPieces.size()>0){
