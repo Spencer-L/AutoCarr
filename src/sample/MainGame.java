@@ -36,6 +36,8 @@ public class MainGame {
     public GoldDisplay getGoldDisplay(){return gDisplay;}
     public ArrayList<Player> getPlayers() { return players; }
     public int getTurn() { return turn; }
+    public double[] getDimensions() { return dimensions; }
+    public Shop getShop() { return shop; }
 
     //public methods
     public void adjustGDBody(double[] dimensions){

@@ -62,6 +62,11 @@ public class Deck {
     public ArrayList<Piece> getPieces() {
         return pieces;
     }
+
+    public ArrayList<Piece> getPiecesInDock() {
+        return piecesInDock;
+    }
+
     //public methods
     public void movePieces(){
         for(int i=0;i<=16;i++){
@@ -202,7 +207,7 @@ public class Deck {
             }
         }
     }
-    private void movePiecesLeft(int index){
+    public void movePiecesLeft(int index){
         double diff=slots.get(1)[0]-slots.get(0)[0];
 
         for(int i=index;i<piecesInDock.size();i++){
@@ -376,5 +381,9 @@ public class Deck {
                 piecesInDock.add(aPiece);
             }
         }
+    }
+    public void refundPlayer(int num,int num1){
+        player.setMoney(player.getMoney()+num);
+        mainGame.getGoldDisplay().updateMoney(num1);
     }
 }

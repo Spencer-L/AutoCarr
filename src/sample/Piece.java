@@ -4,9 +4,12 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -51,6 +54,7 @@ public abstract class Piece {
     private Rectangle healthBarGreen;
     private Rectangle rangeBox;
     private double rangeFactor;
+    private Pane sell;
 
     private static ArrayList<Piece> allPiece;
 
@@ -219,6 +223,7 @@ public abstract class Piece {
     protected Box findClosestBox(){
         double minDiff=Double.MAX_VALUE;
         int boxCount=0;
+        mainGame.getShop().sellGlowOn();
         if(getTeamNum()==1){
             for(int i=0;i<playField.getp2Boxes().size();i++){
                 Box b=playField.getp2Boxes().get(i);
@@ -254,19 +259,28 @@ public abstract class Piece {
         }
     }
 
-    protected void releasePiece(MouseEvent e){
-        isDragging=false;
-        if(body.getLayoutY()>playField.getBodyDimensions()[1]){
-            if(onField){
+    protected void releasePiece(MouseEvent e) {
+        isDragging = false;
+        mainGame.getShop().sellGlowOff();
+        sell = mainGame.getShop().getBody();
+        if((body.getLayoutY()>sell.getLayoutY()&&body.getLayoutY()<sell.getLayoutY()+sell.getHeight())&&(body.getLayoutX()<sell.getLayoutX()+sell.getWidth())){
+            int index=parentDeck.getPiecesInDock().indexOf(this);
+            mainGame.getWrapper().getChildren().remove(this.body);
+            parentDeck.getPiecesInDock().remove(this);
+            parentDeck.getPieces().remove(this);
+            parentDeck.refundPlayer((rarity+1)*level,teamNum);
+            parentDeck.movePiecesLeft(index);
+        }else if (body.getLayoutY() > playField.getBodyDimensions()[1]) {
+            if (onField) {
                 parentDeck.fieldToDeck(this);
                 playField.getPieces().remove(this);
-            }else{
+            } else {
                 parentDeck.deckToDeck(this);
             }
-            onField=false;
+            onField = false;
             parentDeck.notGlow();
-            ArrayList<Box>temp=playField.getColumn();
-            for(Box b:temp){
+            ArrayList<Box> temp = playField.getColumn();
+            for (Box b : temp) {
                 b.notGlow();
             }
         }else if(body.getLayoutY()<=playField.getBodyDimensions()[1]){
@@ -287,7 +301,6 @@ public abstract class Piece {
             }
         }
     }
-
     protected  double[] findPosition(){
         //double xCord=parentBox.getBody().getLayoutX()+mainGame.gDisplay.getBodyDimensions()[0]+(getSize()/2);
         //double yCord=parentBox.getBody().getLayoutY()+(getSize()/2);
