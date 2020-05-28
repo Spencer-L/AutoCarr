@@ -66,7 +66,7 @@ public class Main extends Application {
             rulesText2.setFont(Font.font("Impact", 25));
             rulesText2.setFill(Color.RED);
             rulesText2.setText("" +
-                    "At the beginning of the round, you get a base amount of 2 gold plus 1 for every 5 gold you have saved, capped at 5 extra gold.\n" +
+                    "At the beginning of the round, you get a base amount of 3 gold plus 1 for every 5 gold you have saved, capped at 5 extra gold.\n" +
                     "Uses for gold?: \n" +
                     "       Buy units to fight on the battlefield, clicking a unit in the shop will buy the unit, using you gold and putting that unit onto your deck\n" +
                     "       Reroll your shop to get new units available for purchase\n" +
