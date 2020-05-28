@@ -19,9 +19,10 @@ public class MainGame {
     ArrayList<Player> players=new ArrayList<Player>();
     Pane wrapper = new Pane();
     int turn=0;
+    Main main;
 
     //constructor
-    public MainGame(double[] wSize){
+    public MainGame(double[] wSize,Main main){
         dimensions=wSize;
         wrapper.setPrefSize(wSize[0],wSize[1]);
         //wrapper.addEventHandler(MouseEvent.MOUSE_CLICKED,event -> console(event));
@@ -29,6 +30,7 @@ public class MainGame {
         createPlayers();
         appendBodies();
         nextPhase();
+        this.main=main;
     }
     //setter/getter
     public Pane getWrapper(){return wrapper;}
@@ -40,6 +42,10 @@ public class MainGame {
     public Shop getShop() { return shop; }
 
     //public methods
+    public void createNewGame(){
+        wrapper.getChildren().remove(0,wrapper.getChildren().size()-1);
+        main.launchMenuAndGame(main.pStage);
+    }
     public void adjustGDBody(double[] dimensions){
         gDisplay.getBody().setLayoutX(dimensions[0]);
         gDisplay.getBody().setLayoutY(dimensions[1]);
@@ -114,8 +120,8 @@ public class MainGame {
 
     //private methods
     public void createPlayers(){
-        players.add(new Player("Player 1",1,500,100,pField,this));
-        players.add(new Player("Player 2",2,500,100,pField,this));
+        players.add(new Player("Player 1",1,500,1,pField,this));
+        players.add(new Player("Player 2",2,500,1,pField,this));
         shop.setPlayers(players.get(0),players.get(1));
         gDisplay.setPlayers(players.get(0),players.get(1));
         //players.get(0).getDeck().showDeck();
