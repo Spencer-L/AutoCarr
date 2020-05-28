@@ -132,9 +132,9 @@ public class WinRound {
         if(loose1&&loose2){
             displayWinner("There Is A Tie");
         }else if(loose1){
-            displayWinner("Player 2 Has Won the Game");
+            displayWinner("Player 2 Has Won the Game!");
         }else if(loose2){
-            displayWinner("Player 1 Has Won the Game");
+            displayWinner("Player 1 Has Won the Game!");
         }
     }
 }
