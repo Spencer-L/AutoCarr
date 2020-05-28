@@ -18,8 +18,8 @@ public class PentPiece extends Piece {
         setName("Priest");
         setHealth(getHealth()+150);
         setMaxHealth((int)getHealth());
-        setAtkSpd(1);
-        setDamage(getDamage()+20);
+        setAtkSpd(1.25);
+        setDamage(getDamage()+15);
         setRange(5);
         setRangeFactor(0.43);
         base=new Polygon();
@@ -52,8 +52,8 @@ public class PentPiece extends Piece {
         setName("Priest");
         setHealth(getHealth()+150);
         setMaxHealth((int)getHealth());
-        setAtkSpd(1);
-        setDamage(getDamage()+20);
+        setAtkSpd(1.25);
+        setDamage(getDamage()+15);
         setRange(5);
         setRangeFactor(0.43);
         base=new Polygon();
@@ -88,22 +88,34 @@ public class PentPiece extends Piece {
         for(int i=0;i<allPieces.size();i++){
             Piece p=allPieces.get(i);
             if(p!=this&&p.getTeamNum()==getTeamNum()) {
-                double centerX = getBody().getLayoutX() + (getSize() / 2);
-                double centerY = getBody().getLayoutY() + (getSize() / 2);
-                double centerBoxX = p.getBody().getLayoutX() + (p.getSize() / 2);
-                double centerBoxY = p.getBody().getLayoutY() + (p.getSize() / 2);
-                double diffX = centerX - centerBoxX;
-                double diffY = centerY - centerBoxY;
-                double diff = Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2));
 
-                if (diff < minDiff) {
+                /*if (diff < minDiff) {
                     minDiff = diff;
                     boxCount = i;
-                }
+                }*/
 
                 if((p.getHealth() / p.getMaxHealth()) < lowestHP){
                     lowestHP=(p.getHealth()/p.getMaxHealth());
                     if(lowestHP!=1)boxCount = i;
+                }
+            }
+        }
+        if(boxCount==-1){
+            for(int i=0;i<allPieces.size();i++) {
+                Piece p=allPieces.get(i);
+                if(p!=this&&p.getTeamNum()==getTeamNum()) {
+                    double centerX = getBody().getLayoutX() + (getSize() / 2);
+                    double centerY = getBody().getLayoutY() + (getSize() / 2);
+                    double centerBoxX = p.getBody().getLayoutX() + (p.getSize() / 2);
+                    double centerBoxY = p.getBody().getLayoutY() + (p.getSize() / 2);
+                    double diffX = centerX - centerBoxX;
+                    double diffY = centerY - centerBoxY;
+                    double diff = Math.sqrt(Math.pow(diffX, 2) + Math.pow(diffY, 2));
+
+                    if (diff < minDiff) {
+                        minDiff = diff;
+                        boxCount = i;
+                    }
                 }
             }
         }
@@ -173,6 +185,7 @@ public class PentPiece extends Piece {
     }
 
     private boolean healAlly(){
+        if(getTarget().getHealth()<=0)return true;
         getTarget().setHealth(getTarget().getHealth()+getDamage());
         //System.out.println(getTarget() + " has " +getTarget().getHealth() + "out of " + getTarget().getMaxHealth() );
         if(getTarget().getHealth()>getTarget().getMaxHealth()) {
