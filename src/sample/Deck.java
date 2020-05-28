@@ -108,7 +108,7 @@ public class Deck {
         int index=piecesInDock.indexOf(p);
         p.getBody().setLayoutX(slots.get(index)[0]);
         p.getBody().setLayoutY(slots.get(index)[1]);
-        if(piecesInDock.indexOf(p)!=-1){
+        if(piecesInDock.indexOf(p)==-1){
             piecesInDock.add(p);
         }
     }
@@ -250,54 +250,59 @@ public class Deck {
                 }
             }
         }
-        int counter = 0;
         for(String name:names) {
+            ArrayList<Integer> nameIndex = new ArrayList<Integer>();
+            int counter = 0;
             for(Piece similar : similarIndex) {
-                if (similar.getName()==name) {
+                if (similar.getName().equals(name)) {
                     counter++;
+                    nameIndex.add(similarIndex.indexOf(similar));
                     if(counter >= 3) {
-                        removeDupe(similarIndex);
+                        removeDupe(similarIndex,name,nameIndex);
                     }
                 }
             }
         }
     }
 
-    private void removeDupe(ArrayList<Piece> similarIndex){
+    private void removeDupe(ArrayList<Piece> similarIndex, String name, ArrayList<Integer> nameIndex){
         double boxSize=playField.getBoxSize();
         int level = similarIndex.get(0).getLevel();
-        String name = similarIndex.get(0).getName();
         Piece p = similarIndex.get(0);
         System.out.println("pieces:" + piecesInDock.size());
-//        piecesInDock.removeAll(piecesInDock.get(similarIndex.get(0)),piecesInDock.get(similarIndex.get(1)),piecesInDock.get(similarIndex.get(2)));
-        for (int i = 0; i < similarIndex.size(); i++) {
+        for (int i = 0; i < 3; i++) {
             System.out.println(i);
-//            int index=0;
-//            index=piecesInDock.indexOf(similarIndex.get(i));
-//            System.out.println(index);
-//            slots.get(index)[2]=0;
-//            piecesInDock.remove(p);
-//            movePiecesLeft(index);
-            piecesInDock.remove(piecesInDock.indexOf(similarIndex.get(i)));
+            mainGame.wrapper.getChildren().remove(similarIndex.get(nameIndex.get(i)).getBody());
+            piecesInDock.remove(piecesInDock.indexOf(similarIndex.get(nameIndex.get(i))));
             System.out.println("Removing from dock");
-            pieces.remove(pieces.indexOf(similarIndex.get(i)));
+            pieces.remove(pieces.indexOf(similarIndex.get(nameIndex.get(i))));
             System.out.println("Removing from array");
         }
         if(name.equals("Paladin")){
             System.out.println("Spawning");
-            pieces.add(new RectPiece(p.getRarity(),level+1, boxSize * 0.5, 100, "Paladin", mainGame, playField, teamNum, new double[]{0, 0}, this));
+            Piece a = new RectPiece(p.getRarity(),level+1, boxSize * 0.5, 100, "Paladin", mainGame, playField, teamNum, new double[]{0, 0}, this);
+            pieces.add(a);
+            mainGame.updateDeck(a);
         }
         else if(name.equals("Wizard")){
-            pieces.add(new CirPiece(p.getRarity(),level+1, boxSize * 0.35, 100, "Wizard", mainGame, playField, teamNum, new double[]{0, 0}, this));
+            Piece a = new CirPiece(p.getRarity(),level+1, boxSize * 0.5, 100, "Wizard", mainGame, playField, teamNum, new double[]{0, 0}, this);
+            pieces.add(a);
+            mainGame.updateDeck(a);
         }
         else if(name.equals("Archer")){
-            pieces.add(new TriPiece(p.getRarity(),level+1, boxSize * 0.5, 100, "Archer", mainGame, playField, teamNum, new double[]{0, 0}, this));
+            Piece a = new TriPiece(p.getRarity(),level+1, boxSize * 0.5, 100, "Archer", mainGame, playField, teamNum, new double[]{0, 0}, this);
+            pieces.add(a);
+            mainGame.updateDeck(a);
         }
         else if(name.equals("Berserker")){
-            pieces.add(new HexPiece(p.getRarity(),level+1, boxSize * 0.35, 100, "Berserker", mainGame, playField, teamNum, new double[]{0, 0}, this));
+            Piece a = new HexPiece(p.getRarity(),level+1, boxSize * 0.35, 100, "Berserker", mainGame, playField, teamNum, new double[]{0, 0}, this);
+            pieces.add(a);
+            mainGame.updateDeck(a);
         }
         else if(name.equals("Priest")){
-            pieces.add(new PentPiece(p.getRarity(),level+1, boxSize * 0.4, 100, "Priest", mainGame, playField, teamNum, new double[]{0, 0}, this));
+            Piece a = new PentPiece(p.getRarity(),level+1, boxSize * 0.4, 100, "Priest", mainGame, playField, teamNum, new double[]{0, 0}, this);
+            pieces.add(a);
+            mainGame.updateDeck(a);
         }
         for(Piece aPiece:pieces){
             if(!aPiece.getOnField()){
