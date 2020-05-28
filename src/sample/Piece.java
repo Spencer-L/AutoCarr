@@ -266,10 +266,12 @@ public abstract class Piece {
         if((body.getLayoutY()>sell.getLayoutY()&&body.getLayoutY()<sell.getLayoutY()+sell.getHeight())&&(body.getLayoutX()<sell.getLayoutX()+sell.getWidth())){
             int index=parentDeck.getPiecesInDock().indexOf(this);
             mainGame.getWrapper().getChildren().remove(this.body);
-            parentDeck.getPiecesInDock().remove(this);
             parentDeck.getPieces().remove(this);
+            if(!onField) {
+                parentDeck.movePiecesLeft(index);
+                parentDeck.getPiecesInDock().remove(this);
+            }
             parentDeck.refundPlayer((rarity+1)*level,teamNum);
-            if(parentDeck.getPiecesInDock().indexOf(this)!=-1) parentDeck.movePiecesLeft(index);
             parentDeck.notGlow();
         }else if (body.getLayoutY() > playField.getBodyDimensions()[1]) {
             if (onField) {
