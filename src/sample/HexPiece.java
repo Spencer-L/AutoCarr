@@ -45,10 +45,10 @@ public class HexPiece extends Piece{
     HexPiece(int r, int l, double s,double h, String id,MainGame mG,PlayField pF,int tN,double[] pos,Deck pD){
         super(r,l,s,h,id,mG,pF,tN,pos,pD);
         setName("Berserker");
-        setHealth(getHealth()+100);
+        setHealth(getHealth()+50);
         setMaxHealth((int)getHealth());
-        setAtkSpd(1.5);
-        setDamage(getDamage()+10);
+        setAtkSpd(1.75);
+        setDamage(getDamage()+20);
         setRange(1.75);
         setRangeFactor(0.00001);
         base=new Polygon();

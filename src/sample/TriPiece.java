@@ -43,9 +43,9 @@ public class TriPiece extends Piece{
     TriPiece(int r, int l, double s,double h, String id,MainGame mG,PlayField pF,int tN,double[] pos,Deck pD){
         super(r,l,s,h,id,mG,pF,tN,pos,pD);
         setName("Archer");
-        setHealth(getHealth()+80);
+        setHealth(getHealth()+60);
         setMaxHealth((int)getHealth());
-        setAtkSpd(1.2);
+        setAtkSpd(1.3);
         setDamage(getDamage()+20);
         setRange(7);
         setRangeFactor(.50);
