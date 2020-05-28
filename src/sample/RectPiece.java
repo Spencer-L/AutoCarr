@@ -11,9 +11,9 @@ public class RectPiece extends Piece{
     RectPiece(double s,double h, String id,MainGame mG,PlayField pF,int tN,double[] pos,Deck pD){
         super(s,h,id,mG,pF,tN,pos,pD);
         setName("Paladin");
-        setHealth(getHealth()+200);
+        setHealth(getHealth()+250);
         setMaxHealth((int)getHealth());
-        setAtkSpd(.9);
+        setAtkSpd(1);
         setDamage(getDamage()+20);
         setRange(1);
         setRangeFactor(0.5);
@@ -37,9 +37,9 @@ public class RectPiece extends Piece{
     RectPiece(int r, int l, double s,double h, String id,MainGame mG,PlayField pF,int tN,double[] pos,Deck pD){
         super(r,l,s,h,id,mG,pF,tN,pos,pD);
         setName("Paladin");
-        setHealth(getHealth()+200);
+        setHealth(getHealth()+250);
         setMaxHealth((int)getHealth());
-        setAtkSpd(.9);
+        setAtkSpd(1);
         setDamage(getDamage()+20);
         setRange(1);
         setRangeFactor(0.5);
