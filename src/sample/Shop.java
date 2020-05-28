@@ -32,6 +32,7 @@ public class Shop {
     private Rectangle base;
     private Rectangle r,r1,a1,a2,a3,a4,a5;
     private Pane btn,btn1,u1,u2,u3,u4,u5;
+    private StackPane sell;
     private int num1,num2,num3,num4,num5;
     String class1,class2,class3,class4,class5;
     private int counter=1;
@@ -56,27 +57,18 @@ public class Shop {
         Text txt=new Text(bodyDimensions[0]/100,bodyDimensions[1]/8,"Refresh");
         txt.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/100));
         txt.setFill(Color.WHITE);
-        Text txt1=new Text(bodyDimensions[0]/100,bodyDimensions[1]/8+(bodyDimensions[1]/2),"Buy XP");
+        Text txt1=new Text(bodyDimensions[0]/100,bodyDimensions[1]/8+(bodyDimensions[1]/2),"Sell");
         txt1.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/100));
         txt1.setFill(Color.WHITE);
         StackPane gold=new StackPane();
         gold.setLayoutX(bodyDimensions[0]/100);
         gold.setLayoutY(bodyDimensions[1]/8);
-        StackPane gold1=new StackPane();
-        gold1.setLayoutX(bodyDimensions[0]/100);
-        gold1.setLayoutY(bodyDimensions[1]/8+(bodyDimensions[1]/2));
         Circle c=new Circle(bodyDimensions[0]/175);
         c.setFill(Color.GOLD);
-        Circle c1=new Circle(bodyDimensions[0]/175);
-        c1.setFill(Color.GOLD);
         Text g=new Text("G");
         g.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/175));
         g.setFill(Color.BLACK);
-        Text g1=new Text("G");
-        g1.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/175));
-        g1.setFill(Color.BLACK);
         gold.getChildren().addAll(c,g);
-        gold1.getChildren().addAll(c1,g1);
         Text num=new Text(bodyDimensions[0]/100+bodyDimensions[0]/80,bodyDimensions[1]/8+bodyDimensions[1]/10,"2");
         num.setFont(Font.font("Verdana", FontWeight.BOLD, bodyDimensions[0]/100));
         num.setFill(Color.WHITE);
@@ -85,7 +77,7 @@ public class Shop {
         num1.setFill(Color.WHITE);
         btn1= new Pane();
         btn= new Pane();
-        btn.getChildren().addAll(r1,txt1,gold1,num1);
+        btn.getChildren().addAll(r1,txt1);
         btn1.getChildren().addAll(r,txt,gold,num);
         body.getChildren().addAll(btn,btn1);
         actions();
@@ -112,6 +104,8 @@ public class Shop {
         teamnum1=p1.getTeamNum();
         teamnum2=p2.getTeamNum();
     }
+
+    public Pane getBtn() { return btn; }
     //methods
     public void actions(){
         r.setOnMouseClicked(new EventHandler<MouseEvent>(){
@@ -143,7 +137,7 @@ public class Shop {
             public void handle(MouseEvent event){
                 r.setFill(Color.WHEAT);
             }
-        });
+        });/*
         r1.setOnMouseEntered(new EventHandler<MouseEvent>(){
             public void handle(MouseEvent event){
                 r1.setFill(Color.SKYBLUE);
@@ -153,7 +147,7 @@ public class Shop {
             public void handle(MouseEvent event){
                 r1.setFill(Color.STEELBLUE);
             }
-        });
+        });*/
         r.setOnMouseExited(new EventHandler<MouseEvent>(){
             public void handle(MouseEvent event){
                 r.setFill(Color.TAN);
@@ -964,5 +958,11 @@ public class Shop {
         refreshShop();
         body.getChildren().addAll(btn,btn1);
         actions();
+    }
+    public void sellGlowOn(){
+        r1.setFill(Color.SKYBLUE);
+    }
+    public void sellGlowOff(){
+        r1.setFill(Color.STEELBLUE);
     }
 }
