@@ -19,8 +19,19 @@ import javafx.scene.text.FontWeight;
 public class Main extends Application {
 
     Scene scene1;
+    Stage pStage;
+
     @Override
     public void start(Stage primaryStage) throws Exception{
+        pStage=primaryStage;
+        launchMenuAndGame(primaryStage);
+    }
+
+    public void showRules(){
+
+    }
+
+    public void launchMenuAndGame(Stage primaryStage){
         VBox buttons = new VBox();
 
         Button startGame = new Button();
@@ -31,7 +42,7 @@ public class Main extends Application {
             Screen myScreen=Screen.getPrimary();
             Rectangle2D bounds= myScreen.getVisualBounds();
             GlobalVariable.screenDimensions=new double[]{bounds.getWidth(),bounds.getHeight()};
-            MainGame root2 = new MainGame(new double[]{bounds.getWidth(),bounds.getHeight()});
+            MainGame root2 = new MainGame(new double[]{bounds.getWidth(),bounds.getHeight()},this);
             primaryStage.setScene(new Scene(root2.getWrapper(), 1000, 1000));
             primaryStage.setMaximized(true);
             primaryStage.show();
@@ -115,11 +126,6 @@ public class Main extends Application {
         primaryStage.setTitle("Menu");
         primaryStage.setScene(scene1);
         primaryStage.show();
-
-    }
-
-    public void showRules(){
-
     }
 
 //hello this is the edited Main file

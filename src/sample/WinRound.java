@@ -3,6 +3,10 @@ package sample;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -21,6 +25,9 @@ public class WinRound {
     Timeline timer;
     int timerCounter;
     int seconds;
+    Button playAgainBtn;
+    StackPane playAgainPane=new StackPane();
+    boolean haveWinner=false;
     //constructor
     WinRound(MainGame mG){
         mainGame=mG;
@@ -29,10 +36,22 @@ public class WinRound {
         body.setPrefSize(mG.dimensions[0],mG.dimensions[1]);
         msg=new Text();
         msg.setText("Hello");
-        msg.setFont(new Font(mG.dimensions[0]*0.0732));
+        msg.setFont(new Font(mG.dimensions[0]*0.0632));
         msg.setFill(Color.RED);
         body.getChildren().add(msg);
         body.setVisible(false);
+        playAgainBtn=new Button();
+        playAgainBtn.setText("Back to Menu");
+        playAgainPane.getChildren().add(playAgainBtn);
+        playAgainPane.setPrefSize(mG.dimensions[0],mG.dimensions[1]);
+        playAgainPane.setLayoutY(70);
+        mainGame.getWrapper().getChildren().add(playAgainPane);
+        playAgainBtn.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                mainGame.createNewGame();
+            }
+        });
     }
     //setter/getter
     public StackPane getBody() {
@@ -66,16 +85,16 @@ public class WinRound {
             return false;
         }else if(dead1&&dead2){
             displayWinner("There is a tie");
-            mainGame.getPlayers().get(0).setMoney(mainGame.getPlayers().get(0).getMoney()+5);
-            mainGame.getPlayers().get(1).setMoney(mainGame.getPlayers().get(1).getMoney()+5);
+            mainGame.getPlayers().get(0).setMoney(mainGame.getPlayers().get(0).getMoney()+2);
+            mainGame.getPlayers().get(1).setMoney(mainGame.getPlayers().get(1).getMoney()+2);
             mainGame.getPlayers().get(0).generateInterest();
             mainGame.getPlayers().get(1).generateInterest();
             mainGame.getGoldDisplay().updateMoney(1);
             mainGame.getGoldDisplay().updateMoney(2);
         }else if(dead1){
             displayWinner("Player 2 Wins The Round!");
-            mainGame.getPlayers().get(0).setMoney(mainGame.getPlayers().get(0).getMoney()+3);
-            mainGame.getPlayers().get(1).setMoney(mainGame.getPlayers().get(1).getMoney()+5);
+            mainGame.getPlayers().get(0).setMoney(mainGame.getPlayers().get(0).getMoney()+1);
+            mainGame.getPlayers().get(1).setMoney(mainGame.getPlayers().get(1).getMoney()+2);
             int num=0;
             for(Piece p:pieces2){
                 num+=p.getRarity();
@@ -88,8 +107,8 @@ public class WinRound {
             mainGame.getGoldDisplay().updateHP(1);
         }else if(dead2){
             displayWinner("Player 1 Wins The Round!");
-            mainGame.getPlayers().get(0).setMoney(mainGame.getPlayers().get(0).getMoney()+5);
-            mainGame.getPlayers().get(1).setMoney(mainGame.getPlayers().get(1).getMoney()+3);
+            mainGame.getPlayers().get(0).setMoney(mainGame.getPlayers().get(0).getMoney()+2);
+            mainGame.getPlayers().get(1).setMoney(mainGame.getPlayers().get(1).getMoney()+1);
             int num=0;
             for(Piece p:pieces1){
                 num+=(p.getRarity()+1);
@@ -106,6 +125,12 @@ public class WinRound {
     //private methods
     private void displayWinner(String msg){// throws InterruptedException {
         setToWrite(msg);
+        mainGame.getWrapper().getChildren().remove(body);
+        mainGame.getWrapper().getChildren().add(body);
+        if(haveWinner){
+            mainGame.getWrapper().getChildren().remove(playAgainPane);
+            mainGame.getWrapper().getChildren().add(playAgainPane);
+        }
         body.setVisible(true);
         timer = new Timeline(new KeyFrame(Duration.millis(40), ae -> doCount(3)));
         timer.setCycleCount(Animation.INDEFINITE);
@@ -129,10 +154,13 @@ public class WinRound {
         boolean loose2=mainGame.players.get(1).getHP()<=0;
         if(loose1&&loose2){
             displayWinner("There Is A Tie");
+            haveWinner=true;
         }else if(loose1){
-            displayWinner("Player 2 Has Won the Game");
+            displayWinner("Player 2 Has Won the Game!");
+            haveWinner=true;
         }else if(loose2){
-            displayWinner("Player 1 Has Won the Game");
+            displayWinner("Player 1 Has Won the Game!");
+            haveWinner=true;
         }
     }
 }
