@@ -1,6 +1,3 @@
-Dear Mr. Carr,
-Here is our group's attempt at simulating a professional development environment.  We have completed this project using an IDE 
-with collaborative features (which we are so glad we spent the first week of development just setting up) as well as GitHub.  To play
-the game, go ahead and run src/sample/Main.  Other than that, have a nice summer and we hope you stay safe!
-
--AutoCarrsters
+Welcome to AutoCarr, a game made entirely in JavaFX (why we decided to shoot ourselves in the foot by not using a game engine beats me).  
+It is a Teamfight Tactics game made for two players.  Purchase units at the beginning of each round and watch them automatically seek out and
+destroy opposing units!
